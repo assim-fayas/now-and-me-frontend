@@ -1,26 +1,40 @@
 <section class="min-h-screen flex items-center justify-center bg-red-100">
     <!-- login container -->
-    <div class="bg-neutral-500 flex rounded-2xl shadow-lg max-w-3xl  p-8 items-center">
+    <div class="bg-gray-950 flex rounded-2xl shadow-lg max-w-3xl  p-8 items-center">
 
         <!-- form -->
         <div class="md:w-1/2 px-16">
-            <h2 class="font-bold text-3xl text-black stroke-slate-">Login</h2>
-            <p class="text-md mt-4 text-orange-500 stroke-orange-500"> "Discover the path to a healthier mind and a
-                happier
-                you!🌝"</p>
-            <form action="" class="flex flex-col gap-4">
-                <input type="email" name="email" placeholder="E-mail" class="p-2 mt-8 rounded-xl border">
-                <div class="relative">
-                    <input type="password" name="password" placeholder="password" class="p-2 rounded-xl border w-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class=" bi bi-eye absolute top-1/2 right-3  -translate-y-1/2" viewBox="0 0 16 16">
-                        <path
-                            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                        <path
-                            d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                    </svg>
+            <h2 class="font-bold text-3xl text-white">Login</h2>
+
+            <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="flex flex-col gap-4">
+                <input type="email" name="email" placeholder="E-mail" #email="ngModel" ngModel required
+                    autocomplete="email" class="p-2 mt-8 rounded-xl border ">
+                <p *ngIf="email.invalid && email.touched" id="filled_success_help"
+                    class="text-xs px-2 text-red-600 dark:text-red-400"> Please
+                    Enter The Email.</p>
+                <div class="relative ">
+                    <div class="flex items-center justify-between relative">
+
+
+                        <input type="password" name="password" placeholder="password" #password="ngModel" required
+                            ngModel autocomplete="current-password" class="p-2 rounded-xl border w-full">
+
+                        <div class="bg-blend-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="  bi bi-eye absolute top-1/2 right-3  -translate-y-1/2 ">
+                                <path
+                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                <path
+                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p *ngIf="password.invalid && password.touched" id="filled_success_help"
+                        class=" pt-2 px-2 mt-2 text-xs text-red-600 dark:text-red-400">
+                        Please Enter The Password.</p>
                 </div>
-                <button class="bg-orange-500 rounded-xl text-white py-2  hover:scale-105 duration-300">Login</button>
+                <input type="submit" value="Login" [disabled]="!form.valid"
+                    class="bg-orange-500 rounded-xl   text-white py-2 hover:scale-105 duration-300">
             </form>
             <div class="mt-10 grid grid-cols-3 items-center text-gray-400">
                 <hr class="border-gray-400">
@@ -41,9 +55,11 @@
                 </svg>Login With Google</button>
 
 
-            <p class="mt-5 text-xs border-b py-4 border-gray-400">Forgot your password?</p>
+            <p data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                class="mt-5 text-xs border-b py-4 text-gray-400 border-gray-400 cursor-pointer  hover:text-orange-500  duration-300 ">
+                Forgot your password?</p>
             <div class="mt-3 text-xs flex justify-between items-center">
-                <p>If you don't have an account?</p>
+                <p class="text-gray-400">If you don't have an account?</p>
                 <button
                     class=" hover:scale-105 duration-300 py-2 px-5 bg-orange-500  text-white rounded-xl ">Register</button>
             </div>
@@ -54,5 +70,105 @@
         </div>
 
     </div>
+
+
+    <!-- modal -->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true" data-modal-backdrop="static"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-gray-950  rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                    class="absolute top-3 right-2.5 text-white bg-transparent hover:bg-gray-950 hover:text-orange-500  rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="authentication-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-white dark:text-white">forgot Your password?</h3>
+                    <form class="space-y-6" (click)="timer()">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-white">
+                            </label>
+                            <input type="email" name="email" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="E-mail" required>
+                        </div>
+
+
+                        <button type="submit" data-modal-target="authentication-modal2"
+                            data-modal-toggle="authentication-modal2"
+                            class="w-full text-white bg-orange-500  hover:scale-105 duration-300 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reset</button>
+
+                    </form>
+                    <div class="text-sm  my-7 font-medium text-white dark:text-gray-300">
+                        Not registered? <a
+                            class="text-gray-500 hover:text-orange-500 cursor-pointer duration-300">Create
+                            account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal 2 -->
+    <div id="authentication-modal2" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-gray-950  rounded-lg shadow dark:bg-gray-700">
+                <button type="button" (click)="resetTimer()"
+                    class="absolute top-3 left-2.5 text-white bg-transparent hover:text-orange-500  rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center "
+                    data-modal-hide="authentication-modal2"><svg
+                        class="w-[19px] h-[19px] text-white dark:text-white hover:text-orange-500 " aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.9"
+                            d="M13 5H1m0 0 4 4M1 5l4-4" />
+                    </svg></button>
+                <button type="button" (click)="resetTimer()"
+                    class="absolute top-3 right-2.5 text-white bg-transparent hover:bg-gray-950 hover:text-orange-500  rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="authentication-modal2">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4  my-7 text-xl font-medium text-white dark:text-white">forgot Your password?</h3>
+                    <p class="mb-2 text-sm font-normal text-white">otp sent to <span
+                            class="text-orange-500">---email----</span> </p>
+                    <form class="space-y-6" action="#">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-white">
+                            </label>
+                            <input type="email" name="email" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder=" Enter The Otp" required>
+                        </div>
+
+
+                        <button type="submit"
+                            class="w-36 text-white bg-orange-500 opacity-70  hover:scale-105 duration-300 focus:outline-none  font-medium rounded-lg text-sm py-2.5 text-center">Change
+                            Email</button>
+                        <button type="submit"
+                            class="w-32 mx-7 text-white bg-orange-500  hover:scale-105 duration-300 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center">Verify</button>
+                        <div class="text-sm font-normal text-white dark:text-gray-300 ">
+                            <a *ngIf="!startTimer" class="mx-2  text-orange-500 cursor-pointer duration-300  " (click)="timer()">Resend 
+                                OTP</a>
+                            <a *ngIf="startTimer" class="mx-2  text-orange-500 cursor-pointer duration-300 "><span class="mx-2  text-white cursor-pointer duration-300 ">Resend OTP In </span>{{remainingTime}}</a>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </section>

@@ -1,24 +1,28 @@
-import { Component} from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms'
+import { Router } from "@angular/router";
+import {HttpClient} from "@angular/common/http"
+
+
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
-  constructor(){}   
+   
   
 
   onSubmit(form: NgForm) {
     console.log(form);
 
   }
-
   //timer function
   startTimer: boolean = false
-  remainingTime:number=60
+  remainingTime:number=29
   timerValue!:any
 
   
@@ -31,7 +35,7 @@ export class LoginComponent {
   
     resetTimer() {
       this.startTimer = false
-      this.remainingTime=60
+      this.remainingTime=29
       console.log(this.startTimer);
     }
 
@@ -56,14 +60,10 @@ export class LoginComponent {
       }, 1000);
     }
    
+    constructor(private router:Router,private http:HttpClient){} 
+ngOnInit(){
 
-   
-
-
-
-
-
-
+}
 
 
 }

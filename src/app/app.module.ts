@@ -7,6 +7,7 @@ import { RegisterComponent } from './component/users/register/register.component
 import { LoginComponent } from './component/users/login/login.component';
 import { HomeComponent } from './component/users/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './shared/loading-spinner';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,26 @@
 <section class="min-h-screen flex items-center justify-center bg-red-100">
+
+
     <!-- login container -->
     <div class="bg-gray-950 flex rounded-2xl shadow-lg max-w-3xl  p-8 items-center">
+
+
+
 
         <!-- form -->
         <div class="md:w-1/2 px-16">
             <h2 class="font-bold text-3xl text-white">Login</h2>
-              <div *ngIf="isLoading">
+            <div *ngIf="isLoading">
                 <app-loading-spinner></app-loading-spinner>
-              </div>
+            </div>
             <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="flex flex-col gap-4" *ngIf="!isLoading">
                 <input type="email" name="email" placeholder="E-mail" #email="ngModel" ngModel required email
                     autocomplete="email" class="p-2 mt-8 rounded-xl border ">
-                    <div *ngIf="errorMsg">
+                <div *ngIf="errorMsg && !email.touched && !email.dirty && email.invalid" >
 
-                        <p class="text-xs px-2 text-red-600 dark:text-red-400"> {{errorMsg}}</p>
-                    </div>
-                    <div *ngIf="email.invalid && email.touched">
+                    <p class="text-xs px-2 text-red-600 dark:text-red-400"> {{errorMsg}}</p>
+                </div>
+                <div *ngIf="email.invalid && email.touched">
                     <div *ngIf="email.errors && email.errors['required']">
 
                         <p class="text-xs px-2 text-red-600 dark:text-red-400"> Please Enter the Email </p>
@@ -24,7 +29,7 @@
 
                         <p class="text-xs px-2 text-red-600 dark:text-red-400"> Enter Valid Email</p>
                     </div>
-                   
+
                 </div>
                 <div class="relative ">
                     <div class="flex items-center justify-between relative">
@@ -52,7 +57,7 @@
                         <div *ngIf="password.errors && password.errors['minlength']">
                             <p id="filled_success_help" class=" pt-2 px-2 mt-2 text-xs text-red-600 dark:text-red-400">
                                 Password should be of 6 characters</p>
-                              
+
                         </div>
                     </div>
                 </div>
@@ -76,10 +81,10 @@
                     <path fill="#1976D2"
                         d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
                 </svg>Login With Google
-               
+
             </button>
 
-           
+
             <p data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                 class="mt-5 text-xs border-b py-4 text-gray-400 border-gray-400 cursor-pointer  hover:text-orange-500  duration-300 ">
                 Forgot your password?</p>

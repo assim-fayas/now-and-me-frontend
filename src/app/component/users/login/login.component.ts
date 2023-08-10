@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http"
 import { LoginRequest } from 'src/app/models';
 import { UserServiceService } from '../../../service/user-service.service'
-
+import {first} from 'rxjs/operators'
 
 
 @Component({
@@ -15,9 +15,9 @@ import { UserServiceService } from '../../../service/user-service.service'
 export class LoginComponent implements OnInit {
 
 
-
+formSubmitted=false;
   //loading spinner
-  isLoading:boolean=false
+  isLoading: boolean = false
 
   //timer function
   startTimer: boolean = false
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   timerValue!: any
 
   //error
-  errorMsg!:string
+  errorMsg!: string
 
   timer() {
     this.startTimer = true
@@ -62,30 +62,46 @@ export class LoginComponent implements OnInit {
   }
 
 
-  constructor(private router: Router, private http: HttpClient, private user: UserServiceService) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private user: UserServiceService,
+  ) {
+
+    //redirect to home if user alredy loged in 
+if(this.user.userValue()){
+  this.router.navigate(['/'])
+}
+  }
+
+
   ngOnInit() { }
 
-//login form data
-  login(loginForm:NgForm) {
+  //login form data
+  login(loginForm: NgForm) {
     if (!loginForm.valid) {
       console.log("invalid click");
       return
+
     }
-    this.isLoading=true
+    this.formSubmitted=true;
+    this.isLoading = true
     //  perform the login request call 
-    this.user.login(loginForm.value.email,loginForm.value.password)
-    .subscribe(
-      (response)=>{
-        console.log(response);
-        this.isLoading=false 
-      },
-      (errorMessage)=>{
-        this.errorMsg=errorMessage
-        this.isLoading=false
-       
-      }
-    )
-    
+    this.user.login(loginForm.value.email, loginForm.value.password)
+    .pipe(first())
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.isLoading = false
+          this.router.navigate(['/'])
+        },
+        (errorMessage) => {
+          this.errorMsg = errorMessage
+          this.isLoading = false
+
+        }
+      )
+
   }
 }
 

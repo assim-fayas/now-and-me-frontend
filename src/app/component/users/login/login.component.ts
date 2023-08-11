@@ -70,6 +70,8 @@ formSubmitted=false;
 
     //redirect to home if user alredy loged in 
 if(this.user.userValue()){
+  console.log(this.user.userValue,"login uleee");
+  
   this.router.navigate(['/'])
 }
   }
@@ -91,7 +93,7 @@ if(this.user.userValue()){
     .pipe(first())
       .subscribe(
         (response) => {
-          console.log(response);
+          console.log(response,"loginnnnn");
           this.isLoading = false
           this.router.navigate(['/'])
         },

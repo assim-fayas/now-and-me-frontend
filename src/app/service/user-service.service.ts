@@ -20,14 +20,19 @@ public user:Observable<LoginResponse | null>
     private http: HttpClient,
     private router:Router
     ) {
-    this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+      // Initializing userSubject from localStorage
+    this.userSubject = new BehaviorSubject<LoginResponse | null>(JSON.parse(localStorage.getItem('LoginResponse')!));
+    // Making the user observable
     this.user = this.userSubject.asObservable();
    }
 
 
    // logged user detail
-   userValue(){
+     userValue():LoginResponse | null{
+      console.log("user service",this.userSubject.value);
+      
     return this.userSubject.value
+
    
    }
   // Login of user
@@ -50,11 +55,12 @@ public user:Observable<LoginResponse | null>
       );
   }
 
+  //user logout
 logout(){
   // remove the user from local and set the current user null
-localStorage.removeItem('user');
+localStorage.removeItem('LoginResponse');
 this.userSubject.next(null)
-this.router.navigate(['/ogin'])
+this.router.navigate(['/login'])
 }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { LoginResponse } from 'src/app/models';
 @Component({
@@ -6,17 +6,20 @@ import { LoginResponse } from 'src/app/models';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
-  user?:LoginResponse| null;
- 
-  constructor(private userService: UserServiceService){
-    this.userService.user.subscribe(x=>{
-      this.user=x
+  user!: LoginResponse | null;
+
+  constructor(private userService: UserServiceService) {
+
+  }
+  ngOnInit(): void {
+    this.userService.user.subscribe(x => {
+      this.user = x
     })
   }
 
-  logout(){
+  logout() {
     this.userService.logout()
   }
 }

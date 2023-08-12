@@ -11,6 +11,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner';
 import { NavbarComponent } from './component/users/navbar/navbar.component';
 import { FooterComponent } from './component/users/footer/footer.component';
 import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.interceptor';
+import { OtpComponent } from './component/users/otp/otp.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.inter
     HomeComponent,
     LoadingSpinnerComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    OtpComponent
   ],
   imports: [
     BrowserModule,

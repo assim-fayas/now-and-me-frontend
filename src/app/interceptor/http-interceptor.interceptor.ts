@@ -14,8 +14,10 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
 
   constructor(public userService: UserServiceService) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const user = this.userService.getuUserToken();
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const user = this.userService.userValue();
+    console.log("user jwt token,",user);
+    
     console.log("user in HttpInterceptorInterceptor", user);
 
     const isLoggedIn = user?.token;

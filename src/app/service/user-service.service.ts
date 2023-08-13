@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, catchError, throwError, BehaviorSubject } from 'rxjs';
@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService {
+export class UserServiceService implements OnInit{
 
   // backend url
   private readonly url = environment.apiBaseUrl
@@ -26,13 +26,17 @@ export class UserServiceService {
     this.user = this.userSubject.asObservable();
   }
 
+ngOnInit(): void {
+  
+}
+
 
   userResponse!: LoginResponse
 
   getuUserToken() {
-    let res = this.userResponse
-    return (res)
+    return localStorage.getItem('token');
   }
+
 
   // logged user detail
   userValue(): LoginResponse | null {
@@ -66,10 +70,10 @@ export class UserServiceService {
       );
   }
 
-  //change password
+  //otp generating
   PasswordErrorMessage: string="Error occured"
-  changePassword(email: string) {
-    return this.http.post< string>(`${this.url}/changePassword`, { email}, { withCredentials: true })
+ otp(email: string) {
+    return this.http.post< string>(`${this.url}/otp`, { email}, { withCredentials: true })
     .pipe(
       catchError(errorRes => {
         console.log("Error response from backend:", errorRes.error);
@@ -82,8 +86,27 @@ export class UserServiceService {
 }
 
 //otp verification
+verifyOtp(otp:string){
+  return this.http.post<string>(`${this.url}/veryfyOtp`,{otp},{withCredentials:true})
+  .pipe(
+    catchError(errorRes=>{
+      const errorMessage=errorRes.error.message;
+      console.log("Eror Rsponse from backend:",errorMessage);
+      return throwError( errorMessage);
+    })
+  )
+}
 
-
+//password resetting
+restPassword(password:string){
+  return this.http.post<string>(`${this.url}/changePassword`,{password},{withCredentials:true})
+  .pipe(
+    catchError(errorRes=>{
+      const errorMessage=errorRes.error.message;
+      return throwError(errorMessage)
+    })
+  )
+}
 
   //user logout
   logout() {

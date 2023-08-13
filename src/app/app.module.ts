@@ -12,6 +12,12 @@ import { NavbarComponent } from './component/users/navbar/navbar.component';
 import { FooterComponent } from './component/users/footer/footer.component';
 import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.interceptor';
 import { OtpComponent } from './component/users/otp/otp.component';
+import { ResetPasswordComponent } from './component/users/reset-password/reset-password.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AdminLoginComponent } from './component/admin/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './component/admin/admin-dashboard/admin-dashboard.component';
+import { AdminListUsersComponent } from './component/admin/admin-list-users/admin-list-users.component'
+
 
 
 @NgModule({
@@ -23,13 +29,19 @@ import { OtpComponent } from './component/users/otp/otp.component';
     LoadingSpinnerComponent,
     NavbarComponent,
     FooterComponent,
-    OtpComponent
+    OtpComponent,
+    ResetPasswordComponent,
+    AdminLoginComponent,
+    AdminDashboardComponent,
+    AdminListUsersComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

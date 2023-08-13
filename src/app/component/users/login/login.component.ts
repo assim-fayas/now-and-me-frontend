@@ -36,8 +36,6 @@ export class LoginComponent implements OnInit {
 
  //login form data
 
-
-
   //error
   loginErrorMessage!: string
  
@@ -84,7 +82,7 @@ export class LoginComponent implements OnInit {
     this.userEmail=modalForm.value.email
     //perform request call
 
-    this.user.changePassword(modalForm.value.email).subscribe((response) => {
+    this.user.otp(modalForm.value.email).subscribe((response) => {
       console.log(response);
       this.isLoading = false
       this.router.navigate(['/otp'],{queryParams:{email:this.userEmail}})

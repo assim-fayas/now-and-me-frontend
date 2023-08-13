@@ -1,35 +1,42 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserServiceService } from 'src/app/service/user-service.service';
 
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.css']
 })
-export class OtpComponent implements OnInit{
+export class OtpComponent implements OnInit {
 
-// email of the current user
-email!:string
-
-
+  // email of the current user
+  email!: string
 
 
-constructor(private route:ActivatedRoute){}
 
-ngOnInit(): void {
 
-this.route.queryParams.subscribe((params)=>{
-this.email=params['email']
+  constructor(private route: ActivatedRoute,
+    private user: UserServiceService,
+    private router:Router) { }
 
-// counter starts
-this.timer()
-})
 
-}
 
-//loading spinner
- isLoading: boolean = false
+
+  ngOnInit(): void {
+
+    this.route.queryParams.subscribe((params) => {
+      this.email = params['email']
+
+    })
+
+    // counter starts
+    this.timer()
+
+  }
+
+  //loading spinner
+  isLoading: boolean = false
 
 
   //timer function
@@ -38,15 +45,34 @@ this.timer()
   timerValue!: any
 
   timer() {
-   console.log("user email",this.email);
-   
+    console.log("user email", this.email);
+
     this.startTimer = true
     this.startCounter()
+
   }
 
-  
+  // rstarts timer and send email again
+  restartTimer() {
+    this.timer()
+    this.isLoading = true
+    this.user.otp(this.email).subscribe((response) => {
+      console.log(response);
+      this.isLoading = false
+    },
+      (errorMessage) => {
+
+        console.log(errorMessage);
+
+        this.isLoading = false
+
+      })
+
+  }
+
+
   resetTimer() {
-    
+
     this.startTimer = false
     this.remainingTime = 29
     console.log(this.startTimer);
@@ -73,9 +99,26 @@ this.timer()
     }, 1000);
   }
 
+//otp verification
+otpErrorMessage!:string
+  veryfyOtp(otpForm: NgForm) {
+    console.log("otp formnn kityeeeeeeee", otpForm.value.otp);
 
-  veryfyOtp(otpForm:NgForm){
+    if (!otpForm.valid) {
+      return
+    }
+
+// perform verification call
+
+this.user.verifyOtp(otpForm.value.otp).subscribe((response)=>{
+if(response){
+  this.router.navigate(['/resetPassword'])
+}
+},
+(errormessage)=>{
+  this.otpErrorMessage=errormessage
+})
 
   }
- 
+
 }

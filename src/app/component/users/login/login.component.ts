@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms'
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http"
 import { LoginRequest } from 'src/app/models';
+import { LoginResponse } from 'src/app/models';
 import { UserServiceService } from '../../../service/user-service.service'
 import { first } from 'rxjs/operators'
 
@@ -26,10 +27,10 @@ export class LoginComponent implements OnInit {
   ) {
 
     //redirect to home if user alredy loged in 
-    if (this.user.userValue()) {
-      console.log(this.user.userValue, "login uleee");
-
+    if (localStorage.getItem('jwt_user')) {
       this.router.navigate(['/'])
+    }else{
+      this.router.navigate(['/login'])
     }
   }
 
@@ -53,6 +54,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log(response, "loginnnnn");
+          const jwtToken=response.token
+          localStorage.setItem('jwt_user',jwtToken)
           this.isLoading = false
           this.router.navigate(['/'])
         },
@@ -82,8 +85,10 @@ export class LoginComponent implements OnInit {
     this.userEmail=modalForm.value.email
     //perform request call
 
-    this.user.otp(modalForm.value.email).subscribe((response) => {
-      console.log(response);
+    this.user.otp(modalForm.value.email).subscribe((response:any) => {
+      const jwtToken =response.token;
+      console.log(jwtToken,"jwt t");
+      
       this.isLoading = false
       this.router.navigate(['/otp'],{queryParams:{email:this.userEmail}})
     },

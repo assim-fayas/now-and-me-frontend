@@ -12,19 +12,12 @@ export class UserServiceService implements OnInit{
 
   // backend url
   private readonly url = environment.apiBaseUrl
+  
 
-  private readonly userSubject: BehaviorSubject<LoginResponse | null>
-  public user: Observable<LoginResponse | null>
   constructor(
     private http: HttpClient,
     private router: Router
-  ) {
-    // Initializing userSubject from localStorage
-    const storedUser = JSON.parse(localStorage.getItem('LoginResponse') || 'null');
-    this.userSubject = new BehaviorSubject<LoginResponse | null>(JSON.parse(localStorage.getItem('LoginResponse')!));
-    // Making the user observable
-    this.user = this.userSubject.asObservable();
-  }
+  ) {}
 
 ngOnInit(): void {
   
@@ -34,18 +27,18 @@ ngOnInit(): void {
   userResponse!: LoginResponse
 
   getuUserToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('jwt_user');
   }
 
 
   // logged user detail
-  userValue(): LoginResponse | null {
+  // userValue(): LoginResponse | null {
 
-    console.log("user service......", this.userSubject.value);
-    return this.userSubject.value
+  //   console.log("user service......", this.userSubject.value);
+  //   return this.userSubject.value
 
 
-  }
+  // }
 
 
   
@@ -56,10 +49,9 @@ ngOnInit(): void {
     return this.http.post<LoginResponse>(`${this.url}/login`, { email, password }, { withCredentials: true })
       .pipe(map(LoginResponse => {
         //store all details and jwt token in local storage 
+
         localStorage.setItem('LoginResponse', JSON.stringify(LoginResponse))
         console.log(LoginResponse, "login response");
-        this.userResponse = LoginResponse
-        this.userSubject.next(LoginResponse)
         return LoginResponse
       }),
         catchError((errorRes) => {
@@ -108,11 +100,26 @@ restPassword(password:string){
   )
 }
 
+
+//user registration
+
+registerUser(user:any){
+  return this.http.post(`${this.url}/register`,user,{withCredentials:true})
+  .pipe(
+    catchError(errorRes=>{
+      const errorMessage=errorRes.error.message;
+      return throwError(errorMessage)
+    })
+  )
+}
+
+
+
   //user logout
   logout() {
     // remove the user from local and set the current user null
-    localStorage.removeItem('LoginResponse');
-    this.userSubject.next(null)
+    localStorage.removeItem('jwt_user');
+    // this.userSubject.next(null)
     this.router.navigate(['/login'])
   }
 

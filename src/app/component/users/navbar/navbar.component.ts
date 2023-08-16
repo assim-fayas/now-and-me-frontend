@@ -8,15 +8,12 @@ import { LoginResponse } from 'src/app/models';
 })
 export class NavbarComponent implements OnInit {
 
-  user!: LoginResponse | null;
 
   constructor(private userService: UserServiceService) {
 
   }
   ngOnInit(): void {
-    this.userService.user.subscribe(x => {
-      this.user = x
-    })
+ 
   }
 
   logout() {

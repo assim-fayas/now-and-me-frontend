@@ -14,27 +14,29 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
 
   constructor(public userService: UserServiceService) { }
 
+
+
+
+  data!: string | null
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const user = this.userService.userValue();
-    console.log("user jwt token,",user);
-    
-    console.log("user in HttpInterceptorInterceptor", user);
+    if (request.url.includes('admin')) {
+      this.data = localStorage.getItem('admintoken')
+    } else {
+      this.data = localStorage.getItem('jwt_user')
+    }
+    if (this.data) {
+      let tokennized = request.clone({
+        setHeaders: {
+          Authorization: `${this.data}`
+        }
+      })
+      console.log(tokennized, "tokenizeddd");
+      return next.handle(tokennized);
+    }
+    else {
 
-    const isLoggedIn = user?.token;
-    console.log("is Logged in(interceptor)", isLoggedIn);
-
-    const isApiUrl = request.url.startsWith(environment.apiBaseUrl);
-    console.log(isApiUrl, "Api url(interceptor)");
-
-    if (isLoggedIn && isApiUrl) {
-      const tokenisedRequest = request.clone({
-        setHeaders: { Authorization: `Bearer ${user.token}` }
-      });
-
-      return next.handle(tokenisedRequest); // Return the modified request
+      return next.handle(request)
     }
 
-    // If the conditions are not met, just pass along the original request
-    return next.handle(request);
   }
 }

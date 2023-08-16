@@ -16,7 +16,9 @@ import { ResetPasswordComponent } from './component/users/reset-password/reset-p
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminLoginComponent } from './component/admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './component/admin/admin-dashboard/admin-dashboard.component';
-import { AdminListUsersComponent } from './component/admin/admin-list-users/admin-list-users.component'
+import { AdminListUsersComponent } from './component/admin/admin-list-users/admin-list-users.component';
+import { MailverificationComponent } from './component/users/mailverification/mailverification.component'
+import { UserServiceService } from './service/user-service.service';
 
 
 
@@ -34,6 +36,7 @@ import { AdminListUsersComponent } from './component/admin/admin-list-users/admi
     AdminLoginComponent,
     AdminDashboardComponent,
     AdminListUsersComponent,
+    MailverificationComponent,
 
   ],
   imports: [
@@ -47,7 +50,8 @@ import { AdminListUsersComponent } from './component/admin/admin-list-users/admi
     provide:HTTP_INTERCEPTORS,
     useClass:HttpInterceptorInterceptor,
     multi:true
-  },],
+  },
+      UserServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

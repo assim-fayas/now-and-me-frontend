@@ -1,9 +1,9 @@
 <section class="min-h-screen flex items-center justify-center bg-red-100">
     <!-- login container -->
-    <div class="bg-gray-950 flex rounded-2xl shadow-lg max-w-3xl p-8 items-center">
+    <div class="bg-gray-950 flex rounded-2xl shadow-lg max-w-3xl p-8 items-center ">
         <!-- form -->
-        <div class="md:w-1/2 px-16">
-            <h2 class="font-bold text-3xl text-white">Sign Up</h2>
+        <div class="md:w-1/2 px-16 mb-0 ">
+            <h2 class="font-bold text-3xl ml-3 mt-0` text-white pt-2">Sign Up</h2>
 
             <form [formGroup]="form" (submit)="submit()" class="flex flex-col gap-4">
                 <input type="text" name="name" placeholder="name" formControlName="name"
@@ -25,9 +25,11 @@
                         [ngClass]="{'border-red-500': register && f['password'].errors}"
                         class="p-2 rounded-xl border w-full">
                     <div>
-                        <div *ngIf="register && f['password'].errors" class="text-xs px-2 text-red-600 dark:text-red-400">
+                        <div *ngIf="register && f['password'].errors"
+                            class="text-xs px-2 text-red-600 dark:text-red-400">
                             <p *ngIf="f['password'].errors['required']">Password is required</p>
-                            <span *ngIf="f['password'].errors['pattern']" class="p-2">Password requires at least one special character</span>
+                            <span *ngIf="f['password'].errors['pattern']" class="p-2">Password requires at least one
+                                special character</span>
                             <p *ngIf="f['password'].errors['minlength']">At least 8 characters required</p>
                         </div>
                     </div>
@@ -41,7 +43,7 @@
                 </div>
 
                 <input type="submit" value="Sign Up"
-                    class="bg-orange-500 rounded-xl text-white py-2 hover:scale-105 duration-300">
+                    class="bg-orange-500 rounded-xl w-full text-white py-2 hover:scale-105 duration-300">
             </form>
             <div class="mt-10 grid  items-center text-gray-400">
                 <hr class="border-gray-400">

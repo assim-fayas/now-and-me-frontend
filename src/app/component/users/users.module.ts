@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
+import { CarouselComponent } from 'src/app/carousel/carousel.component';
+import { ExpertListingComponent } from './expert-listing/expert-listing.component';
 
 
 @NgModule({
@@ -23,13 +25,17 @@ import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
     OtpComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ExpertListingComponent,
+  
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselComponent ,
+ 
   ]
 })
 export class UsersModule { }

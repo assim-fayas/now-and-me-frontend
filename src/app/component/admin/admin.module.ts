@@ -5,17 +5,24 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminListUsersComponent } from './admin-list-users/admin-list-users.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ListExpertsComponent } from './list-experts/list-experts.component';
 
 
 @NgModule({
   declarations: [AdminDashboardComponent,
     AdminListUsersComponent,
-  AdminLoginComponent],
+  AdminLoginComponent,
+  NavbarComponent,
+  SidebarComponent,
+  ListExpertsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+  
   ],
 })
 export class AdminModule { }

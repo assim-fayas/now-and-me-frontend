@@ -1,0 +1,23 @@
+<div class="flex justify-center">
+    <div class=" h-32 w-3/5  ">
+        <ngx-slick-carousel class="carousel " #slickModal="slick-carousel" [config]="slideConfig"
+            (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+            (beforeChange)="beforeChange($event)">
+            <div class="full " ngxSlickItem *ngFor="let slide of slides" class="slide">
+                <div class="relative z-0 flex-col align-middle space-y-2 flex-nowrap">
+                    <img class="image brightness-75 rounded-3xl h-56 w-60 p-3 pb-5 z-10" [src]="slide.image" alt="" width="100%">
+                    <div class="text-center absolute top-1/2 z-50 text-xl pt-3 font-bold text-white mx-16 my-10">{{slide.name}}</div>
+                    <div class="absolute top-2/3 left-0 w-full text-center">
+                        <span class="text-[10px] font-medium text-slate-300">{{slide.category}}</span>
+                    </div>
+                </div>
+            </div>
+            
+
+
+
+        </ngx-slick-carousel>
+<button (click)="showMessage()">Show message</button>
+
+    </div>
+</div>

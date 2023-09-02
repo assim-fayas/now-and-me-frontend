@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms'
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http"
-import { LoginRequest } from 'src/app/models';
 import { LoginResponse } from 'src/app/models';
 import { UserServiceService } from '../../../service/user-service.service'
 import { first } from 'rxjs/operators'
-
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-login',
@@ -87,7 +86,7 @@ export class LoginComponent implements OnInit {
 
     this.user.otp(modalForm.value.email).subscribe((response:any) => {
       const jwtToken =response.token;
-      console.log(jwtToken,"jwt t");
+      console.log(jwtToken,"jwt");
       
       this.isLoading = false
       this.router.navigate(['/otp'],{queryParams:{email:this.userEmail}})
@@ -103,7 +102,9 @@ export class LoginComponent implements OnInit {
   }
 
 
-  ngOnInit() { }
+  ngOnInit() {
+    initFlowbite()
+   }
 
 
 }

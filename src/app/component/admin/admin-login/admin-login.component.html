@@ -9,17 +9,18 @@
 
         <!-- form -->
         <div class="md:w-1/2 px-16">
-            <h2 class="font-bold text-3xl text-white"> Admin Login</h2>
+            <h2 class="font-bold text-3xl text-white mb-4"> Admin Login</h2>
             <!-- <div *ngIf="isLoading">
                 <app-loading-spinner></app-loading-spinner>
             </div> -->
-            <form #AdminloginForm="ngForm" (ngSubmit)="Adminlogin(AdminloginForm)" class="flex flex-col gap-4" >
+            <div *ngIf="loginErrorMessage && email.touched && email.dirty && email.valid ">
+
+                <p class="text-xs px-2 text-red-600 dark:text-red-400"> {{loginErrorMessage}}</p>
+            </div>
+            <form #AdminloginForm="ngForm" (ngSubmit)="Adminlogin(AdminloginForm)" class="flex flex-col gap-4">
                 <input type="email" name="email" placeholder="E-mail" #email="ngModel" ngModel required email
                     autocomplete="email" class="p-2 mt-8 rounded-xl border ">
-                <!-- <div *ngIf="loginErrorMessage && !email.touched && !email.dirty && email.invalid">
 
-                    <p class="text-xs px-2 text-red-600 dark:text-red-400"> {{loginErrorMessage}}</p>
-                </div>
                 <div *ngIf="email.invalid && email.touched">
                     <div *ngIf="email.errors && email.errors['required']">
 
@@ -30,7 +31,7 @@
                         <p class="text-xs px-2 text-red-600 dark:text-red-400"> Enter Valid Email</p>
                     </div>
 
-                </div> -->
+                </div>
                 <div class="relative ">
                     <div class="flex items-center justify-between relative">
 
@@ -49,7 +50,7 @@
                         </div>
 
                     </div>
-                    <!-- <div *ngIf="password.invalid && password.touched">
+                    <div *ngIf="password.invalid && password.touched">
                         <div *ngIf="password.errors && password.errors['required']">
                             <p id="filled_success_help" class=" pt-2 px-2 mt-2 text-xs text-red-600 dark:text-red-400">
                                 Please Enter the Password.</p>
@@ -59,17 +60,17 @@
                                 Password should be of 6 characters</p>
 
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <button type="submit" [disabled]="!AdminloginForm.valid"
                     class="  bg-orange-500 rounded-xl   text-white py-2 hover:scale-105 duration-300">Login</button>
             </form>
-           
-            
 
 
 
-            
+
+
+
 
         </div>
         <!-- image -->

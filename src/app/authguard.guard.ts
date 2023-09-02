@@ -27,3 +27,24 @@ export class AuthGuard implements CanActivate {
 
     }
 }
+
+@Injectable({
+    providedIn: 'root',
+  })
+  export class ConsecutiveGuard implements CanActivate {
+    constructor(private router : Router){}
+  
+    canActivate() {
+      const admin = localStorage.getItem('jwt_admin');
+      const expert = localStorage.getItem('jwt_expert');
+      if (admin) {
+        this.router.navigate(['/admin/admin']);
+        return false;
+      } else if (expert) {
+         this.router.navigate(['/experts/experts']);
+         return false;
+      } else {
+        return true;
+      }
+    }
+  }

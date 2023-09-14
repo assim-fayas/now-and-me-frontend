@@ -16,6 +16,8 @@ import { Regform3Component } from './regform3/regform3.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { CloudinaryModule } from '@cloudinary/ng';
 
+
+
 @NgModule({
   declarations: [
 
@@ -39,12 +41,14 @@ import { CloudinaryModule } from '@cloudinary/ng';
     ReactiveFormsModule,
     FormsModule,
     PickerModule,
-    CloudinaryModule
+    CloudinaryModule,
+
+
 
   ],
 
-exports: [
+  exports: [
 
-]
+  ]
 })
 export class ExpertsModule { }

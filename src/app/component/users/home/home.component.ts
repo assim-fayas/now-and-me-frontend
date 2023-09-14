@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
   navigateToExpertListing() {
     this.Router.navigate(['/expertlisting'])
   }
+  navigateTocommunity(){
+    this.Router.navigate(['/community'])
+  }
 
 
   check() {

@@ -12,42 +12,30 @@ import { UserServiceService } from '../service/user-service.service';
 @Injectable()
 export class HttpInterceptorInterceptor implements HttpInterceptor {
 
-  constructor(public userService: UserServiceService) { }
-
-
-
-
-  data!: string | null
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log("inter");
-
-    let token = localStorage.getItem('jwt_user')
-    console.log(token, "tokennnnnnnnnnn");
-
-
-    if (request.url.includes('admin')) {
-      this.data = localStorage.getItem('admintoken')
-    } else {
-      console.log("inside else");
-      this.data = localStorage.getItem('jwt_user')
-    }
-    if (this.data) {
-      console.log("inside if data undangill");
-      console.log("data interceptor", this.data);
-
-      let tokennized = request.clone({
-        setHeaders: {
-          Authorization: `${this.data}`
-        }
+    let userToken = localStorage.getItem('jwt_user')
+    let expertToken = localStorage.getItem('jwt_expert')
+    let adminToken = localStorage.getItem('jwt_admin')
+    if (userToken) {
+      const newRequest = request.clone({
+        headers: request.headers.set('Authorization', 'Bearer ' + userToken)
       })
-      console.log(tokennized, "tokenizeddd");
-      return next.handle(tokennized);
-    }
-    else {
-      console.log("there is an isuue in interceptor");
+      return next.handle(newRequest);
 
-      return next.handle(request)
     }
-
+    if (expertToken) {
+      const newRequest = request.clone({
+        headers: request.headers.set('Authorization', 'Bearer ' + expertToken)
+      })
+      return next.handle(newRequest);
+    }
+    if (adminToken) {
+      const newRequest = request.clone({
+        headers: request.headers.set('Authorization', 'Bearer ' + adminToken)
+      })
+      return next.handle(newRequest);
+    }
+    return next.handle(request);
   }
+
 }

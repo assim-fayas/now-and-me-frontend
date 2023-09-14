@@ -1,0 +1,4 @@
+input[type="radio"]:checked+div>div {
+  opacity: 100;
+  transform: scale(100%);
+}

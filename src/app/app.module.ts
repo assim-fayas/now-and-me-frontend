@@ -7,14 +7,20 @@ import { AppComponent } from './app.component';
 import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.interceptor';
 import { UserServiceService } from './service/user-service.service';
 import { ToastrModule } from 'ngx-toastr';
-import{BrowserAnimationsModule}from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  
+ 
+
+
+
   ],
   imports: [
     CommonModule,
@@ -30,7 +36,7 @@ import{BrowserAnimationsModule}from '@angular/platform-browser/animations'
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptorInterceptor,
     multi: true
-  },UserServiceService],
+  }, UserServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

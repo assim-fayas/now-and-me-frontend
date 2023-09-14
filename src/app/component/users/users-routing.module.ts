@@ -9,6 +9,10 @@ import { MailverificationComponent } from './mailverification/mailverification.c
 import { AuthGuard, ConsecutiveGuard } from 'src/app/authguard.guard';
 import { CarouselComponent } from 'src/app/carousel/carousel.component';
 import { ExpertListingComponent } from './expert-listing/expert-listing.component';
+import { CommunityComponent } from './community/community.component';
+import { SchedulesComponent } from './schedules/schedules.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 const routes: Routes = [
@@ -19,7 +23,10 @@ const routes: Routes = [
   { path: "resetPassword", component: ResetPasswordComponent },
   { path: 'user/:id/verify/:token', component: MailverificationComponent },
   { path: 'carousel', component: CarouselComponent },
-  { path: 'expertlisting', component: ExpertListingComponent, canActivate: [ConsecutiveGuard] }
+  { path: 'expertlisting', component: ExpertListingComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
+  { path: 'community', component: CommunityComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
+  {path:'schedules',component:SchedulesComponent},
+  {path:'profile',component:ProfileComponent}
 
   // {path:'**',redirectTo:""}
 

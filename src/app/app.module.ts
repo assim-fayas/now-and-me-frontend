@@ -8,7 +8,9 @@ import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.inter
 import { UserServiceService } from './service/user-service.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CloudinaryConfig } from '@cloudinary/url-gen';
+import { Cloudinary } from 'cloudinary-core';
+import { CloudinaryModule } from '@cloudinary/ng';
 
 
 
@@ -17,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
+  
  
 
 
@@ -28,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+
 
 
   ],

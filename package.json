@@ -10,8 +10,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.3",
-    "@angular/cdk": "^16.2.2",
     "@angular/common": "^16.2.3",
     "@angular/compiler": "^16.2.3",
     "@angular/core": "^16.2.3",
@@ -22,6 +20,7 @@
     "@cloudinary/ng": "^2.0.0",
     "@cloudinary/url-gen": "^1.11.2",
     "@ctrl/ngx-emoji-mart": "^9.2.0",
+    "cloudinary-core": "^2.13.0",
     "flowbite": "^1.8.1",
     "jquery": "^3.7.0",
     "ngx-slick-carousel": "^15.0.0",

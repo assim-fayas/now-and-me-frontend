@@ -11,7 +11,7 @@ import { Regform1Component } from './regform1/regform1.component';
 import { Regform2Component } from './regform2/regform2.component';
 import { Regform3Component } from './regform3/regform3.component';
 
-const routes: Routes = [{path:'experts',component:ExpertDashboardComponent},
+const routes: Routes = [{path:'',component:ExpertDashboardComponent},
 {path:'login',component:ExpertloginComponent},
 {path:'registration',component:RegistrationComponent},
 {path:'register', component:ExpertregisterComponent},

@@ -48,7 +48,15 @@ export interface CommentFormValue{
     postid:string,
     content:string
 }
-
+export interface UserProfile {
+    name: string;
+    pronouns?: string; // Optional property
+    gender?: string; // Optional property
+    bio?: string; // Optional property
+    location?: string; // Optional property
+    profileImage?: string | null; // You can set a default value of null for the profile image
+  }
+  
 
 
 export class NotificationMessage {

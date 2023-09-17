@@ -42,6 +42,17 @@ export class CommunityService {
         }))
   }
 
+  //thought of specific use
+  thoughtOfSpecificUser(){
+    return this.http.get(`${this.url}/thoughtSingleUser`,{withCredentials:true})
+    .pipe(map(response => {
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+  }
+
 
   //add like
   addLike(id: string) {
@@ -121,16 +132,6 @@ export class CommunityService {
         }))
   }
 
-  // //get comments
-  // getComment() {
-  //   return this.http.get(`${this.url}/getComments`, { withCredentials: true })
-  //  .pipe(map(Response => {
-  //   return Response
-  // }),
-  //   catchError((error) => {
-  //     return throwError(error)
-  //   }))
-  // }
 
 //delete comment
 deleteComment(id:string){

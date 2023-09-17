@@ -21,6 +21,7 @@ import{ RelativeTimePipe }from '../../pipes/relative-time.pipe'
 import { TagModule } from 'primeng/tag';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { ProfileComponent } from './profile/profile.component';
+import{DateToMonthYearPipe}from '../../pipes/date-to-month-year.pipe'
 
 
 
@@ -39,7 +40,8 @@ import { ProfileComponent } from './profile/profile.component';
     CommunityComponent,
     RelativeTimePipe,
     SchedulesComponent,
-    ProfileComponent
+    ProfileComponent,
+    DateToMonthYearPipe
  
   ],
   imports: [
@@ -52,6 +54,8 @@ import { ProfileComponent } from './profile/profile.component';
     TooltipModule,
     ChipModule,
     TagModule,
+  
+
 
 
   ]

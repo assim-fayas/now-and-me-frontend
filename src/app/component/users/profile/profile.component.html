@@ -1,1 +1,401 @@
-<app-navbar></app-navbar>
+<main>
+    <div class=" overflow-x-hidden overflow-y-hidden">
+        <app-navbar></app-navbar>
+        <section class="hero">
+            <div class="  bg-gradient-to-b from-[#FEEDE4] to-white  h-screen w-full   pt-32 ">
+                <div class="justify-center flex ">
+                    <img src="../.../../../../../assets/image/asim.jpg"
+                        class=" border-t-8  border-b-8 rounded-tr-2xl rounded-bl-3xl w-48 border-black h-44 -mt-0.5 ml-0 brightness-150  "
+                        alt="">
+
+
+
+
+                </div>
+                <div class="text-center w-[400px] flex-col justify-center align-middle  ml-[560px]">
+                    <p class="mt-8 text-lg font-medium ">{{userDetails.name}}</p>
+                    <div class="text-center " *ngIf="userDetails.bio; else nobio">
+                        <p class="mt-4 text-base font-normal ">
+                            {{userDetails.bio}}</p>
+                    </div>
+                    <ng-template #nobio>
+                        <p class="mt-4 text-base font-normal">Don't updated your profile yet❓Update Your Bio By Simply
+                            Clicking "<span class="text-orange-500 font-medium">Edit</span>" button below 😎 </p>
+                    </ng-template>
+                    <div class=" pt-10 ">
+                        <div class="flex gap-8 justify-center">
+                            <div class="flex gap-4" *ngIf="userDetails.location">
+                                <div>
+                                    <svg class=" w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 21">
+                                        <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2">
+                                            <path d="M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                            <path
+                                                d="M13.8 12.938h-.01a7 7 0 1 0-11.465.144h-.016l.141.17c.1.128.2.252.3.372L8 20l5.13-6.248c.193-.209.373-.429.54-.66l.13-.154Z" />
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-base">{{userDetails.location}}</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div>
+                                    <svg class="w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-base">{{userDetails.joined |dateToMonthYear}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="pt-6">
+                            <button type="button" data-modal-target="authentication-modal"
+                                (click)="editProfiledata(userDetails._id)" data-modal-toggle="authentication-modal"
+                                class="text-orange-500 hover:text-white border border-red-700 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-1 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Edit</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </section>
+        <section class="thoughts mt-0">
+            <div class=" w-full flex justify-center mt-0 ">
+
+
+                <div>
+                    <button type="button"
+                        [ngStyle]="{'background': thougthSectionvisible ? 'black' : 'white', 'color': thougthSectionvisible  ? 'white' : 'black'}"
+                        (click)="changeSectionToAnonymous()"
+                        class="px-36 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900  focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                        Thoughts
+                    </button>
+                </div>
+
+                <div>
+                    <button type="button"
+                        [ngStyle]="{'background': anonymouseSectionVisible? 'black' : 'white', 'color': thougthSectionvisible  ? 'black' : 'white'}"
+                        (click)="changeSectionToThoughts()"
+                        class="px-36 py-2 text-sm font-medium text-gray-900 bg-transparent  border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                        Anonymous
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex justify-center " *ngFor="let thought of thoughts">
+                <div class="w-2/4  pt-24 h-fit" *ngIf="thougthSectionvisible && !thought.anonymous">
+                    <p-card>
+                        <div class="flex" class="-mt-6 mb-3 pb-8">
+                            <div class="-pt-3 ">
+                                <ng-container *ngFor="let tag of thought.tags">
+                                    <p-tag class="ml-2"
+                                        [style]="{ 'background': 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)'}">
+                                        <div class="flex align-items-center ">
+
+                                            <span class="text-[10px]  font-medium">{{tag}}</span>
+
+                                        </div>
+                                    </p-tag>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div></div>
+                            <div class="pb-5 -mt-6">
+                                <img class=" w-8 h-8 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                                    src="/docs/images/people/profile-picture-5.jpg" alt="Bordered avatar">
+
+                            </div>
+                            <div class="pb-5 -mt-6 pl-3 w-1/3">
+                                <p class="text-sm font-bold">{{thought.userDetails.name}}</p>
+                                <p class="text-[10px] font-medium text-slate-500">{{thought.timestamp|relativeTime}}
+                                </p>
+                            </div>
+
+
+                            <div class="flex justify-end w-full -mt-4">
+                                <div class="">
+                                    <button>
+                                        <svg class="w-10 h-4 cursor-pointer text-gray-800 dark:text-white"
+                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 4 16">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
+                                                d="M1.5 2h.01M1.5 8h.01m-.01 6h.01" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm">
+                            {{thought.content}}
+                        </p>
+                        <div class="pt-5 -pb-3">
+                            <div class="flex">
+                                <div class="flex">
+                                    <button (click)="AddLike(thoughts._id)">
+                                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            [attr.fill]="isLikedd(thoughts._id,thoughts.currentUser) ? 'red' : 'none'"
+                                            viewBox="0 0 21 19">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1"
+                                                d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
+                                        </svg>
+                                    </button>
+                                    <span class="pl-2 -pt-2 text-gray-800 text-sm">{{thought.totalLikes}}</span>
+                                </div>
+                                <div class="flex pl-3">
+                                    <svg class="w-5 h-5 cursor-pointer   text-gray-800 dark:text-white"
+                                        (click)="showComment(thoughts._id)" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="1"
+                                            d="m1 14 3-3m-3 3 3 3m-3-3h16v-3m2-7-3 3m3-3-3-3m3 3H3v3" />
+                                    </svg>
+                                    <span class="pl-2 -pt-2 text-gray-800 text-sm">{{thought.totalComments}}</span>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="flex justify-center" *ngIf="anonymouseSectionVisible ">
+                    <div class="p-4 mt-20 w-3/4  bg-orange-100 flex justify-center gap-3">
+                        <p class=" font-medium">This screen is only visible to you </p>
+                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                            <path
+                                d="M14 7h-1.5V4.5a4.5 4.5 0 1 0-9 0V7H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-5 8a1 1 0 1 1-2 0v-3a1 1 0 1 1 2 0v3Zm1.5-8h-5V4.5a2.5 2.5 0 1 1 5 0V7Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex justify-center " *ngFor="let thought of thoughts">
+                    <div class="w-2/4  pt-14 h-fit" *ngIf="anonymouseSectionVisible && thought.anonymous">
+
+
+                        <p-card>
+                            <div class="flex" class="-mt-6 mb-3 pb-8">
+                                <div class="-pt-3 ">
+                                    <ng-container *ngFor="let tag of thought.tags">
+                                        <p-tag class="ml-2"
+                                            [style]="{ 'background': 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)'}">
+                                            <div class="flex align-items-center ">
+
+                                                <span class="text-[10px]  font-medium">{{tag}}</span>
+
+                                            </div>
+                                        </p-tag>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div></div>
+
+                                <div class="pb-5 -mt-6">
+                                    <img class=" w-11 h-7  rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                                        src="../../../../assets/image/eyes-removebg-preview (1).png"
+                                        alt="Bordered avatar">
+                                </div>
+                                <div class="pb-5 -mt-6 pl-3 w-1/3">
+                                    <p class="text-sm font-bold">Anonymous</p>
+                                    <p class="text-[10px] font-medium text-slate-500">{{thought.timestamp|relativeTime}}
+                                    </p>
+                                </div>
+
+                                <div class="flex justify-end w-full -mt-4">
+                                    <div class="">
+                                        <button>
+                                            <svg class="w-10 h-4 cursor-pointer text-gray-800 dark:text-white"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 4 16">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
+                                                    d="M1.5 2h.01M1.5 8h.01m-.01 6h.01" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm">
+                                {{thought.content}}
+                            </p>
+                            <div class="pt-5 -pb-3">
+                                <div class="flex">
+                                    <div class="flex">
+                                        <button (click)="AddLike(thoughts._id)">
+                                            <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                [attr.fill]="isLikedd(thoughts._id,thoughts.currentUser) ? 'red' : 'none'"
+                                                viewBox="0 0 21 19">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="1"
+                                                    d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
+                                            </svg>
+                                        </button>
+                                        <span class="pl-2 -pt-2 text-gray-800 text-sm">{{thought.totalLikes}}</span>
+                                    </div>
+                                    <div class="flex pl-3">
+                                        <svg class="w-5 h-5 cursor-pointer   text-gray-800 dark:text-white"
+                                            (click)="showComment(thoughts._id)" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1"
+                                                d="m1 14 3-3m-3 3 3 3m-3-3h16v-3m2-7-3 3m3-3-3-3m3 3H3v3" />
+                                        </svg>
+                                        <span class="pl-2 -pt-2 text-gray-800 text-sm">{{thought.totalComments}}</span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </p-card>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <div>
+            <app-footer></app-footer>
+        </div>
+    </div>
+</main>
+
+
+<!-------------------------------- modal ----------------------------------------------------------------->
+
+
+
+<!-- Main modal -->
+<div id="authentication-modal" tabindex="-1" aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-48 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-[100vh]"
+    style="top: 80px;">
+    <div class="relative w-full max-w-2xl max-h-[80vh]">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" (click)="closeModal()"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="authentication-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md">
+
+
+                    <div class="container">
+                        <h1>Edit Profile</h1>
+                        <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+                            <div class="mb-4 flex justify-center">
+                                <div>
+                                    <label for="profileImage" class="block text-gray-700 text-sm font-medium mb-2">
+                                        <div
+                                            class="relative rounded-full w-32 h-32 bg-gray-200 border-2 border-gray-300 hover:border-orange-500">
+                                            <input type="file" id="profileImage" name="profileImage"
+                                                (change)="onFileSelected($event)"
+                                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                            <img src="../../../../assets/image/asim.jpg"
+                                                *ngIf="!user.profileImage,else uploadedImg" alt="Current Profile Image"
+                                                class="object-cover w-full h-full rounded-full">
+                                            <ng-template #uploadedImg>
+                                                <img src="../../../../assets/image/asim.jpg" alt="Current Profile Image"
+                                                    class="object-cover w-full h-full rounded-full">
+                                            </ng-template>
+                                            <div
+                                                class="absolute inset-0 flex items-center justify-center text-gray-700 hover:text-orange-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" name="name" [(ngModel)]="user.name"
+                                    class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500"
+                                    required>
+                                <div *ngIf="userForm.submitted && !user.name" class="text-red-500 text-xs mt-1">
+                                    Name is required
+                                </div>
+                            </div>
+
+                            <div class="mb-4 flex flex-wrap">
+                                <div class="w-full md:w-1/2 md:pr-2">
+                                    <label for="pronouns"
+                                        class="block text-gray-700 text-sm font-medium mb-2">Pronouns</label>
+                                    <select id="pronouns" name="pronouns" [(ngModel)]="user.pronouns"
+                                        class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500">
+                                        <option value="he/him">He/Him</option>
+                                        <option value="she/her">She/Her</option>
+                                        <option value="they/them">They/Them</option>
+
+                                    </select>
+                                </div>
+                                <div class="w-full md:w-1/2 md:pl-2">
+                                    <label for="gender"
+                                        class="block text-gray-700 text-sm font-medium mb-2">Gender</label>
+                                    <select id="gender" name="gender" [(ngModel)]="user.gender"
+                                        class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="Transgender">Transgender</option>
+                                        <option value="Non-conforming">Non-conforming</option>
+                                        <option value="Prefer not to say">Prefer not to say</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="bio" class="block text-gray-700 text-sm font-medium mb-2">Bio</label>
+                                <textarea id="bio" name="bio" [(ngModel)]="user.bio"
+                                    class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500"
+                                    required></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="location"
+                                    class="block text-gray-700 text-sm font-medium mb-2">Location</label>
+                                <input type="text" id="location" name="location" [(ngModel)]="user.location"
+                                    class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500">
+                            </div>
+
+                            <button type="submit" [disabled]="!userForm.valid"
+                                class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-full transform transition-transform hover:scale-105 focus:outline-none focus:ring focus:border-orange-500 w-full mt-4">
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

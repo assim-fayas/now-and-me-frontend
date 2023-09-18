@@ -17,8 +17,8 @@ readonly url=environment.apiBaseUrl
     private route: ActivatedRoute
   ) { }
 
-  public param: any = ''
-  public id: any = ''
+  public param: string = ''
+  public id: string = ''
 
 
   ngOnInit(): void {

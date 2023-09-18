@@ -6,16 +6,22 @@ import { LoginComponent } from './login/login.component';
 import { OtpComponent } from './otp/otp.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MailverificationComponent } from './mailverification/mailverification.component';
-import { AuthGuard } from 'src/app/authguard.guard';
+import { AuthGuard, ConsecutiveGuard } from 'src/app/authguard.guard';
+import { CarouselComponent } from 'src/app/carousel/carousel.component';
+import { ExpertListingComponent } from './expert-listing/expert-listing.component';
 
 
 const routes: Routes = [
-  { path: "", component: HomeComponent,canActivate: [AuthGuard] },
-  { path: "register", component: RegisterComponent },
-  { path: "login", component: LoginComponent },
+  { path: "", component: HomeComponent, canActivate: [ConsecutiveGuard] },
+  { path: "register", component: RegisterComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
+  { path: "login", component: LoginComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
   { path: "otp", component: OtpComponent },
-  { path: "resetPassword", component: ResetPasswordComponent},
-  {path:'user/:id/verify/:token',component:MailverificationComponent},
+  { path: "resetPassword", component: ResetPasswordComponent },
+  { path: 'user/:id/verify/:token', component: MailverificationComponent },
+  { path: 'carousel', component: CarouselComponent },
+  { path: 'expertlisting', component: ExpertListingComponent, canActivate: [ConsecutiveGuard] }
+
+  // {path:'**',redirectTo:""}
 
 ];
 

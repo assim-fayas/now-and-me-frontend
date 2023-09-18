@@ -1,1 +1,67 @@
-<p>admin-list-users works!</p>
+<section>
+    <app-navbar></app-navbar>
+    <div class="flex">
+        <div class="h-full">
+            <app-sidebar></app-sidebar>
+            <div class="min-h-screen flex items-center justify-center">
+
+                <!-- table              -->
+
+                <div class="relative ml-[500px] -mt-[100px] overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    No
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Email
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Date of Joined
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Block
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    <span class="sr-only">Edit</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                *ngFor="let item of users;let i=index">
+                                <td class="px-6 py-4 ">
+                                    {{i+1}}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{item.name}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.email}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{item.joined|date}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button (click)="blockuser(item._id)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{item.isBlocked ? "Unblock" : "Block"  }}</button>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- table end -->
+
+            </div>
+        </div>
+    </div>
+</section>

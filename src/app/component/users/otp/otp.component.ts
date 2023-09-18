@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from 'src/app/service/user-service.service';
-
+import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -18,12 +18,19 @@ export class OtpComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private user: UserServiceService,
-    private router:Router) { }
+    private router: Router) {
+
+
+  }
 
 
 
 
   ngOnInit(): void {
+  
+    //flowbit
+    initFlowbite()
+
 
     this.route.queryParams.subscribe((params) => {
       this.email = params['email']
@@ -32,6 +39,8 @@ export class OtpComponent implements OnInit {
 
     // counter starts
     this.timer()
+
+
 
   }
 
@@ -99,8 +108,8 @@ export class OtpComponent implements OnInit {
     }, 1000);
   }
 
-//otp verification
-otpErrorMessage!:string
+  //otp verification
+  otpErrorMessage!: string
   veryfyOtp(otpForm: NgForm) {
     console.log("otp formnn kityeeeeeeee", otpForm.value.otp);
 
@@ -108,16 +117,16 @@ otpErrorMessage!:string
       return
     }
 
-// perform verification call
+    // perform verification call
 
-this.user.verifyOtp(otpForm.value.otp).subscribe((response)=>{
-if(response){
-  this.router.navigate(['/resetPassword'])
-}
-},
-(errormessage)=>{
-  this.otpErrorMessage=errormessage
-})
+    this.user.verifyOtp(otpForm.value.otp).subscribe((response) => {
+      if (response) {
+        this.router.navigate(['/resetPassword'])
+      }
+    },
+      (errormessage) => {
+        this.otpErrorMessage = errormessage
+      })
 
   }
 

@@ -25,23 +25,12 @@ export class Regform1Component {
       dob: ['', [Validators.required, this.ageValidator]],
       contact: ['', [Validators.required, this.contactValidator]],
       city: ['', [Validators.required]],
-      governmentId: ['', [Validators.required]]
+      governmentId: ['', [Validators.required]],
+      profileImage: [null, [Validators.required]]
     })
   }
 
-  onSubmit() {
-    console.log("clikeee");
-    this.form1Submitted = true
-    if (this.regform1.valid) {
-      console.log(this.regform1.value);
 
-      let form1 = this.regform1.getRawValue()
-      console.log(form1);
-      this.router.navigate(['/experts/regform2'])
-
-    }
-
-  }
   // Custom password validator
   passwordValidator(control: AbstractControl) {
     // Require at least one uppercase letter and one special character
@@ -75,25 +64,30 @@ export class Regform1Component {
 
 
 
-    if (value.length !== 10 ){
+    if (value.length !== 10) {
       return { pattern: true };
     }
 
     return null;
   }
 
-  // containsUniqueNumber(value: string): boolean {
-  //   const uniqueNumbers = new Set();
-  //   for (const char of value) {
-  //     if (/[0-9]/.test(char)) {
-  //       if (uniqueNumbers.has(char)) {
-  //         return true; // Found at least one repeated digit
-  //       }
-  //       uniqueNumbers.add(char);
-  //     }
-  //   }
-  //   return false; // No repeated digit found
-  // }
+
+  onSubmit() {
+    console.log("clikeee");
+    this.form1Submitted = true
+    if (this.regform1.valid) {
+      this.expertService.registerForm1(this.regform1.value).subscribe((response:any) => {
+
+        console.log(response);
+        this.router.navigate(['/experts/regform2',response.expertid])
+      }, (error) => {
+        console.log(error);
+
+      })
+
+    }
+
+  }
 
 
 

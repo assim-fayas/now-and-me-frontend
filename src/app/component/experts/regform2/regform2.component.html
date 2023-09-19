@@ -159,53 +159,53 @@
                     <label class="mb-1 block text-sm font-medium text-gray-700">Specialization(how do you help people)
                     </label>
                     <div class="flex items-center space-x-2">
-                        <input type="radio" id="radioexample1" name="specialization" formControlName="specialization"
-                            value="Therapist"
+                        <input type="radio" id="radioexample1" name="specialization"
+                            (change)="onRadioChange('Therapist')" formControlName="specialization" value="Therapist"
                             class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                         <label for="radioexample1" class="text-sm font-medium text-gray-700">Therapist/ Counselling
                             Psychologistt</label>
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="radio" id="radioexample2" name="specialization" formControlName="specialization"
-                            value="Life Coach"
+                            (change)="onRadioChange('Life Coach')" value="Life Coach"
                             class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                         <label for="radioexample2" class="text-sm font-medium text-gray-700">Life Coach</label>
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="radio" id="radioexample3" name="specialization" formControlName="specialization"
-                            value="Positivity Coach"
+                            (change)="onRadioChange('Positivity Coach')" value="Positivity Coach"
                             class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                         <label for="radioexample3" class="text-sm font-medium text-gray-700">Positivity Coach</label>
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="radio" id="radioexample4" name="specialization" formControlName="specialization"
-                            value="Mindset Coach"
+                            (change)="onRadioChange('Mindset Coach')" value="Mindset Coach"
                             class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                         <label for="radioexample4" class="text-sm font-medium text-gray-700">Mindset Coach </label>
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="radio" id="radioexample5" name="specialization" formControlName="specialization"
-                            value="Career Coach"
+                            (change)="onRadioChange('Career Coach')" value="Career Coach"
                             class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                         <label for="radioexample5" class="text-sm font-medium text-gray-700">Career Coach</label>
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="radio" id="radioexample6" name="specialization" formControlName="specialization"
-                            value="Relationship Coach"
+                            (change)="onRadioChange('Relationship Coach')" value="Relationship Coach"
                             class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                         <label for="radioexample6" class="text-sm font-medium text-gray-700">Relationship Coach</label>
                     </div>
                     <div class="flex items-center space-x-2">
                         <input type="radio" id="radioexample7" name="specialization" formControlName="specialization"
-                            value="Peer Listener"
+                            (change)="onRadioChange('Peer Listener')" value="Peer Listener"
                             class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                         <label for="radioexample7" class="text-sm font-medium text-gray-700">Peer Listener - None of the
                             above, I just want to help people!</label>
                     </div>
                     <div class="flex items-center space-x-2">
                         <div class="flex items-center space-x-2">
-                            <input type="radio" id="radioexample8" name="radioGroup1" formControlName="specialization"
-                                value="Other"
+                            <input type="radio" id="radioexample8" name="specialization"
+                                formControlName="specialization" (change)="onRadioChange('Other')" value="Other"
                                 class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
                             <label for="radioexample8" class="text-sm font-medium text-gray-700">Other</label>
 
@@ -226,62 +226,36 @@
                         class="text-red-600">pls provide the specilization you have(How do you help people ?)</div>
 
                 </div>
-
-                <label class="mb-1 block text-sm font-medium text-gray-700">Areas of Expertise
-                </label>
-                <div class="flex items-center mb-4">
-
-                    <input id="checkbox1" type="checkbox" value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox1 "
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Life</label>
-                </div>
-                <div class="flex items-center">
-                    <input id="checkbox2" type="checkbox" value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox2"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Positivity</label>
-                </div>
-                <div class="flex items-center">
-                    <input id="checkbox3" type="checkbox" value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox3"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Relationships/
-                        Love</label>
-                </div>
-                <div class="flex items-center">
-                    <input id="checkbox4" type="checkbox" value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox4"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Career</label>
-                </div>
-                <div class="flex items-center">
-                    <input id="checkbox5" type="checkbox" value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox5"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mindset</label>
-                </div>
-                <div class="flex items-center">
-                    <input id="checkbox6" type="checkbox" value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox6"
-                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Family</label>
-                </div>
+              
 
                 <div>
                     <label for="experiencetext" class="mb-1 block text-sm font-medium text-gray-700">How many years of
-                        relevant work experience do you have?
-                    </label>
-                    <input type="text" id="experiencetext"
+                        relevant work experience do you have?</label>
+                    <input type="text" id="experiencetext" formControlName="experience"
                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                         placeholder="relevant work experience" />
+                    <div *ngIf="form.get('experience')?.hasError('required') && form2Submitted" class="text-red-600">
+                        Please enter your relevant work experience.
+                    </div>
+                    <div *ngIf="form.get('experience')?.hasError('pattern') && form2Submitted" class="text-red-600">
+                        Please enter a valid numeric value for experience.
+                    </div>
+
+
+
                 </div>
                 <div>
-                    <label for="example4" class="mb-1 block text-sm font-medium text-gray-700">Certification/Degree
-                    </label>
-                    <input type="file" id="example4" class="block w-full rounded-md " placeholder="full name" />
+                    <label for="example4"
+                        class="mb-1 block text-sm font-medium text-gray-700">Certification/Degree</label>
+                    <input type="file" id="example4" formControlName="certification" class="block w-full rounded-md"
+                        placeholder="full name" />
+                    <div *ngIf="form.get('certification')?.hasError('required') && form2Submitted" class="text-red-600">
+                        Certification/Degree is required.
+                    </div>
+
                 </div>
-                <button type="submit" (click)="submit()"
+
+                <button type="submit"
                     class="rounded-lg border border-primary-500 bg-orange-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300">Next</button>
             </form>
         </div>

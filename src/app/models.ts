@@ -57,7 +57,33 @@ export interface UserProfile {
     profileImage?: string | null; // You can set a default value of null for the profile image
   }
   
+export interface Languages {
+    english: boolean;
+    malayalam: boolean;
+    hinglish: boolean;
+    otherLanguage: boolean;
+    customlanguageValue: string;
+  }
+export interface IdealClient {
+    students: boolean,
+    youngAdults: boolean,
+    workingProfessionals: boolean,
+    teenagers: boolean,
+    jobAspirants:boolean,
+    marriedCouples: boolean,
+    parents: boolean,
+    other: boolean,
+    customclientValue:string | null
+  }
 
+  export interface Expertise  {
+    life: boolean,
+    positivity: boolean,
+    relationships: boolean,
+    career: boolean,
+    mindset: boolean,
+    family: boolean,
+  };
 
 export class NotificationMessage {
     message!: string;

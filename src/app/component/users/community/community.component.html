@@ -1,0 +1,683 @@
+<main class="overflow-x-hidden overflow-y-hidden ">
+    <app-navbar></app-navbar>
+    <section class="mt-14">
+        <div class=" md:pt-6 md:pl-40 md:pr-40  w-full">
+            <div class="bg-[#FFE7DE] text-center">
+                <h1 class=" text-3xl md:text-4xl font-semibold mt-3 pt-6">The Now<span
+                        class="text-orange-500">&</span>Me Community</h1>
+                <p class="pb-3 pt-2 text-slate-600">Share Your Thoughts Here & Feels Free</p>
+
+            </div>
+        </div>
+    </section>
+    <section class="addthoughts">
+        <div class="pl-32 pr-32 pt-8 ">
+
+            <div class="border-slate-00 border-[1px]  md:pl-9 flex md:p-4">
+
+
+
+
+                <label for="message" class="block pr-2 mb-2 text-sm font-medium text-gray-900 dark:text-white"> <img
+                        class=" w-8 h-8 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                        src="/docs/images/people/profile-picture-5.jpg" alt="Bordered avatar">
+                </label>
+
+                <div class="w-full">
+                    <form>
+                        <!-- <textarea id="message" rows="4"
+                            class="  w-2/3 text-[18px] text-slate-900 bg-gray-50 rounded-lg border border-gray-300 h-16 "
+                            placeholder="Write your thoughts here... "></textarea> -->
+                        <input type="text" data-modal-toggle="authentication-modal"
+                            class="block w-2/3 rounded-md border-gray-300 py-3 text-xl shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                            placeholder="Write your thoughts here..." />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="view thoughts mb-20">
+        <div class="pl-32 pr-32 pt-1 ">
+            <div *ngFor="let thoughts of  allThoughts" class="border-slate-00 border-[1px]  md:pl-9 flex md:p-4">
+
+                <p-card class="w-2/3 h-fit ">
+                    <div class="flex" class="-mt-6 mb-3 pb-8">
+                        <div class="-pt-3 ">
+                            <ng-container *ngFor="let tag of thoughts.tags">
+                                <p-tag class="ml-2"
+                                    [style]="{ 'background': 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)'}">
+                                    <div class="flex align-items-center ">
+
+                                        <span class="text-[10px]  font-medium">{{tag}}</span>
+
+                                    </div>
+                                </p-tag>
+                            </ng-container>
+                        </div>
+
+
+
+                    </div>
+                    <div class="flex">
+                        <div></div>
+                        <div class="pb-5 -mt-6" *ngIf="!thoughts.anonymous">
+                            <img class=" w-8 h-8 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                                src="/docs/images/people/profile-picture-5.jpg" alt="Bordered avatar">
+
+                        </div>
+                        <div class="pb-5 -mt-6 pl-3 w-1/3" *ngIf="!thoughts.anonymous">
+                            <p class="text-sm font-bold"> {{thoughts.userDetails.name}}</p>
+                            <p class="text-[10px] font-medium text-slate-500">{{thoughts.timestamp |relativeTime }} </p>
+                        </div>
+                        <div class="pb-5 -mt-6" *ngIf="thoughts.anonymous">
+                            <img class=" w-11 h-7  rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                                src="../../../../assets/image/eyes-removebg-preview (1).png" alt="Bordered avatar">
+
+                        </div>
+                        <div class="pb-5 -mt-6 pl-3 w-1/3" *ngIf="thoughts.anonymous">
+                            <p class="text-sm font-bold">Anonymous</p>
+                            <p class="text-[10px] font-medium text-slate-500">{{thoughts.timestamp |relativeTime }} </p>
+                        </div>
+                        <div class="flex justify-end w-full -mt-4">
+                            <div class="">
+                                <button (click)="showeditpost(thoughts._id)">
+                                    <svg class="w-10 h-4 cursor-pointer text-gray-800 dark:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 4 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
+                                            d="M1.5 2h.01M1.5 8h.01m-.01 6h.01" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <!-- Panel -->
+                        <div [hidden]="!showpost || currentPost!==thoughts._id">
+                            <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                class=" absolute z-10 mt-2 w-48 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg">
+                                <div class="p-1">
+                                    <ng-container *ngIf="thoughts.user==thoughts.currentUser">
+                                        <a class="flex w-full items-center rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 space-x-1"
+                                            data-modal-toggle="modal1" (click)="editPost(thoughts._id) ">
+                                            <p>
+                                                <svg class="w-3 h-3 text-orange-500 dark:text-white" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 20 18">
+                                                    <path
+                                                        d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z" />
+                                                    <path
+                                                        d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
+                                                </svg>
+                                            </p>
+                                            <p>edit</p>
+                                        </a>
+                                        <a class="flex w-full items-center rounded-md px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 space-x-1"
+                                            (click)="deletePost(thoughts._id)">
+                                            <p>
+                                                <svg class="w-3 h-3   text-orange-500 dark:text-white"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 18 20">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
+                                                </svg>
+
+                                            </p>
+                                            <p>delete</p>
+                                        </a>
+                                    </ng-container>
+                                    <ng-container *ngIf="thoughts.user !==thoughts.currentUser">
+                                        <a class="flex w-full items-center rounded-md px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                                            data-modal-toggle="authentication-modal2" (click)="flagPost(thoughts._id)">
+                                            flag</a>
+                                    </ng-container>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panelend -->
+
+                    </div>
+
+
+                    <p>
+                        {{thoughts.content}}
+                    </p>
+
+                    <div class="pt-5 -pb-3">
+                        <div class="flex">
+                            <div class="flex">
+                                <button (click)="AddLike(thoughts._id)">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        [attr.fill]="isLikedd(thoughts._id,thoughts.currentUser) ? 'red' : 'none'"
+                                        viewBox="0 0 21 19">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="1"
+                                            d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
+                                    </svg>
+                                </button>
+                                <span class="pl-2 -pt-2 text-gray-800 text-sm">{{thoughts.totalLikes}}</span>
+                            </div>
+                            <div class="flex pl-3">
+                                <svg class="w-5 h-5 cursor-pointer   text-gray-800 dark:text-white"
+                                    (click)="showComment(thoughts._id)" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1" d="m1 14 3-3m-3 3 3 3m-3-3h16v-3m2-7-3 3m3-3-3-3m3 3H3v3" />
+                                </svg>
+                                <span class="pl-2 -pt-2 text-gray-800 text-sm">{{thoughts.totalComments}}</span>
+
+
+                            </div>
+                        </div>
+
+                        <div class="mt-3" *ngIf="showCommentbox && currentPost==thoughts._id">
+                            <!-------------------------------- comment section start ------------------------------------------------->
+
+                            <!-- comment button -->
+
+                            <div class="mx-auto max-w-xs ml-10">
+                                <div class="flex">
+
+                                    <div class="mt-2 pr-3">
+
+                                        <img class=" w-8 h-8 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                                            src="/docs/images/people/profile-picture-5.jpg" alt="Bordered avatar">
+
+                                    </div>
+                                    <div>
+                                        <form #commentForm="ngForm">
+                                            <label for="chat" class="sr-only">Add comment</label>
+                                            <div
+                                                class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
+
+                                                <button type="button"
+                                                    class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                                    <svg class="w-5 h-5" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 20 20">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z" />
+                                                    </svg>
+                                                    <span class="sr-only">Add emoji</span>
+                                                </button>
+                                                <textarea id="chat" rows="1" name="comment"
+                                                    class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="Add comment..." [(ngModel)]="commentText"
+                                                    required></textarea>
+                                                <button type="submit" [disabled]="commentForm.form.invalid"
+                                                    class="inline-flex justify-center p-2 disabled:text-gray-400 text-orange-500 rounded-full cursor-pointer hover:bg-orange-200 dark:text-blue-500 dark:hover:bg-gray-600"
+                                                    (click)="submitComment(thoughts.currentUser,thoughts._id)">
+                                                    <svg class="w-5 h-5 rotate-90" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                        viewBox="0 0 18 20">
+                                                        <path
+                                                            d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z" />
+                                                    </svg>
+                                                    <span class="sr-only">Send message</span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="flex ml-10 mt-5 max-w-md" *ngFor="let comment of thoughts.comments">
+
+                                <div>
+
+                                    <div class="mt-2 pr-3">
+                                        <img class=" w-8 h-8 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                                            src="/docs/images/people/profile-picture-5.jpg" alt="Bordered avatar">
+
+                                    </div>
+                                </div>
+
+                                <div class="w-2/3">
+                                    <p class="p-2 pb-0  text-xs font-bold">{{comment.userName}}</p>
+                                    <p class=" pl-2 text-[10px] font-medium text-slate-500">{{comment.timestamp |
+                                        relativeTime }}</p>
+                                    <div class="flex justify-end -mt-5  pb-5 ">
+                                        <button (click)="showEditComment(comment._id)">
+                                            <svg class="w-8 h-3 cursor-pointer text-gray-800 dark:text-white"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 4 16">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
+                                                    d="M1.5 2h.01M1.5 8h.01m-.01 6h.01" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <!-- Panel 2  start-->
+                                    <div *ngIf="comment._id== currentCommentId && showEditcomment">
+                                        <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                            x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                            class=" absolute z-10 mt-0 ml-[400px]  w-48 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg">
+                                            <div class="p-1">
+
+                                                <a class="flex w-full items-center rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 space-x-1"
+                                                    (click)="editComment(comment._id)">
+                                                    <p>
+                                                        <svg class="w-3 h-3 text-orange-500 dark:text-white"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor" viewBox="0 0 20 18">
+                                                            <path
+                                                                d="M12.687 14.408a3.01 3.01 0 0 1-1.533.821l-3.566.713a3 3 0 0 1-3.53-3.53l.713-3.566a3.01 3.01 0 0 1 .821-1.533L10.905 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V11.1l-3.313 3.308Zm5.53-9.065.546-.546a2.518 2.518 0 0 0 0-3.56 2.576 2.576 0 0 0-3.559 0l-.547.547 3.56 3.56Z" />
+                                                            <path
+                                                                d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
+                                                        </svg>
+                                                    </p>
+                                                    <p>edit</p>
+                                                </a>
+                                                <a class="flex w-full items-center rounded-md px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 space-x-1"
+                                                    (click)="deleteComment(comment._id) ">
+                                                    <p>
+                                                        <svg class="w-3 h-3   text-orange-500 dark:text-white"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none" viewBox="0 0 18 20">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2"
+                                                                d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
+                                                        </svg>
+
+                                                    </p>
+                                                    <p>delete</p>
+                                                </a>
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- panelend 2 end -->
+                                    <p class="p-1 text-sm ">{{comment.content }}
+                                    </p>
+                                </div>
+
+
+
+                            </div>
+                            <!-- [hidden]=" !currentCommnetPost" -->
+                            <!--------------------------- end of comment button ------------------------------------------------>
+
+                            <!--------------------------- end of comment section---------------------------------------------- -->
+
+                        </div>
+
+                    </div>
+                </p-card>
+
+            </div>
+        </div>
+
+    </section>
+    <app-footer></app-footer>
+</main>
+
+
+
+
+
+
+<!-- Main modal -->
+<div id="authentication-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+
+    <div class=" w-full md:w-1/2 max-h-full md:h-1/2">
+
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 ">
+
+
+            <button type="button" (click)="removeAlltags()"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="authentication-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+
+            <div class="px-6 py-6 lg:px-8">
+                <div id="alert-2"
+                    class="flex items-center p-4 mb-4 mt-10 text-orange-500 rounded-lg bg-orange-100 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div class="ml-3 text-sm font-medium">
+                        Follow Guidelines for a Safe Community NOW & ME Team
+                    </div>
+
+                </div>
+                <!-- <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3> -->
+                <form class="space-y-4 mt-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                    <div>
+                        <textarea formControlName="thoughts" cols="30" rows="10"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="what are your thoughts?" required></textarea>
+                        <div *ngIf="submitted && form.get('thoughts')?.hasError('required')">
+                            <span class="text-red-600 font-medium text-xs">thoughts are required </span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <input type="text" formControlName="tags" (keyup)="onTagKeyUp($event)"
+                            placeholder="Add tags related to the post (up to 3)"
+                            class="bg-gray-50 border border-gray-300 text-gray-00 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            required>
+                        <div *ngIf=" submitted && form.get('tags')?.hasError('required') && selectedTags.length<=0 ">
+                            <span class="text-red-600 font-medium text-xs ">tags are required </span>
+                        </div>
+                        <div *ngIf="  form.get('tags')?.hasError('tooManyTags') && selectedTags.length>=3">
+                            <span class="text-red-600 font-medium text-xs "> Only three tags are allowed </span>
+                        </div>
+                        <div>
+                            <div class="flex flex-row justify-start">
+                                <div *ngFor="let tag of selectedTags">
+
+                                    <span id="badge-dismiss-yellow"
+                                        class="inline-flex items-center mt-2 px-2 py-1 mr-2 text-sm font-medium text-yellow-800 bg-orange-100 rounded dark:bg-yellow-900 dark:text-yellow-300">
+                                        {{tag}}
+                                        <button type="button" (click)="removeTag(tag)"
+                                            class="inline-flex items-center p-1 ml-2 text-sm text-yellow-400 bg-transparent rounded-sm hover:bg-yellow-200 hover:text-yellow-900 dark:hover:bg-yellow-800 dark:hover:text-yellow-300"
+                                            data-dismiss-target="#badge-dismiss-yellow" aria-label="Remove">
+                                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                            </svg>
+                                            <span class="sr-only">Remove badge</span>
+
+                                        </button>
+                                    </span>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="remember" formControlName="postAnonymously" type="checkbox" value=""
+                                    class="w-5 h-5 border border-gray-300 rounded bg-gray-50  dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+                            </div>
+                            <label for="remember" pInputText pTooltip=" share  without disclosing you name"
+                                tooltipPosition="top" placeholder="Top"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Post
+                                Anonymously</label>
+                        </div>
+                        <button type="submit"
+                            class="text-white text-xs font-medium hover:bg-orange-600 hover:ease-in-out bg-orange-500 py-2 px-7 rounded-lg">
+                            Share</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal for editing -->
+<div id="modal1" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+
+    <div class=" w-full md:w-1/2 max-h-full md:h-1/2">
+
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 ">
+
+
+            <button type="button" (click)="removeAlltags()"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="modal1">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+
+            <div class="px-6 py-6 lg:px-8">
+                <div id="alert-2"
+                    class="flex items-center p-4 mb-4 mt-10 text-orange-500 rounded-lg bg-orange-100 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div class="ml-3 text-sm font-medium">
+                        Follow Guidelines for a Safe Community NOW & ME Team
+                    </div>
+
+                </div>
+                <!-- <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3> -->
+                <form class="space-y-4 mt-4" [formGroup]="editForm" (ngSubmit)="onSubmitEditModal()">
+
+                    <div>
+
+                        <textarea formControlName="thoughts" cols="30" rows="10"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="What is your thoughts"></textarea>
+                        <div *ngIf="submitted && editForm.get('thoughts')?.hasError('required')">
+                            <span class="text-red-600 font-medium text-xs">thoughts are required </span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <input type="text" formControlName="tags" (keyup)="onTagKeyUp($event)"
+                            placeholder="Add tags related to the post (up to 3)"
+                            class="bg-gray-50 border border-gray-300 text-gray-00 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            required>
+                        <div
+                            *ngIf=" submitted && editForm.get('tags')?.hasError('required') && selectedTags.length<=0 ">
+                            <span class="text-red-600 font-medium text-xs ">tags are required </span>
+                        </div>
+                        <div *ngIf="  editForm.get('tags')?.hasError('tooManyTags') && selectedTags.length>=3">
+                            <span class="text-red-600 font-medium text-xs "> Only three tags are allowed </span>
+                        </div>
+                        <div>
+                            <div class="flex flex-row justify-start">
+                                <div *ngFor="let tag of selectedTags">
+
+                                    <span id="badge-dismiss-yellow"
+                                        class="inline-flex items-center mt-2 px-2 py-1 mr-2 text-sm font-medium text-yellow-800 bg-orange-100 rounded dark:bg-yellow-900 dark:text-yellow-300">
+                                        {{tag}}
+                                        <button type="button" (click)="removeTag(tag)"
+                                            class="inline-flex items-center p-1 ml-2 text-sm text-yellow-400 bg-transparent rounded-sm hover:bg-yellow-200 hover:text-yellow-900 dark:hover:bg-yellow-800 dark:hover:text-yellow-300"
+                                            data-dismiss-target="#badge-dismiss-yellow" aria-label="Remove">
+                                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                            </svg>
+                                            <span class="sr-only">Remove badge</span>
+
+                                        </button>
+                                    </span>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="orange-checkbox" formControlName="postAnonymously" type="checkbox" value=""
+                                    [checked]="anonymous"
+                                    class="w-5 h-5 border border-gray-300 rounded  text-orange-500 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+                            </div>
+                            <label for="orange-checkbox" pInputText pTooltip=" share  without disclosing you name"
+                                tooltipPosition="top" placeholder="Top"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Post
+                                Anonymously</label>
+                        </div>
+                        <button type="submit"
+                            class="text-white text-xs font-medium hover:bg-orange-600 hover:ease-in-out bg-orange-500 py-2 px-7 rounded-lg">
+                            Share</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal for flag post -->
+<div id="authentication-modal2" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+
+    <div class=" w-full md:w-1/2 max-h-full md:h-modal">
+
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 ">
+
+
+            <button type="button"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="authentication-modal2">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+
+            <div class="px-6 py-6 lg:px-8 mt-1">
+                <div id="alert-2"
+                    class="flex items-center p-4 mb-4 mt-10 text-yellow-500 rounded-lg bg-orange-100 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div class="ml-3 text-sm font-medium">
+                        Please select the reason for flagging this post.This will help us better understand your
+                        concerns
+                    </div>
+
+
+                </div>
+                <!-- <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3> -->
+                <form class="space-y-4 mt-4" #flagForm="ngForm" (ngSubmit)="SubmitflagPost()">
+
+
+                    <div class="mx-auto w-full">
+                        <ul class="grid w-full gap-6 md:grid-cols-1">
+                            <li>
+                                <input type="radio" id="inappropriate-content" name="report"
+                                    value="inappropriate-content" class="hidden peer" [(ngModel)]="selectedOption"
+                                    required>
+                                <label for="inappropriate-content"
+                                    class="inline-flex items-center justify-between w-full p-3 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-orange-500 peer-checked:text-orange-500 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    Inappropriate Content
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="spam-self-promotion" name="report" value="spam-self-promotion"
+                                    class="hidden peer" [(ngModel)]="selectedOption">
+                                <label for="spam-self-promotion"
+                                    class="inline-flex items-center justify-between w-full p-3 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover-text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-orange-500 peer-checked:text-orange-500 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    Spam or Self-promotion
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="hate-speech-harassment" name="report"
+                                    value="hate-speech-harassment" class="hidden peer" [(ngModel)]="selectedOption">
+                                <label for="hate-speech-harassment"
+                                    class="inline-flex items-center justify-between w-full p-3 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover-text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-orange-500 peer-checked:text-orange-500 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    Hate Speech or Harassment
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="misinformation-fake-news" name="report"
+                                    value="misinformation-fake-news" class="hidden peer" [(ngModel)]="selectedOption">
+                                <label for="misinformation-fake-news"
+                                    class="inline-flex items-center justify-between w-full p-3 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover-text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-orange-500 peer-checked:text-orange-500 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    Misinformation or Fake News
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="community-guidelines-violation" name="report"
+                                    value="community-guidelines-violation" class="hidden peer"
+                                    [(ngModel)]="selectedOption">
+                                <label for="community-guidelines-violation"
+                                    class="inline-flex items-center justify-between w-full p-3 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover-text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-orange-500 peer-checked:text-orange-500 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    Violation of Community Guidelines
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="copyright-violation" name="report" value="copyright-violation"
+                                    class="hidden peer" [(ngModel)]="selectedOption">
+                                <label for="copyright-violation"
+                                    class="inline-flex items-center justify-between w-full p-3 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover-text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-orange-500 peer-checked:text-orange-500 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    Copyright Violation
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="other" name="report" value="other" class="hidden peer"
+                                    [(ngModel)]="selectedOption">
+                                <label for="other"
+                                    class="inline-flex items-center justify-between w-full p-3 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover-text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-orange-500 peer-checked:text-orange-500 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    Other
+                                </label>
+                            </li>
+                            <li>
+                                <textarea name="additionalComments" [(ngModel)]="additionalComments"
+                                    class="block w-2/3 border-0 border-b-2 pt-0 border-gray-200 focus:border-orange-500 focus:ring-0"
+                                    rows="3" placeholder="reason for flagging"
+                                    *ngIf="selectedOption === 'other'"></textarea>
+                            </li>
+                            <div [hidden]="!errorInFlagPost">
+                                <p class="text-red-700 font-medium text-sm">*when you select 'other' option, reason is
+                                    required
+                                </p>
+                            </div>
+
+
+
+                        </ul>
+
+
+                    </div>
+
+
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="text-white text-xs font-medium hover:bg-orange-600 hover:ease-in-out bg-orange-500 py-2 px-7 rounded-lg">
+                            Share</button>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

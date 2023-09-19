@@ -17,7 +17,7 @@
                         </svg></div>&gt;
                 </div>
                 <h1
-                    class="font-bold text-3xl md:text-5xl text-center md:text-left max-w-[700px] px-5 leading-[2.5rem] md:leading-[4rem]">
+                    class="font-bold text-3xl md:text-5xl text-center md:text-left max-w-[700px] px-5 leading-[2.5rem] md:leading-[4rem] ">
                     <span class="leading-3">Online mental health care</span><br class="hidden md:block"><span
                         class="leading-3">
                         anywhere, anytime</span>
@@ -51,14 +51,17 @@
     </section>
     <section class="selection-expert">
         <div class="mt-0">
-            <h1 class="text-center font-medium text-3xl ">The Finest Selection OF Experts</h1>
+            <h1 class="text-center font-medium text-3xl">The Finest Selection OF Experts</h1>
             <p class="text-center p-6  font-regular text-lg text-gray-700 "><span>A therapeutic relationship is built
                     on trust and confidence. At
                     Now&Me, we
                     provide
                     you with the right </span><br>
                 <span>expert who can help you feel safe and comfortable in your mental health journey.</span>
+
             </p>
+            <!-- <button class="bg-stone-950 text-white rounded-lg text-xs py-2 px-3"> helloe </button><br>
+            <p class="text-5xl bg-black text-white font-extralight">helow testing</p> -->
         </div>
         <div class="roundcards flex flex-col justify-center md:flex-row align-middle  w-full space-x-32">
             <div class=" mt-16  mb-16">
@@ -178,7 +181,8 @@
                     Come be a part of our safe, supportive &amp; inclusive community. Share your thoughts and feelings,
                     to get words of encouragement from fellow users.</p>
                 <button
-                    class="  my-7  bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-3 px-20 rounded-lg ">
+                    class="  my-7  bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-3 px-20 rounded-lg "
+                    (click)="navigateTocommunity()">
                     Share Thought</button>
                 <div class="flex justify-start space-x-6 pt-6 relative z-20">
                     <div>
@@ -329,7 +333,7 @@
                 </div>
             </div>
         </div>
-
+        <button (click)="check()" class="bg-slate-950 text-white">check</button>
     </section>
 
 

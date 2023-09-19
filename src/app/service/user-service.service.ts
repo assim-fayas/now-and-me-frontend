@@ -56,6 +56,15 @@ export class UserServiceService implements OnInit {
   getuUserToken() {
     return localStorage.getItem('jwt_user');
   }
+  
+  getUserId(): string | null {
+    const jwtUser = localStorage.getItem('jwt_user');
+    if (jwtUser) {
+      const parsedUser = JSON.parse(jwtUser) 
+      return parsedUser._id; // Adjust this based on your JWT structure
+    }
+    return null;
+  }
 
   //otp generating
   PasswordErrorMessage: string = "Error occured"

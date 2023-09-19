@@ -13,6 +13,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
 import { CarouselComponent } from 'src/app/carousel/carousel.component';
 import { ExpertListingComponent } from './expert-listing/expert-listing.component';
+import { CommunityComponent } from './community/community.component';
+import { CardModule } from 'primeng/card';
+import { TooltipModule } from 'primeng/tooltip';
+import { ChipModule } from 'primeng/chip';
+import{ RelativeTimePipe }from '../../pipes/relative-time.pipe'
+import { TagModule } from 'primeng/tag';
+import { SchedulesComponent } from './schedules/schedules.component';
+import { ProfileComponent } from './profile/profile.component';
+import{DateToMonthYearPipe}from '../../pipes/date-to-month-year.pipe'
+
 
 
 @NgModule({
@@ -27,15 +37,27 @@ import { ExpertListingComponent } from './expert-listing/expert-listing.componen
     ResetPasswordComponent,
     LoadingSpinnerComponent,
     ExpertListingComponent,
-  
+    CommunityComponent,
+    RelativeTimePipe,
+    SchedulesComponent,
+    ProfileComponent,
+    DateToMonthYearPipe
+ 
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CarouselComponent ,
- 
+    CarouselComponent,
+    CardModule,
+    TooltipModule,
+    ChipModule,
+    TagModule,
+  
+
+
+
   ]
 })
 export class UsersModule { }

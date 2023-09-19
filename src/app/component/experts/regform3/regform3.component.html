@@ -126,179 +126,283 @@
     </section>
 
 
-<section class="form3">
-    <div class="mx-auto max-w-xl py-5">
-        <form action="" class="space-y-5">
+    <section class="form3">
+        <div class="mx-auto max-w-xl py-5">
+            <form class="space-y-5" #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-gray-700">Languages you are comfortable with while
+                        texting the user</label>
 
-            <label class="mb-1 block text-sm font-medium text-gray-700">Languages you are comfortable with while
-                texting the user</label>
+                    <div class="flex items-center mb-4">
+                        <input type="checkbox" name="english" id="english" [(ngModel)]="languages.english"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">English</label>
+                    </div>
 
-            <div class="flex items-center mb-4">
-                <input id="checkbox1" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="checkbox1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">English</label>
-            </div>
+                    <div class="flex items-center mb-4">
+                        <input type="checkbox" [(ngModel)]="languages.malayalam" name="malayalam"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Malayalam</label>
+                    </div>
 
-            <div class="flex items-center mb-4">
-                <input id="checkbox2" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="checkbox2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Malayalam</label>
-            </div>
+                    <div class="flex items-center mb-4">
+                        <input type="checkbox" [(ngModel)]="languages.hinglish" name="hinglish"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hinglish</label>
+                    </div>
 
-            <div class="flex items-center mb-4">
-                <input id="checkbox3" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="checkbox3"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hinglish</label>
-            </div>
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="otherLanguageCheckbox" name="otherLanguage"
+                            [(ngModel)]="languages.otherLanguage"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                        <label for="otherLanguageCheckbox"
+                            class="text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
 
-            <div class="flex items-center space-x-2">
-                <input type="checkbox" id="checkboxExample" name="checkboxGroup1" value="other"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label for="checkboxExample" class="text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
+                        <!-- Input field for custom value -->
+                        <input type="text" id="customValue" name="customlanguageValue" [(ngModel)]="languages.customlanguageValue"
+                            class="border border-gray-300 rounded-md px-2 py-1 focus:ring focus:ring-primary-200 focus:border-primary-300">
 
-                <!-- Input field for custom value -->
-                <input type="text" id="customValue" name="customValue"
-                    class="border border-gray-300 rounded-md px-2 py-1 focus:ring focus:ring-primary-200 focus:border-primary-300">
-            </div>
-
-            <div>
-                <label for="experiencetext" class="mb-1 block text-sm font-medium text-gray-700">How much do you
-                    currently charge for a 1:1 hourly session?
-                </label>
-                <input type="text" id="experiencetext"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
-                    placeholder="relevant work experience" />
-            </div>
-            <div class="mx-auto space-y-3">
-                <label class="mb-1 block text-sm font-medium text-gray-700">What fee per minute would you want to
-                    charge the user at Now&Me?
-                </label>
-                <div class="flex items-center space-x-2">
-                    <input type="radio" id="radioexample1" name="radioGroup1"
-                        class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
-                    <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 3 per minute
-                        Psychologistt</label>
+                    </div>
+                    <div *ngIf="!languagesSelected() && form3Submitted">
+                        <small class="text-red-500">Please select at least one language.</small>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <input type="radio" id="radioexample1" name="radioGroup1"
-                        class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
-                    <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 5 per minute
-                        Psychologistt</label>
+                <div class="mx-auto space-y-3">
+                    <label class="mb-1 block text-sm font-medium text-gray-700">Areas of Expertise
+                    </label>
+                    <div class="flex items-center mb-4">
+
+                        <input id="checkbox1" type="checkbox" name="life" [(ngModel)]="expertise.life"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkbox1 "
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Life</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="checkbox2" type="checkbox"  name="positivity" [(ngModel)]="expertise.positivity"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkbox2"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Positivity</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="checkbox3" type="checkbox"  name="relationships" [(ngModel)]="expertise.relationships"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkbox3"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Relationships/
+                            Love</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="checkbox4" type="checkbox"  name="career" [(ngModel)]="expertise.career"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkbox4"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Career</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="checkbox5" type="checkbox"  name="mindset" [(ngModel)]="expertise.mindset"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkbox5"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mindset</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="checkbox6" type="checkbox" name="family" [(ngModel)]="expertise.family"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkbox6"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Family</label>
+                    </div>
+                    <div *ngIf=" !hasSelectedExpertise() && form3Submitted" class="text-red-600">
+                        At least one area of expertise is required
+                    </div>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <input type="radio" id="radioexample1" name="radioGroup1"
-                        class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
-                    <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 7 per minute
-                        Psychologistt</label>
+                <div>
+                    <div>
+                        <label for="experiencetext" class="mb-1 block text-sm font-medium text-gray-700">How much do you
+                            currently charge for a 1:1 hourly session?</label>
+                        <input type="text" id="experiencetext" name="hourlySessionCharge"
+                            [(ngModel)]="hourlySessionCharge"
+                            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                            placeholder="Enter hourly session charge" required>
+
+                        <!-- Validation message for hourlySessionCharge -->
+                        <div *ngIf="myForm && myForm.form.controls['hourlySessionCharge']?.invalid && (myForm.form.controls['hourlySessionCharge'].dirty || form3Submitted)"
+                            class="text-red-500">
+                            <ng-container
+                                *ngIf="myForm && myForm.form.controls['hourlySessionCharge'].errors && myForm.form.controls['hourlySessionCharge'].errors['required']">
+                                Hourly session charge is required.
+                            </ng-container>
+
+                        </div>
+                    </div>
+                    <!-- <div class="mx-auto space-y-3">
+                        <label class="mb-1 block text-sm font-medium text-gray-700">What fee per minute would you want
+                            to
+                            charge the user at Now&Me?
+                        </label>
+                        <div class="flex items-center space-x-2">
+                            <input type="radio" id="radioexample1" name="radioGroup1"
+                                class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
+                            <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 3 per minute
+                               </label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="radio" id="radioexample1" name="radioGroup1"
+                                class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
+                            <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 5 per minute
+                              </label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="radio" id="radioexample1" name="radioGroup1"
+                                class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
+                            <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 7 per minute
+                              </label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="radio" id="radioexample1" name="radioGroup1"
+                                class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
+                            <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 10 per
+                                minute</label>
+                        </div>
+                    </div> -->
                 </div>
-                <div class="flex items-center space-x-2">
-                    <input type="radio" id="radioexample1" name="radioGroup1"
-                        class="h-4 w-4 rounded-full border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-400" />
-                    <label for="radioexample1" class="text-sm font-medium text-gray-700">Rs. 10 per minute</label>
-                </div>
-            </div>
-            <div>
-                <label for="experiencetext" class="mb-1 block text-sm font-medium text-gray-700">Please provide
-                    relevant links to your
-                    Website, Instagram, Twitter, YouTube, LinkedIn
-                </label>
-                <input type="text" id="experiencetext"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
-                    placeholder="relevant work experience" />
-            </div>
-
-
-            <div>
-                <label for="5" class="mb-1 block text-sm font-medium text-gray-700">A short bio/ description for
-                    your Now&Me profile</label>
-                <textarea id="example1"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50"
-                    rows="3" placeholder="A short bio"></textarea>
-            </div>
-
-
-            <div class=" ">
-                <label class="mb-1 block text-sm font-medium text-gray-700">
-                    Mention 3 things that you can help users with
-                </label>
-                <div class="flex items-center space-x-2">
-                    <input type="text" name="inputtext1" [(ngModel)]="inputtext1"
+                <div>
+                    <label for="experiencetext" class="mb-1 block text-sm font-medium text-gray-700">Please provide
+                        relevant links to your Website, Instagram, Twitter, YouTube, LinkedIn</label>
+                    <input type="text" id="experiencetext"
                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
-                        placeholder="Please keep these 2 words long" />
+                        placeholder="relevant work experience" name="websiteLinks" [(ngModel)]="websiteLinks"
+                        #websiteLinksInput="ngModel" required />
 
-                    <!-- Add the button with Tailwind CSS classes -->
-                    <button (click)="isEmojiPickerVisible = !isEmojiPickerVisible;"
-                        class="ml-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 disabled:opacity-50">
-                        😀
-                    </button>
+                    <!-- Error message -->
+                    <div *ngIf="websiteLinksInput.invalid && (websiteLinksInput.dirty ||form3Submitted)">
+                        <small class="text-red-500">Please provide relevant links.</small>
+                    </div>
                 </div>
 
-                <!-- Rest of your code remains the same -->
-                <br /><emoji-mart class="emoji-mart h-28" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)"
-                    size="24" title="Choose your emoji" [emojiTooltip]="false" [enableSearch]="false"></emoji-mart>
-            </div>
 
-            <label class="mb-1 block text-sm font-medium text-gray-700">Mention the ideal clientele who can reach out to
-                yo</label>
 
-            <div class="flex items-center mb-4">
-                <input id="clientcheckbox1" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="clientcheckbox1"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Students</label>
-            </div>
+                <div>
+                    <label for="5" class="mb-1 block text-sm font-medium text-gray-700">A short bio/ description for
+                        your Now&Me profile</label>
+                    <textarea id="example1" name="shortBio" [(ngModel)]="shortBio"
+                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50"
+                        rows="3" placeholder="A short bio" required></textarea>
 
-            <div class="flex items-center mb-4">
-                <input id="clientcheckbox2" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="clientcheckbox2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Young
-                    Adults</label>
-            </div>
+                    <!-- Validation message for shortBio -->
+                    <div *ngIf="myForm && myForm.form.controls['shortBio']?.invalid && (myForm.form.controls['shortBio'].dirty || form3Submitted)"
+                        class="text-red-500">
+                        A short bio is required.
+                    </div>
+                </div>
 
-            <div class="flex items-center mb-4">
-                <input id="clientcheckbox3" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="clientcheckbox3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Working
-                    Professionals</label>
-            </div>
-            <div class="flex items-center mb-4">
-                <input id="clientcheckbox4" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="clientcheckbox4"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Teenagers</label>
-            </div>
-            <div class="flex items-center mb-4">
-                <input id="clientcheckbox5" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="clientcheckbox5" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Job
-                    Aspirants</label>
-            </div>
-            <div class="flex items-center mb-4">
-                <input id="clientcheckbox6" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="clientcheckbox6" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Married
-                    Couples</label>
-            </div>
-            <div class="flex items-center mb-4">
-                <input id="clientcheckbox7" type="checkbox" value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="clientcheckbox7" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Parents</label>
-            </div>
 
-            <div class="flex items-center space-x-2">
-                <input type="checkbox" id="checkboxExample" name="checkboxGroup1" value="other"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label for="checkboxExample" class="text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
+                <div *ngFor="let index of textboxes; let i = index">
+                    <label class="mb-1 block text-sm font-medium text-gray-700">
+                        Mention 3 things that you can help users with
+                    </label>
+                    <div class="flex items-center space-x-2">
+                        <button type="button" (click)="removeTextbox(i)"
+                            class="p-2 bg-red-500 text-sm  text-white rounded hover:bg-red-600  focus:outline-none focus:ring focus:ring-red-300 disabled:opacity-50">
+                            -
+                        </button>
+                        <input type="text" [name]="'inputtext' + i" [(ngModel)]="textboxes[i].inputText"
+                            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                            placeholder="Please keep these 2 words long" />
+                        <button type="button" (click)="toggleEmojiPicker(i)"
+                            class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 disabled:opacity-50">
+                            😀
+                        </button>
+                        <button type="button" (click)="addTextbox()"
+                            class="p-2 bg-green-500 text-sm  text-white rounded hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 disabled:opacity-50 text-sm">
+                            +
+                        </button>
+                    </div>
+                    <br />
+                    <emoji-mart class="emoji-mart h-28" *ngIf="textboxes[i].isEmojiPickerVisible"
+                        (emojiSelect)="addEmoji($event, i)" size="24" title="Choose your emoji" [emojiTooltip]="false"
+                        [enableSearch]="false"></emoji-mart>
 
-                <!-- Input field for custom value -->
-                <input type="text" id="customValue" name="customValue"
-                    class="border border-gray-300 rounded-md px-2 py-1 focus:ring focus:ring-primary-200 focus:border-primary-300">
-            </div>
+                </div>
 
-            <button type="submit"
-                (click)="submit()" class="rounded-lg border border-primary-500 bg-orange-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300">Next</button>
-        </form>
-    </div>
-</section>
+
+                <div>
+                    <label class="mb-1 block text-sm font-medium text-gray-700">Mention the ideal clientele who can
+                        reach
+                        out to
+                        yo</label>
+
+                    <div class="flex items-center mb-4">
+                        <input id="clientcheckbox1" type="checkbox" name="students"
+                            [(ngModel)]="idealClientele.students"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="clientcheckbox1"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Students</label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="clientcheckbox2" type="checkbox" name="youngAdults"
+                            [(ngModel)]="idealClientele.youngAdults"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="clientcheckbox2"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Young
+                            Adults</label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="clientcheckbox3" type="checkbox" name="workingProfessionals"
+                            [(ngModel)]="idealClientele.workingProfessionals"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="clientcheckbox3"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Working
+                            Professionals</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="clientcheckbox4" type="checkbox" name="teenagers"
+                            [(ngModel)]="idealClientele.teenagers"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="clientcheckbox4"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Teenagers</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="clientcheckbox5" type="checkbox" name="jobAspirants"
+                            [(ngModel)]="idealClientele.jobAspirants"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="clientcheckbox5"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Job
+                            Aspirants</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="clientcheckbox6" type="checkbox" name="marriedCouples"
+                            [(ngModel)]="idealClientele.marriedCouples"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="clientcheckbox6"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Married
+                            Couples</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="clientcheckbox7" type="checkbox" name="parents" [(ngModel)]="idealClientele.parents"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="clientcheckbox7"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Parents</label>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="checkboxExample" name="checkboxGroup1" name="other"
+                            [(ngModel)]="idealClientele.other"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                        <label for="checkboxExample"
+                            class="text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
+
+                        <!-- Input field for custom value -->
+                        <input type="text" id="customValue" name="customclientValue" [(ngModel)]="idealClientele.customclientValue"
+                            class="border border-gray-300 rounded-md px-2 py-1 focus:ring focus:ring-primary-200 focus:border-primary-300" />
+
+
+                    </div>
+                    <div *ngIf="!idealclientSelect() && form3Submitted">
+                        <small class="text-red-500">Please select at least one language.</small>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="rounded-lg border border-primary-500 bg-orange-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300">Next</button>
+            </form>
+        </div>
+    </section>

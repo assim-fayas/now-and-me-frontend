@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExpertService } from 'src/app/service/expert.service';
 
@@ -19,27 +19,79 @@ export class Regform1Component {
 
   ngOnInit() {
     this.regform1 = this.fb.group({
-      email: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
-      contact: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), this.passwordValidator]],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      dob: ['', [Validators.required, this.ageValidator]],
+      contact: ['', [Validators.required, this.contactValidator]],
       city: ['', [Validators.required]],
-      governmentId: ['', [Validators.required]]
+      governmentId: ['', [Validators.required]],
+      profileImage: [null, [Validators.required]]
     })
   }
 
+
+  // Custom password validator
+  passwordValidator(control: AbstractControl) {
+    // Require at least one uppercase letter and one special character
+    const pattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{6,}$/;
+
+    if (!pattern.test(control.value)) {
+      return { pattern: true };
+    }
+
+    return null;
+  }
+
+
+  ageValidator(control: AbstractControl) {
+    const dob = new Date(control.value);
+    const today = new Date();
+    const age = today.getFullYear() - dob.getFullYear();
+
+    if (age < 18) {
+      return { minAge: true };
+    }
+
+    return null;
+  }
+
+  contactValidator(control: AbstractControl) {
+    const value = control.value;
+    console.log(value);
+
+    console.log("jj");
+
+
+
+    if (value.length !== 10) {
+      return { pattern: true };
+    }
+
+    return null;
+  }
+
+
   onSubmit() {
     console.log("clikeee");
-
+    this.form1Submitted = true
     if (this.regform1.valid) {
-      console.log(this.regform1.value);
-      this.form1Submitted = true
-      let form1 = this.regform1.getRawValue()
-      console.log(form1);
-      this.router.navigate(['/experts/regform2'])
+      this.expertService.registerForm1(this.regform1.value).subscribe((response:any) => {
+
+        console.log(response);
+        this.router.navigate(['/experts/regform2',response.expertid])
+      }, (error) => {
+        console.log(error);
+
+      })
 
     }
 
   }
+
+
+
+
+
 
 }

@@ -5,24 +5,38 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminListUsersComponent } from './admin-list-users/admin-list-users.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { ListExpertsComponent } from './list-experts/list-experts.component';
+import { NavsidebarComponent } from './navsidebar/navsidebar.component';
+// import {MatTableModule} from '@angular/material/table'
+// import {MatPaginatorModule}from '@angular/material/paginator'
+// import {MatSortModule}from '@angular/material/sort'
+// import {MatFormFieldModule}from '@angular/material/form-field'
+// import{MatInputModule}from '@angular/material/input'
 
 
 @NgModule({
   declarations: [AdminDashboardComponent,
     AdminListUsersComponent,
-  AdminLoginComponent,
-  NavbarComponent,
-  SidebarComponent,
-  ListExpertsComponent],
+    AdminLoginComponent,
+
+    ListExpertsComponent,
+      NavsidebarComponent,
+
+   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-  
+    // MatTableModule,
+    // MatPaginatorModule,
+    // MatSortModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+
+
+
+
   ],
 })
 export class AdminModule { }

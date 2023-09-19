@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ExpertLoginResponse } from '../models';
-import { catchError,  throwError } from 'rxjs';
-import {map} from 'rxjs/operators'
+import { catchError, throwError } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExpertService  implements OnInit{
+export class ExpertService implements OnInit {
 
   //backend url
-  private readonly url = environment.apiBaseUrl
+  private readonly url = environment.expertUrl
 
   constructor(
     private http: HttpClient,
@@ -25,12 +25,12 @@ export class ExpertService  implements OnInit{
 
   loginErrorMessage: string = 'An Error Occurred';
   login(email: string, password: string) {
-    return this.http.post<ExpertLoginResponse>(`${this.url}/experts/login`, { email, password }, { withCredentials: true })
+    return this.http.post<ExpertLoginResponse>(`${this.url}/login`, { email, password }, { withCredentials: true })
       .pipe(
         map((response: ExpertLoginResponse) => {
           localStorage.setItem('jwt_expert', JSON.stringify(response));
           console.log(response);
-          
+
           return response;
         }),
         catchError((errorRes) => {
@@ -42,38 +42,69 @@ export class ExpertService  implements OnInit{
   }
 
 
-getExpertToken(){
-  return localStorage.getItem('jwt_expert')
-}
+  getExpertToken() {
+    return localStorage.getItem('jwt_expert')
+  }
 
-//expert registratttion
-registerExpert(expert:any){
-  return this.http.post(`${this.url}/experts/register`,expert,{ withCredentials: true })
+  //expert registratttion
+  registerExpert(expert: any) {
+    return this.http.post(`${this.url}/register1`, expert, { withCredentials: true })
 
-  .pipe(
-    catchError(errorRes => {
-      const errorMessage = errorRes.error.message;
-      return throwError(errorMessage)
-    })
-  )
-}
-
-registerForm1(){
-  
-}
+      .pipe(
+        catchError(errorRes => {
+          const errorMessage = errorRes.error.message;
+          return throwError(errorMessage)
+        })
+      )
+  }
 
 
-// expert logout
-logout(){
-  localStorage.removeItem('jwt_expert');
-  this.router.navigate(['/experts/login'])
-}
+  //registration form 1
+  registerForm1(form1: any) {
+    return this.http.post(`${this.url}/register1`, form1, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
+  //registration form2
+  registerForm2(form2: any, id: string) {
+    return this.http.post(`${this.url}/register2`, { form2, id }, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
+  //registration form3
+  registerForm3(form3: any, id: string) {
+    return this.http.post(`${this.url}/register3`, { form3, id }, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
+
+
+  // expert logout
+  logout() {
+    localStorage.removeItem('jwt_expert');
+    this.router.navigate(['/experts/login'])
+  }
 
 
 
 
-ngOnInit(): void {
-  
-}
+  ngOnInit(): void {
+
+  }
 
 }

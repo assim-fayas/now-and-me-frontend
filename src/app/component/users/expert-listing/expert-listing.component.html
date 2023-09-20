@@ -71,7 +71,13 @@
     </section>
     <section>
         <div class="grid grid-cols-1 md:px-50 lg:px-0 lg:grid-cols-3 gap-4 mt-4 align-middle">
-            <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
+
+
+
+
+            <!-- card start -->
+            <div *ngFor="let experts of listExperts"
+                class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
                 <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">
                     <div class="md:flex">
                         <!-- Left side with the image -->
@@ -81,9 +87,9 @@
                         <!-- Right side with content -->
                         <div class="md:w-1/2 px-4 py-6">
                             <!-- Person's Name -->
-                            <h2 class="text-lg font-semibold text-gray-800">John Doe</h2>
+                            <h2 class="text-lg font-semibold text-gray-800">{{experts.name}}</h2>
                             <!-- Person's Position -->
-                            <h3 class="text-xs font-medium text-gray-600 ">counseling Psychologist </h3>
+                            <h3 class="text-xs font-medium text-gray-600 ">{{experts.specialization}}</h3>
                             <!-- Content 3 -->
                             <!-- rating -->
                             <div class="flex items-center space-x-2 pt-2 ">
@@ -129,7 +135,8 @@
                                                     stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
                                         </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1385 Sessions</p>
+                                        <p class="ml-2 font-medium text-[#171717BF] text-xs "><span> 0 </span>Sessions
+                                        </p>
                                     </div>
                                     <div class="flex flex-row items-center ">
                                         <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
@@ -145,7 +152,8 @@
                                                     stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
                                         </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1 yrs experience</p>
+                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">
+                                            <span>{{experts.experience}}</span> yrs experience</p>
                                     </div>
                                     <div class="flex flex-row items-center">
                                         <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
@@ -160,7 +168,9 @@
                                                 </path>
                                             </svg>
                                         </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">English, Hinglish</p>
+                                        <div *ngFor="let languages of experts.languages">
+                                            <p class="ml-2 font-medium text-[#171717BF] text-xs ">{{languages}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -172,10 +182,10 @@
                     <div class="bg-[#FFE7DE] flex  align-middle justify-around ">
 
                         <div class="py-3">
-                            <p class="text-red-500 text-base font-semibold">₹1300/Session</p>
+                            <p class="text-red-500 text-base font-semibold">₹  <span>{{experts.hourlySessionCharge}}</span>/Session</p>
                         </div>
                         <div class="py-2">
-                            <button
+                            <button (click)="payNow()"
                                 class=" bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-10 rounded-md  text-xs">Book
                                 Session</button>
                         </div>
@@ -183,567 +193,7 @@
                 </div>
 
             </div>
-            <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
-                <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">
-                    <div class="md:flex">
-                        <!-- Left side with the image -->
-                        <div class="md:w-1/2 ">
-                            <img src="https://placekitten.com/400/300" alt="Image" class="w-2/3 mx-auto mt-6" />
-                        </div>
-                        <!-- Right side with content -->
-                        <div class="md:w-1/2 px-4 py-6">
-                            <!-- Person's Name -->
-                            <h2 class="text-lg font-semibold text-gray-800">John Doe</h2>
-                            <!-- Person's Position -->
-                            <h3 class="text-xs font-medium text-gray-600 ">counseling Psychologist </h3>
-                            <!-- Content 3 -->
-                            <!-- rating -->
-                            <div class="flex items-center space-x-2 pt-2 ">
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                            </div>
-
-                            <!-- Horizontal alignment for last three content elements -->
-                            <div class="flex">
-                                <div class="flex flex-row flex-wrap gap-3 sm:gap-5 pt-4 -space-y-4 md:mt-0">
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="m24.125 10.375-7.5 7.5L13.5 14.75l-5.625 5.625"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                </path>
-                                                <path d="M24.125 15.375v-5h-5" stroke="#FF6D42" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1385 Sessions</p>
-                                    </div>
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M12.667 11v-.667c0-1.475 0-2.666 2.667-2.666h1.333c2.667 0 2.667 1.191 2.667 2.666V11m-6.667 13.333h6.667c3.35 0 3.95-1.341 4.125-2.975l.625-6.666c.225-2.034-.358-3.692-3.917-3.692h-8.333c-3.558 0-4.142 1.658-3.917 3.692l.625 6.666c.175 1.634.775 2.975 4.125 2.975Z"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path
-                                                    d="M17.67 17.683v-.85c0-.833 0-.833-.833-.833h-1.666c-.833 0-.833 0-.833.833v.859m3.333-.009c0 .909-.008 1.65-1.667 1.65-1.65 0-1.667-.733-1.667-1.641m3.334-.009a13.736 13.736 0 0 0 6.375-2.516m-9.708 2.525a13.568 13.568 0 0 1-6.15-2.3"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1 yrs experience</p>
-                                    </div>
-                                    <div class="flex flex-row items-center">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m24.125 22.875-4.375-8.75-4.375 8.75m1.25-2.5h6.25m-10-11.875v1.875m-5 0h10m-2.5 0a7.5 7.5 0 0 1-7.5 7.5"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path d="M10.805 12.875a7.5 7.5 0 0 0 7.07 5" stroke="#FF6D42"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">English, Hinglish</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="bg-[#FFE7DE] flex  align-middle justify-around ">
-
-                        <div class="py-3">
-                            <p class="text-red-500 text-base font-semibold">₹1300/Session</p>
-                        </div>
-                        <div class="py-2">
-                            <button
-                                class=" bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-10 rounded-md  text-xs">Book
-                                Session</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
-                <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">
-                    <div class="md:flex">
-                        <!-- Left side with the image -->
-                        <div class="md:w-1/2 ">
-                            <img src="https://placekitten.com/400/300" alt="Image" class="w-2/3 mx-auto mt-6" />
-                        </div>
-                        <!-- Right side with content -->
-                        <div class="md:w-1/2 px-4 py-6">
-                            <!-- Person's Name -->
-                            <h2 class="text-lg font-semibold text-gray-800">John Doe</h2>
-                            <!-- Person's Position -->
-                            <h3 class="text-xs font-medium text-gray-600 ">counseling Psychologist </h3>
-                            <!-- Content 3 -->
-                            <!-- rating -->
-                            <div class="flex items-center space-x-2 pt-2 ">
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                            </div>
-
-                            <!-- Horizontal alignment for last three content elements -->
-                            <div class="flex">
-                                <div class="flex flex-row flex-wrap gap-3 sm:gap-5 pt-4 -space-y-4 md:mt-0">
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="m24.125 10.375-7.5 7.5L13.5 14.75l-5.625 5.625"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                </path>
-                                                <path d="M24.125 15.375v-5h-5" stroke="#FF6D42" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1385 Sessions</p>
-                                    </div>
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M12.667 11v-.667c0-1.475 0-2.666 2.667-2.666h1.333c2.667 0 2.667 1.191 2.667 2.666V11m-6.667 13.333h6.667c3.35 0 3.95-1.341 4.125-2.975l.625-6.666c.225-2.034-.358-3.692-3.917-3.692h-8.333c-3.558 0-4.142 1.658-3.917 3.692l.625 6.666c.175 1.634.775 2.975 4.125 2.975Z"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path
-                                                    d="M17.67 17.683v-.85c0-.833 0-.833-.833-.833h-1.666c-.833 0-.833 0-.833.833v.859m3.333-.009c0 .909-.008 1.65-1.667 1.65-1.65 0-1.667-.733-1.667-1.641m3.334-.009a13.736 13.736 0 0 0 6.375-2.516m-9.708 2.525a13.568 13.568 0 0 1-6.15-2.3"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1 yrs experience</p>
-                                    </div>
-                                    <div class="flex flex-row items-center">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m24.125 22.875-4.375-8.75-4.375 8.75m1.25-2.5h6.25m-10-11.875v1.875m-5 0h10m-2.5 0a7.5 7.5 0 0 1-7.5 7.5"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path d="M10.805 12.875a7.5 7.5 0 0 0 7.07 5" stroke="#FF6D42"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">English, Hinglish</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="bg-[#FFE7DE] flex  align-middle justify-around ">
-
-                        <div class="py-3">
-                            <p class="text-red-500 text-base font-semibold">₹1300/Session</p>
-                        </div>
-                        <div class="py-2">
-                            <button
-                                class=" bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-10 rounded-md  text-xs">Book
-                                Session</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
-                <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">
-                    <div class="md:flex">
-                        <!-- Left side with the image -->
-                        <div class="md:w-1/2 ">
-                            <img src="https://placekitten.com/400/300" alt="Image" class="w-2/3 mx-auto mt-6" />
-                        </div>
-                        <!-- Right side with content -->
-                        <div class="md:w-1/2 px-4 py-6">
-                            <!-- Person's Name -->
-                            <h2 class="text-lg font-semibold text-gray-800">John Doe</h2>
-                            <!-- Person's Position -->
-                            <h3 class="text-xs font-medium text-gray-600 ">counseling Psychologist </h3>
-                            <!-- Content 3 -->
-                            <!-- rating -->
-                            <div class="flex items-center space-x-2 pt-2 ">
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                            </div>
-
-                            <!-- Horizontal alignment for last three content elements -->
-                            <div class="flex">
-                                <div class="flex flex-row flex-wrap gap-3 sm:gap-5 pt-4 -space-y-4 md:mt-0">
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="m24.125 10.375-7.5 7.5L13.5 14.75l-5.625 5.625"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                </path>
-                                                <path d="M24.125 15.375v-5h-5" stroke="#FF6D42" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1385 Sessions</p>
-                                    </div>
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M12.667 11v-.667c0-1.475 0-2.666 2.667-2.666h1.333c2.667 0 2.667 1.191 2.667 2.666V11m-6.667 13.333h6.667c3.35 0 3.95-1.341 4.125-2.975l.625-6.666c.225-2.034-.358-3.692-3.917-3.692h-8.333c-3.558 0-4.142 1.658-3.917 3.692l.625 6.666c.175 1.634.775 2.975 4.125 2.975Z"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path
-                                                    d="M17.67 17.683v-.85c0-.833 0-.833-.833-.833h-1.666c-.833 0-.833 0-.833.833v.859m3.333-.009c0 .909-.008 1.65-1.667 1.65-1.65 0-1.667-.733-1.667-1.641m3.334-.009a13.736 13.736 0 0 0 6.375-2.516m-9.708 2.525a13.568 13.568 0 0 1-6.15-2.3"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1 yrs experience</p>
-                                    </div>
-                                    <div class="flex flex-row items-center">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m24.125 22.875-4.375-8.75-4.375 8.75m1.25-2.5h6.25m-10-11.875v1.875m-5 0h10m-2.5 0a7.5 7.5 0 0 1-7.5 7.5"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path d="M10.805 12.875a7.5 7.5 0 0 0 7.07 5" stroke="#FF6D42"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">English, Hinglish</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="bg-[#FFE7DE] flex  align-middle justify-around ">
-
-                        <div class="py-3">
-                            <p class="text-red-500 text-base font-semibold">₹1300/Session</p>
-                        </div>
-                        <div class="py-2">
-                            <button
-                                class=" bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-10 rounded-md  text-xs">Book
-                                Session</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
-                <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">
-                    <div class="md:flex">
-                        <!-- Left side with the image -->
-                        <div class="md:w-1/2 ">
-                            <img src="https://placekitten.com/400/300" alt="Image" class="w-2/3 mx-auto mt-6" />
-                        </div>
-                        <!-- Right side with content -->
-                        <div class="md:w-1/2 px-4 py-6">
-                            <!-- Person's Name -->
-                            <h2 class="text-lg font-semibold text-gray-800">John Doe</h2>
-                            <!-- Person's Position -->
-                            <h3 class="text-xs font-medium text-gray-600 ">counseling Psychologist </h3>
-                            <!-- Content 3 -->
-                            <!-- rating -->
-                            <div class="flex items-center space-x-2 pt-2 ">
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                            </div>
-
-                            <!-- Horizontal alignment for last three content elements -->
-                            <div class="flex">
-                                <div class="flex flex-row flex-wrap gap-3 sm:gap-5 pt-4 -space-y-4 md:mt-0">
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="m24.125 10.375-7.5 7.5L13.5 14.75l-5.625 5.625"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                </path>
-                                                <path d="M24.125 15.375v-5h-5" stroke="#FF6D42" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1385 Sessions</p>
-                                    </div>
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M12.667 11v-.667c0-1.475 0-2.666 2.667-2.666h1.333c2.667 0 2.667 1.191 2.667 2.666V11m-6.667 13.333h6.667c3.35 0 3.95-1.341 4.125-2.975l.625-6.666c.225-2.034-.358-3.692-3.917-3.692h-8.333c-3.558 0-4.142 1.658-3.917 3.692l.625 6.666c.175 1.634.775 2.975 4.125 2.975Z"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path
-                                                    d="M17.67 17.683v-.85c0-.833 0-.833-.833-.833h-1.666c-.833 0-.833 0-.833.833v.859m3.333-.009c0 .909-.008 1.65-1.667 1.65-1.65 0-1.667-.733-1.667-1.641m3.334-.009a13.736 13.736 0 0 0 6.375-2.516m-9.708 2.525a13.568 13.568 0 0 1-6.15-2.3"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1 yrs experience</p>
-                                    </div>
-                                    <div class="flex flex-row items-center">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m24.125 22.875-4.375-8.75-4.375 8.75m1.25-2.5h6.25m-10-11.875v1.875m-5 0h10m-2.5 0a7.5 7.5 0 0 1-7.5 7.5"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path d="M10.805 12.875a7.5 7.5 0 0 0 7.07 5" stroke="#FF6D42"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">English, Hinglish</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="bg-[#FFE7DE] flex  align-middle justify-around ">
-
-                        <div class="py-3">
-                            <p class="text-red-500 text-base font-semibold">₹1300/Session</p>
-                        </div>
-                        <div class="py-2">
-                            <button
-                                class=" bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-10 rounded-md  text-xs">Book
-                                Session</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
-                <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">
-                    <div class="md:flex">
-                        <!-- Left side with the image -->
-                        <div class="md:w-1/2 ">
-                            <img src="https://placekitten.com/400/300" alt="Image" class="w-2/3 mx-auto mt-6" />
-                        </div>
-                        <!-- Right side with content -->
-                        <div class="md:w-1/2 px-4 py-6">
-                            <!-- Person's Name -->
-                            <h2 class="text-lg font-semibold text-gray-800">John Doe</h2>
-                            <!-- Person's Position -->
-                            <h3 class="text-xs font-medium text-gray-600 ">counseling Psychologist </h3>
-                            <!-- Content 3 -->
-                            <!-- rating -->
-                            <div class="flex items-center space-x-2 pt-2 ">
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-orange-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path
-                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                            </div>
-
-                            <!-- Horizontal alignment for last three content elements -->
-                            <div class="flex">
-                                <div class="flex flex-row flex-wrap gap-3 sm:gap-5 pt-4 -space-y-4 md:mt-0">
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="m24.125 10.375-7.5 7.5L13.5 14.75l-5.625 5.625"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                </path>
-                                                <path d="M24.125 15.375v-5h-5" stroke="#FF6D42" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1385 Sessions</p>
-                                    </div>
-                                    <div class="flex flex-row items-center ">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M12.667 11v-.667c0-1.475 0-2.666 2.667-2.666h1.333c2.667 0 2.667 1.191 2.667 2.666V11m-6.667 13.333h6.667c3.35 0 3.95-1.341 4.125-2.975l.625-6.666c.225-2.034-.358-3.692-3.917-3.692h-8.333c-3.558 0-4.142 1.658-3.917 3.692l.625 6.666c.175 1.634.775 2.975 4.125 2.975Z"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path
-                                                    d="M17.67 17.683v-.85c0-.833 0-.833-.833-.833h-1.666c-.833 0-.833 0-.833.833v.859m3.333-.009c0 .909-.008 1.65-1.667 1.65-1.65 0-1.667-.733-1.667-1.641m3.334-.009a13.736 13.736 0 0 0 6.375-2.516m-9.708 2.525a13.568 13.568 0 0 1-6.15-2.3"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-miterlimit="10"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">1 yrs experience</p>
-                                    </div>
-                                    <div class="flex flex-row items-center">
-                                        <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
-                                            <svg width="20" height="20" viewBox="0 0 32 32" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m24.125 22.875-4.375-8.75-4.375 8.75m1.25-2.5h6.25m-10-11.875v1.875m-5 0h10m-2.5 0a7.5 7.5 0 0 1-7.5 7.5"
-                                                    stroke="#FF6D42" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path d="M10.805 12.875a7.5 7.5 0 0 0 7.07 5" stroke="#FF6D42"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <p class="ml-2 font-medium text-[#171717BF] text-xs ">English, Hinglish</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="bg-[#FFE7DE] flex  align-middle justify-around ">
-
-                        <div class="py-3">
-                            <p class="text-red-500 text-base font-semibold">₹1300/Session</p>
-                        </div>
-                        <div class="py-2">
-                            <button
-                                class=" bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-10 rounded-md  text-xs">Book
-                                Session</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+            <!-- card end -->
         </div>
 
     </section>

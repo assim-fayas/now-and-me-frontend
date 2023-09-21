@@ -153,7 +153,8 @@
                                             </svg>
                                         </div>
                                         <p class="ml-2 font-medium text-[#171717BF] text-xs ">
-                                            <span>{{experts.experience}}</span> yrs experience</p>
+                                            <span>{{experts.experience}}</span> yrs experience
+                                        </p>
                                     </div>
                                     <div class="flex flex-row items-center">
                                         <div class="h-[20px] w-[20px] bg-[#FF6D4226] rounded-md">
@@ -182,10 +183,11 @@
                     <div class="bg-[#FFE7DE] flex  align-middle justify-around ">
 
                         <div class="py-3">
-                            <p class="text-red-500 text-base font-semibold">₹  <span>{{experts.hourlySessionCharge}}</span>/Session</p>
+                            <p class="text-red-500 text-base font-semibold">₹
+                                <span>{{experts.hourlySessionCharge}}</span>/Session</p>
                         </div>
                         <div class="py-2">
-                            <button (click)="payNow()"
+                            <button type="button" (click)="viewExpert(experts._id)"
                                 class=" bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-10 rounded-md  text-xs">Book
                                 Session</button>
                         </div>

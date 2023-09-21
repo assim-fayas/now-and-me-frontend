@@ -103,6 +103,18 @@ expertListing(){
 }
 
 
+
+viewExpert(Expertid:string){
+  return this.http.post(`${this.url}/viewExpert/${Expertid}`,{withCredentials:true})
+  .pipe(map(response => {
+    return response
+  }),
+    catchError((error) => {
+      return throwError(error)
+    }))
+}
+
+
   // expert logout
   logout() {
     localStorage.removeItem('jwt_expert');

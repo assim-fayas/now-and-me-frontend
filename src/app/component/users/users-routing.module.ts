@@ -12,6 +12,7 @@ import { ExpertListingComponent } from './expert-listing/expert-listing.componen
 import { CommunityComponent } from './community/community.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewExpertComponent } from './view-expert/view-expert.component';
 
 
 
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'expertlisting', component: ExpertListingComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
   { path: 'community', component: CommunityComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
   {path:'schedules',component:SchedulesComponent},
-  {path:'profile',component:ProfileComponent}
+  {path:'profile',component:ProfileComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
+  {path:'expertView/:id',component:ViewExpertComponent}
 
   // {path:'**',redirectTo:""}
 

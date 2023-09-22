@@ -13,7 +13,7 @@ export class ImageuploadService {
 
 
   uploadImage(value: any) {
-    return this.http.post(`${this.cloudUrl}/image/upload`,value)
+    return this.http.post(`${this.cloudUrl}/upload`,value)
   }
 
 

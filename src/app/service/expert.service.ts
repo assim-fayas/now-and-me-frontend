@@ -92,6 +92,27 @@ export class ExpertService implements OnInit {
         }))
   }
 
+expertListing(){
+  return this.http.get(`${this.url}/expertListing`,{withCredentials:true})
+  .pipe(map(response => {
+    return response
+  }),
+    catchError((error) => {
+      return throwError(error)
+    }))
+}
+
+
+
+viewExpert(Expertid:string){
+  return this.http.post(`${this.url}/viewExpert/${Expertid}`,{withCredentials:true})
+  .pipe(map(response => {
+    return response
+  }),
+    catchError((error) => {
+      return throwError(error)
+    }))
+}
 
 
   // expert logout

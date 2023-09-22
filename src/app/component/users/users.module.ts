@@ -21,7 +21,8 @@ import{ RelativeTimePipe }from '../../pipes/relative-time.pipe'
 import { TagModule } from 'primeng/tag';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { ProfileComponent } from './profile/profile.component';
-import{DateToMonthYearPipe}from '../../pipes/date-to-month-year.pipe'
+import{DateToMonthYearPipe}from '../../pipes/date-to-month-year.pipe';
+import { ViewExpertComponent } from './view-expert/view-expert.component'
 
 
 
@@ -41,7 +42,8 @@ import{DateToMonthYearPipe}from '../../pipes/date-to-month-year.pipe'
     RelativeTimePipe,
     SchedulesComponent,
     ProfileComponent,
-    DateToMonthYearPipe
+    DateToMonthYearPipe,
+    ViewExpertComponent
  
   ],
   imports: [

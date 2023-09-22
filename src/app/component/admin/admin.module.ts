@@ -7,6 +7,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListExpertsComponent } from './list-experts/list-experts.component';
 import { NavsidebarComponent } from './navsidebar/navsidebar.component';
+import { FlagComponent } from './flag/flag.component';
 // import {MatTableModule} from '@angular/material/table'
 // import {MatPaginatorModule}from '@angular/material/paginator'
 // import {MatSortModule}from '@angular/material/sort'
@@ -21,6 +22,7 @@ import { NavsidebarComponent } from './navsidebar/navsidebar.component';
 
     ListExpertsComponent,
       NavsidebarComponent,
+      FlagComponent,
 
    ],
   imports: [

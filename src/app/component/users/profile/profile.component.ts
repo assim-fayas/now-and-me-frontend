@@ -65,21 +65,24 @@ export class ProfileComponent implements OnInit {
       console.log('Form submitted:', this.user);
       this.profileService.updateProfile(this.user).subscribe((response) => {
         console.log(response);
-
+        this.ngOnInit()
       }, (error) => {
         console.log(error);
 
       })
 
 
-      // You can send this.user to your API or perform any other action here.
+
     }
   }
+
+
+  // cloudinary image upload
 
   private uploadPreset = environment.uploadPreset
   private cloudName = environment.cloudName
   onFileSelected(event: any) {
-    // Handle file upload here
+
     const file = event.target.files[0]; // Get the first (and only) file from the input
     if (file) {
       const formData = new FormData();
@@ -111,6 +114,7 @@ export class ProfileComponent implements OnInit {
       this.user = { ...response.userDetails }
       console.log(response);
       console.log("this.userDetailsssssssssssssss", this.userDetails);
+
 
     }, (error) => {
       console.log(error);

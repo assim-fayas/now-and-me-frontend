@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdminServiceService } from 'src/app/service/admin-service.service';
 
 @Component({
   selector: 'app-navsidebar',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./navsidebar.component.css']
 })
 export class NavsidebarComponent {
+
+  constructor(private adminservice: AdminServiceService) {
+
+  }
+
+  logout() {
+    this.adminservice.logout()
+  }
 
 }

@@ -5,14 +5,17 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminListUsersComponent } from './admin-list-users/admin-list-users.component';
 import { ListExpertsComponent } from './list-experts/list-experts.component';
 import { NavsidebarComponent } from './navsidebar/navsidebar.component';
+import { FlagComponent } from './flag/flag.component';
 
 
 
-const routes: Routes = [{ path: 'admin', component: AdminDashboardComponent },
+const routes: Routes = [{ path: '', component: AdminDashboardComponent },
 { path: 'login', component: AdminLoginComponent },
 { path: 'userslist', component: AdminListUsersComponent },
 { path: 'expertslist', component: ListExpertsComponent },
-{path:'navsidebar',component:NavsidebarComponent}
+{path:'navsidebar',component:NavsidebarComponent},
+{path:'flag',component:FlagComponent},
+
 
 
 

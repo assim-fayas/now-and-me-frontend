@@ -48,7 +48,7 @@ export class AdminLoginComponent {
         const jwtToken = response.token
         localStorage.setItem('jwt_admin', jwtToken)
         this.isLoading = false
-        this.router.navigate(['/admin/admin'])
+        this.router.navigate(['/admin'])
 
       },
         (errorMessage) => {

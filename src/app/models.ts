@@ -38,15 +38,15 @@ export interface communityPost {
     tags: string[];
 }
 
-export interface FlagFormvalue{
-    report:string,
-    reason?:string
+export interface FlagFormvalue {
+    report: string,
+    reason?: string
 }
 
-export interface CommentFormValue{
-    userid:string,
-    postid:string,
-    content:string
+export interface CommentFormValue {
+    userid: string,
+    postid: string,
+    content: string
 }
 export interface UserProfile {
     name: string;
@@ -55,35 +55,50 @@ export interface UserProfile {
     bio?: string; // Optional property
     location?: string; // Optional property
     profileImage?: string | null; // You can set a default value of null for the profile image
-  }
-  
+}
+
 export interface Languages {
     english: boolean;
     malayalam: boolean;
     hinglish: boolean;
     otherLanguage: boolean;
     customlanguageValue: string;
-  }
+}
 export interface IdealClient {
     students: boolean,
     youngAdults: boolean,
     workingProfessionals: boolean,
     teenagers: boolean,
-    jobAspirants:boolean,
+    jobAspirants: boolean,
     marriedCouples: boolean,
     parents: boolean,
     other: boolean,
-    customclientValue:string | null
-  }
+    customclientValue: string | null
+}
 
-  export interface Expertise  {
+export interface Expertise {
     life: boolean,
     positivity: boolean,
     relationships: boolean,
     career: boolean,
     mindset: boolean,
     family: boolean,
-  };
+};
+
+
+export interface Message {
+    sender: string;
+    receiver: string;
+    text: string;
+    senderType: string;
+    receiverType: string;
+    receiverId: string;
+}
+
+
+
+
+
 
 export class NotificationMessage {
     message!: string;

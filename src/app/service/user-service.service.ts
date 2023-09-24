@@ -56,11 +56,11 @@ export class UserServiceService implements OnInit {
   getuUserToken() {
     return localStorage.getItem('jwt_user');
   }
-  
+
   getUserId(): string | null {
     const jwtUser = localStorage.getItem('jwt_user');
     if (jwtUser) {
-      const parsedUser = JSON.parse(jwtUser) 
+      const parsedUser = JSON.parse(jwtUser)
       return parsedUser._id; // Adjust this based on your JWT structure
     }
     return null;
@@ -114,6 +114,23 @@ export class UserServiceService implements OnInit {
           const errorMessage = errorRes.error.message;
           return throwError(errorMessage)
         })
+      )
+  }
+
+
+  //list all users
+  getusers() {
+    return this.http.get(`${this.url}/listUsers`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+
+      }),
+        catchError((error) => {
+          console.log("error response from backend", error.error);
+
+          return throwError(error)
+        })
+
       )
   }
 

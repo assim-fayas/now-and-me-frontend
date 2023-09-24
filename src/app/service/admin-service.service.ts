@@ -11,7 +11,7 @@ import { catchError, map, throwError } from 'rxjs';
 export class AdminServiceService {
 
   // backend url
-  private readonly url = environment.apiBaseUrl
+  private readonly url = environment.adminUrl
 
 
   constructor(
@@ -24,7 +24,7 @@ export class AdminServiceService {
 
   // admin login
   login(email: string, password: string) {
-    return this.http.post<AdminLoginResponse>(`${this.url}/admin/login`, { email, password }, { withCredentials: true })
+    return this.http.post<AdminLoginResponse>(`${this.url}/login`, { email, password }, { withCredentials: true })
       .pipe(map(AdminLoginResponse => {
         localStorage.setItem('jwt_admin', JSON.stringify(AdminLoginResponse))
         console.log(AdminLoginResponse, "admin response");
@@ -43,7 +43,7 @@ export class AdminServiceService {
   //list all users
   getuserErrorMessage: string = 'An Error Occured'
   getusers() {
-    return this.http.get<any>(`${this.url}/admin/listUsers`, { withCredentials: true })
+    return this.http.get(`${this.url}/listUsers`, { withCredentials: true })
       .pipe(map(response => {
         return response
 
@@ -60,7 +60,7 @@ export class AdminServiceService {
   //list all expert
   getexpertErrorMessage: string = 'An Error Occured'
   getexperts() {
-    return this.http.get<any>(`${this.url}/admin/listExperts`, { withCredentials: true })
+    return this.http.get(`${this.url}/listExperts`, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -75,11 +75,11 @@ export class AdminServiceService {
 
   //block  and unblock expert
   blockexpert(id: string) {
-    return this.http.post(`${this.url}/admin/expert/block/${id}`, { withCredentials: true })
+    return this.http.post(`${this.url}/expert/block/${id}`, { withCredentials: true })
   }
   //block  and unblock expert
   blockuser(id: string) {
-    return this.http.post(`${this.url}/admin/user/block/${id}`, { withCredentials: true })
+    return this.http.post(`${this.url}/user/block/${id}`, { withCredentials: true })
   }
 
 

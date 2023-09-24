@@ -22,7 +22,9 @@ import { TagModule } from 'primeng/tag';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { ProfileComponent } from './profile/profile.component';
 import{DateToMonthYearPipe}from '../../pipes/date-to-month-year.pipe';
-import { ViewExpertComponent } from './view-expert/view-expert.component'
+import { ViewExpertComponent } from './view-expert/view-expert.component';
+import { ChatUserComponent } from './chat-user/chat-user.component';
+import { AppoinmentsComponent } from './appoinments/appoinments.component'
 
 
 
@@ -43,7 +45,9 @@ import { ViewExpertComponent } from './view-expert/view-expert.component'
     SchedulesComponent,
     ProfileComponent,
     DateToMonthYearPipe,
-    ViewExpertComponent
+    ViewExpertComponent,
+    ChatUserComponent,
+    AppoinmentsComponent
  
   ],
   imports: [

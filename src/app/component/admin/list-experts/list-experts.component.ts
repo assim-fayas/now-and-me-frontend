@@ -23,7 +23,7 @@ export class ListExpertsComponent implements OnInit {
 
   getExperts() {
     this.adminService.getexperts().subscribe(
-      (response) => {
+      (response: any) => {
 
         this.experts = response.allExperts
       },
@@ -34,7 +34,7 @@ export class ListExpertsComponent implements OnInit {
 
     )
   }
-//blocking experts
+  //blocking experts
 
   blockexpert(userId: string) {
 

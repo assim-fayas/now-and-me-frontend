@@ -10,6 +10,12 @@ import { RegistrationComponent } from './registration/registration.component';
 import { Regform1Component } from './regform1/regform1.component';
 import { Regform2Component } from './regform2/regform2.component';
 import { Regform3Component } from './regform3/regform3.component';
+import { ExpertHomeComponent } from './expert-home/expert-home.component';
+import { FreeSlotsComponent } from './free-slots/free-slots.component';
+import { ChatsComponent } from './chats/chats.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ViewAppoinmentsComponent } from './view-appoinments/view-appoinments.component';
 
 const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'login', component: ExpertloginComponent },
@@ -21,6 +27,12 @@ const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'regform1', component: Regform1Component },
 { path: 'regform2/:id', component: Regform2Component },
 { path: 'regform3/:id', component: Regform3Component },
+{ path: 'home', component: ExpertHomeComponent },
+{ path: 'slots', component: FreeSlotsComponent },
+{ path: 'chat', component: ChatsComponent },
+{ path: 'reviews', component: ReviewsComponent },
+{ path: 'appoinments', component:ViewAppoinmentsComponent },
+{ path: 'sidebar', component:SidebarComponent },
 //invalid routes
 { path: '**', redirectTo: '/experts' }
 ]

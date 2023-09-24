@@ -7,4 +7,35 @@ import { Component } from '@angular/core';
 })
 export class SchedulesComponent {
 
+  showChats: boolean = true
+  showAppoinments: boolean = false
+
+
+  changeSectionToAppoinments() {
+    this.showChats = false
+    this.showAppoinments = true
+  }
+
+  changeSectionToChats() {
+    this.showChats = true
+    this.showAppoinments = false
+  }
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

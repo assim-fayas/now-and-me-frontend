@@ -1,0 +1,54 @@
+<!-- responsive-sidebar.component.html -->
+<aside>
+    <div class="flex h-screen ">
+        <!-- Sidebar for Medium Screens -->
+        <div class="bg-orange-300 shadow-2xl  text-white w-64 p-4 md:block max-md:hidden m-7 rounded-xl">
+            <ul class="text-base font-medium">
+                <li class="mb-8">
+                    <a>
+                        <div class="flex space-x-2">
+                            <img src="../../../../assets/image/Groupnow me logo.png" class="h-[25px] " alt="">
+                            <p class="text-lg font-bold  text-orange-500"> Expert Panel</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="-mb-1 ">
+                    <a routerLink="/experts/home">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Dashboard</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/experts/slots">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Slotes</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/experts/appoinments">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Appoinment</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/experts/chat">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Chats</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/experts/reviews">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">review</p>
+                    </a>
+                </li>
+                <!-- Add more sidebar links as needed -->
+            </ul>
+        </div>
+
+        <!-- Sidebar Toggle Button for Small Screens -->
+        <div class="fixed md:hidden top-0 left-0 z-50 w-16 bg-orange-900 text-white text-center p-2">
+            <button (click)="toggleSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</aside>

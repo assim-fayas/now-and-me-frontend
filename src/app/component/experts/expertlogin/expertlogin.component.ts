@@ -26,8 +26,8 @@ export class ExpertloginComponent implements OnInit {
 
     // redirect to home if user alredy loged in 
     if (localStorage.getItem('jwt_expert')) {
-      this.router.navigate(['/experts'])
-    }else{
+      this.router.navigate(['/experts/home'])
+    } else {
       this.router.navigate(['/experts/login'])
     }
   }
@@ -39,30 +39,30 @@ export class ExpertloginComponent implements OnInit {
   loginErrorMessage!: string
 
   login(loginForm: NgForm) {
-      if (!loginForm.valid) {
+    if (!loginForm.valid) {
 
-        return
+      return
 
-      }
-      this.formSubmitted = true;
-      this.isLoading = true
-      //  perform the login request call 
-      this.user.login(loginForm.value.email, loginForm.value.password)
-        .pipe(first())
-        .subscribe(
-          (response) => {
-            console.log(response, "loginnnnn");
-            const jwtToken=response.token
-            localStorage.setItem('jwt_expert',jwtToken)
-            this.isLoading = false
-            this.router.navigate(['/experts/experts'])
-          },
-          (errorMessage) => {
-            this.loginErrorMessage = errorMessage
-            this.isLoading = false
+    }
+    this.formSubmitted = true;
+    this.isLoading = true
+    //  perform the login request call 
+    this.user.login(loginForm.value.email, loginForm.value.password)
+      .pipe(first())
+      .subscribe(
+        (response) => {
+          console.log(response, "loginnnnn");
+          const jwtToken = response.token
+          localStorage.setItem('jwt_expert', jwtToken)
+          this.isLoading = false
+          this.router.navigate(['/experts/home'])
+        },
+        (errorMessage) => {
+          this.loginErrorMessage = errorMessage
+          this.isLoading = false
 
-          }
-        )
+        }
+      )
 
   }
 
@@ -81,21 +81,21 @@ export class ExpertloginComponent implements OnInit {
   //   }
   //   this.isLoading = true
   //   this.userEmail = modalForm.value.email
-    //perform request call
+  //perform request call
 
-    // this.user.otp(modalForm.value.email).subscribe((response: any) => {
-    //   const jwtToken = response.token;
-    //   console.log(jwtToken, "jwt_expert");
+  // this.user.otp(modalForm.value.email).subscribe((response: any) => {
+  //   const jwtToken = response.token;
+  //   console.log(jwtToken, "jwt_expert");
 
-    //   this.isLoading = false
-    //   this.router.navigate(['/experts/otp'], { queryParams: { email: this.userEmail } })
-    // },
-    //   (errorMessage) => {
+  //   this.isLoading = false
+  //   this.router.navigate(['/experts/otp'], { queryParams: { email: this.userEmail } })
+  // },
+  //   (errorMessage) => {
 
-    //     this.PasswordErrorMessage = errorMessage
-    //     this.isLoading = false
+  //     this.PasswordErrorMessage = errorMessage
+  //     this.isLoading = false
 
-    //   })
+  //   })
 
 
   // }

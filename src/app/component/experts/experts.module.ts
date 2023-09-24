@@ -15,6 +15,12 @@ import { Regform2Component } from './regform2/regform2.component';
 import { Regform3Component } from './regform3/regform3.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { CloudinaryModule } from '@cloudinary/ng';
+import { ExpertHomeComponent } from './expert-home/expert-home.component';
+import { FreeSlotsComponent } from './free-slots/free-slots.component';
+import { ChatsComponent } from './chats/chats.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { ViewAppoinmentsComponent } from './view-appoinments/view-appoinments.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
@@ -33,6 +39,12 @@ import { CloudinaryModule } from '@cloudinary/ng';
     Regform1Component,
     Regform2Component,
     Regform3Component,
+    ExpertHomeComponent,
+    FreeSlotsComponent,
+    ChatsComponent,
+    ReviewsComponent,
+    ViewAppoinmentsComponent,
+    SidebarComponent,
 
   ],
   imports: [

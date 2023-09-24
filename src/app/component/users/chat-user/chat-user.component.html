@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class=" ">
-        <div class=" mt-10 m-48 flex h-fit border    border-gray-500 ">
+        <div class=" mt-10 m-48 flex h-[500px] border    border-gray-500 ">
 
             <!-- chatting listing area -->
             <div class="bg-white w-4/5 border-r border-gray-500 pb-10 ">
@@ -46,7 +46,9 @@
                 </div>
 
                 <ng-container *ngIf="activeChats">
-                    <div class="  ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
+                    <div (click)="showChats(item._id)" *ngFor="let item of  allExperts"
+                        class=" ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5 hover:bg-slate-100"
+                        [ngClass]="{'selected': selectedExpert === item._id}">
 
 
                         <div class="flex items-center gap-4 pl-4 ">
@@ -55,56 +57,13 @@
                                 class="h-12 w-12 rounded-lg object-cover" />
 
                             <div>
-                                <p class="font-medium text-black">Carol Daines</p>
+                                <p class="font-medium text-black">{{item.name}}</p>
 
 
                             </div>
                         </div>
                     </div>
-                    <div class="  ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
 
-
-                        <div class="flex items-center gap-4 pl-4 ">
-                            <img alt="Women"
-                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                class="h-12 w-12 rounded-lg object-cover" />
-
-                            <div>
-                                <p class="font-medium text-black">Carol Daines</p>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="   ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
-
-
-                        <div class="flex items-center gap-4 pl-4 ">
-                            <img alt="Women"
-                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                class="h-12 w-12 rounded-lg object-cover" />
-
-                            <div>
-                                <p class="font-medium text-black">Carol Daines</p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" ml-8 mr-8 mb-0 border border-gray-200   pt-5 pb-5">
-
-
-                        <div class="flex items-center gap-4 pl-4 ">
-                            <img alt="Women"
-                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                class="h-12 w-12 rounded-lg object-cover" />
-
-                            <div>
-                                <p class="font-medium text-black">Carol Daines</p>
-
-
-                            </div>
-                        </div>
-                    </div>
                 </ng-container>
                 <ng-container *ngIf=previousChats>
                     <div class="  ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
@@ -138,157 +97,121 @@
                         </div>
                     </div>
 
-                </ng-container> 
+                </ng-container>
 
-                
+
 
 
             </div>
 
 
             <!-- messaging area -->
-            <div class="relative w-full pb-4 ">
-                <div class=" bg-white    pb-10 overflow-y-auto max-h-[500px]">
+            <div class="relative w-full pb-4  ">
+                <ng-container *ngIf=" selectedExpert ;else svgContent">
+                    <div class=" bg-white    pb-10 overflow-y-auto max-h-[500px]">
 
 
-                    <div class="  bg-[#FFC6B5]    pt-2 pb-2">
+                        <div class="  bg-[#FFC6B5]    pt-2 pb-2">
 
 
-                        <div class="flex items-center gap-4 pl-4 ">
-                            <img alt="Women"
-                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                class="h-12 w-12 rounded-lg object-cover" />
+                            <div class="flex items-center gap-4 pl-4 " *ngFor="let item of  allExperts">
+                                <ng-container *ngIf="item._id=== selectedExpert">
+                                    <img alt="Women"
+                                        src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                        class="h-12 w-12 rounded-lg object-cover" />
 
-                            <div>
-                                <p class="font-medium text-black">Carol Daines</p>
+                                    <div>
+                                        <p class="font-medium text-black">{{item.name}}</p>
 
 
+                                    </div>
+                                </ng-container>
                             </div>
                         </div>
-                    </div>
-
-                    <!--first  message from expert -->
-                    <div class="  flex justify-end pb-4 pt-4 ">
-                        <div class="flex  space-y-2 space-x-2">
-
-                            <div class="p-6  px-32  bg-slate-100 rounded-l-lg h-fit">
-
-                            </div>
-
-                            <div class="mt-8  ">
-                                <img class="w-10 h-10 -mt-3 rounded-full  "
-                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                    alt="Rounded avatar">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- second message from experts -->
-                    <div class="  flex justify-end pb-4 pt-4 ">
-                        <div class="flex  space-y-2 space-x-2">
-
-                            <div class="p-6  px-32  bg-slate-100 rounded-l-lg h-fit">
-
-                            </div>
-
-                            <div class="mt-8  ">
-                                <img class="w-10 h-10 -mt-3 rounded-full  "
-                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                    alt="Rounded avatar">
-                            </div>
-                        </div>
-                    </div>
 
 
-                    <!-- first message of user -->
-                    <div class="  flex  pb-4 pt-4 ">
-                        <div class="flex  ">
-                            <div class="mt-8  px-2">
-                                <img class="w-10 h-10 -mt-10 rounded-full "
-                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                    alt="Rounded avatar">
-                            </div>
-                            <div class="p-6 px-32  bg-slate-100 rounded-r-lg h-fit"></div>
-                        </div>
-                    </div>
-                    <div class="  flex  pb-4 pt-4 ">
-                        <div class="flex  ">
-                            <div class="mt-8  px-2">
-                                <img class="w-10 h-10 -mt-10 rounded-full "
-                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                    alt="Rounded avatar">
-                            </div>
-                            <div class="p-6 px-32  bg-slate-100 rounded-r-lg h-fit"></div>
-                        </div>
-                    </div>
 
-                    <!-- 3 message from expert -->
-                    <div class="  flex justify-end pb-4 pt-4 ">
-                        <div class="flex  space-y-2 space-x-2">
 
-                            <div class="p-6  px-32  bg-slate-100 rounded-l-lg h-fit">
+                        <!-- first message of user -->
+                        <ng-container *ngFor="let message of chats">
+                            <ng-container *ngFor="let item of message.messages">
+                                <div class="  flex  pb-4 pt-4 " *ngIf="item.senderType=='user'">
+                                    <div class="flex  ">
+                                        <div class="mt-8  px-2">
+                                            <img class="w-8 h-8 -mt-10 rounded-full "
+                                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                                alt="Rounded avatar">
+                                        </div>
+                                        <div class="py-2 text-sm px-7  bg-slate-100 rounded-r-lg h-fit">{{item.text}}
+                                        </div>
+                                    </div>
+                                </div>
 
-                            </div>
 
-                            <div class="mt-8  ">
-                                <img class="w-10 h-10 -mt-3 rounded-full  "
-                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                    alt="Rounded avatar">
-                            </div>
-                        </div>
-                    </div>
+                                <!--first  message from expert -->
 
-                    <!-- second message of user -->
-                    <div class="  flex  pb-4 pt-4 ">
-                        <div class="flex  ">
-                            <div class="mt-8  px-2">
-                                <img class="w-10 h-10 -mt-10 rounded-full "
-                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                    alt="Rounded avatar">
-                            </div>
-                            <div class="p-6 px-32  bg-slate-100 rounded-r-lg h-fit"></div>
-                        </div>
+                                <div class="  flex justify-end pb-4 pt-4 " *ngIf="item.senderType=='expert'">
+                                    <div class="flex  space-y-2 space-x-2">
+
+                                        <div class="p-2 text-sm  px-7  bg-slate-100 rounded-l-lg h-fit">
+                                            {{item.text}}
+
+                                        </div>
+
+                                        <div class="mt-8  ">
+                                            <img class="w-10 h-10 -mt-3 rounded-full  "
+                                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                                alt="Rounded avatar">
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
                     </div>
 
 
+                    <!-- input field for chatting -->
+                    <div class=" bottom-0  absolute w-full ">
+                        <form (ngSubmit)="onSubmit()">
+                            <label for="chat" class="sr-only">Your message</label>
+                            <div class="flex items-center px-3 py-2 bg-gray-50 dark:bg-gray-700">
+                                <button type="button"
+                                    class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                    <span class="sr-only">Upload image</span>
+                                </button>
+                                <button type="button"
+                                    class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z" />
+                                    </svg>
+                                    <span class="sr-only">Add emoji</span>
+                                </button>
+                                <input type="text" id="chat" name="message" [(ngModel)]="message"
+                                    class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Your message...">
+                                <button type="submit" [disabled]="!message"
+                                    class="inline-flex justify-center p-2 text-orange-500 rounded-full cursor-pointer hover:bg-orange-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                                    <svg class="w-5 h-5 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor" viewBox="0 0 18 20">
+                                        <path
+                                            d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z" />
+                                    </svg>
+                                    <span class="sr-only">Send message</span>
+                                </button>
+                            </div>
+                        </form>
 
-                </div>
-
-                <!-- input field for chatting -->
-                <div class=" bottom-0  absolute w-full ">
-                    <form>
-                        <label for="chat" class="sr-only">Your message</label>
-                        <div class="flex items-center px-3  py-2  bg-gray-50 dark:bg-gray-700">
-                            <button type="button"
-                                class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-
-                                <span class="sr-only">Upload image</span>
-                            </button>
-                            <button type="button"
-                                class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M13.408 7.5h.01m-6.876 0h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM4.6 11a5.5 5.5 0 0 0 10.81 0H4.6Z" />
-                                </svg>
-                                <span class="sr-only">Add emoji</span>
-                            </button>
-                            <input type="text" id="chat" rows="1"
-                                class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Your message...">
-                            <button type="submit"
-                                class="inline-flex justify-center p-2 text-orange-500 rounded-full cursor-pointer hover:bg-orange-100 dark:text-blue-500 dark:hover:bg-gray-600">
-                                <svg class="w-5 h-5 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor" viewBox="0 0 18 20">
-                                    <path
-                                        d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z" />
-                                </svg>
-                                <span class="sr-only">Send message</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
+                    </div>
+                </ng-container>
+                <ng-template #svgContent>
+                    <div class="flex justify-center ">
+                        <img class="h-96" src="../../../../assets/image/undraw_Happy_news_re_tsbd.png" alt="">
+                    </div>
+                    <h5 class="text-center ml-10 text-gray-500">Your Messages Will be shown Here</h5>
+                </ng-template>
 
             </div>
 

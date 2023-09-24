@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { AdminServiceService } from 'src/app/service/admin-service.service';
@@ -15,8 +15,8 @@ import { ListUsers } from '../adminModel';
 })
 export class AdminListUsersComponent implements OnInit {
 
-  displayedColumn:string[]=['No','Name','Email','Joined ','Action','Edit','view']
-// dataSource!:MatTableDataSource< ListUsers>
+  displayedColumn: string[] = ['No', 'Name', 'Email', 'Joined ', 'Action', 'Edit', 'view']
+  // dataSource!:MatTableDataSource< ListUsers>
   //users list
   users: any[] = []
 
@@ -27,7 +27,7 @@ export class AdminListUsersComponent implements OnInit {
 
 
   ngOnInit() {
-  
+
 
     //calling to get users for listing users
     this.getusers()
@@ -35,7 +35,7 @@ export class AdminListUsersComponent implements OnInit {
 
   getusers() {
     this.adminService.getusers().subscribe(
-      (response) => {
+      (response: any) => {
         console.log(response);
         this.users = response.allUsers
         console.log(this.users, "users");

@@ -24,6 +24,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
+
+
 @NgModule({
   declarations: [
 
@@ -45,6 +47,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ReviewsComponent,
     ViewAppoinmentsComponent,
     SidebarComponent,
+
+
 
   ],
   imports: [

@@ -44,6 +44,7 @@ export class FreeSlotsComponent {
       const endTime = formatTime(endTimeHour, endTimeMinute, endTimeAmPm);
       const selectedDate = date;
 
+      console.log(startTime, endTime, selectedDate);
 
       this.sloteService.addSlots(startTime, endTime, selectedDate).subscribe((response) => {
         console.log(response);

@@ -94,6 +94,14 @@ export interface Message {
     receiverType: string;
     receiverId: string;
 }
+export interface Appointment {
+    expertId: string;
+    userId: string;
+    slotId: string;
+    consultingFee: string;
+    bookingType: string;
+    paymentStatus: boolean;
+}
 
 
 

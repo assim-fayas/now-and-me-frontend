@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators'
 import { throwError } from 'rxjs'
 import { HttpClient } from '@angular/common/http';
 import { error } from 'jquery';
+import { Appointment } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { error } from 'jquery';
 export class SlotBookingService {
 
   private readonly url = environment.expertUrl
+  private readonly userUrl = environment.apiBaseUrl
   constructor(
 
     private http: HttpClient,
@@ -21,7 +23,7 @@ export class SlotBookingService {
   //add slotes
 
   addSlots(startTime: string, endTime: string, date: string) {
-    return this.http.post(`${this.url}/addSlote`, { startTime, endTime, date })
+    return this.http.post(`${this.url}/addslote`, { startTime, endTime, date })
       .pipe(map(response => {
         return response
       }),
@@ -30,6 +32,32 @@ export class SlotBookingService {
         }))
 
   }
+
+
+  //fetching specified slot
+  getSlots(id: string) {
+    return this.http.get(`${this.userUrl}/getSlots/${id}`).pipe(map(response => {
+
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+  }
+
+
+  //add appoinment
+  addAppoinment(appoinment: Appointment) {
+    return this.http.post(`${this.userUrl}/addAppoinment`, appoinment).pipe(map(response => {
+
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+  }
+
+
 
 
 }

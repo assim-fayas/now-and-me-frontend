@@ -17,14 +17,15 @@ import { CommunityComponent } from './community/community.component';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
-import{ RelativeTimePipe }from '../../pipes/relative-time.pipe'
+import { RelativeTimePipe } from '../../pipes/relative-time.pipe'
 import { TagModule } from 'primeng/tag';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { ProfileComponent } from './profile/profile.component';
-import{DateToMonthYearPipe}from '../../pipes/date-to-month-year.pipe';
+import { DateToMonthYearPipe } from '../../pipes/date-to-month-year.pipe';
 import { ViewExpertComponent } from './view-expert/view-expert.component';
 import { ChatUserComponent } from './chat-user/chat-user.component';
-import { AppoinmentsComponent } from './appoinments/appoinments.component'
+import { AppoinmentsComponent } from './appoinments/appoinments.component';
+import { SlotsComponent } from './slots/slots.component';
 
 
 
@@ -47,8 +48,9 @@ import { AppoinmentsComponent } from './appoinments/appoinments.component'
     DateToMonthYearPipe,
     ViewExpertComponent,
     ChatUserComponent,
-    AppoinmentsComponent
- 
+    AppoinmentsComponent,
+    SlotsComponent
+
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,7 @@ import { AppoinmentsComponent } from './appoinments/appoinments.component'
     TooltipModule,
     ChipModule,
     TagModule,
-  
+
 
 
 

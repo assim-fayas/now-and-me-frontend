@@ -14,12 +14,36 @@ export class ChatUserComponent {
   selectedExpert!: string
   currentUser!: string
   message!: string
-  chats!: any
+  chats: any[] = []
+  receivedMessage!: any
 
-  constructor(private expertServices: ExpertService, private chatService: ChatService, private socket: Socket) { }
+  constructor(private expertServices: ExpertService, private chatService: ChatService, private socket: Socket) { this.socket.connect() }
   ngOnInit() {
-    this.socket.connect()
-    this.getExpert()
+    this.expertServices.expertListing().subscribe((response: any) => {
+      this.allExperts = response.allExperts
+      this.currentUser = response.userId
+
+      this.socket.on(response.userId, (message: any) => {
+        console.log("message received successfully", message);
+        this.receivedMessage = {
+          reciverId: message.receiver,
+          reciverType: message.receiverType,
+          senderId: message.sender,
+          senderType: message.senderType,
+          text: message.text,
+        };
+        console.log(this.chats, "chat aneee");
+        console.log(this.receivedMessage, "new chat aaaane");
+
+
+        this.chats = [...this.chats, this.receivedMessage];
+        console.log(this.chats, "chatssssss");
+      });
+
+    }, (error) => {
+      console.log(error);
+
+    })
   }
 
   activeChats = true
@@ -39,15 +63,7 @@ export class ChatUserComponent {
   //get all experts for chatting note:should be changed
 
   getExpert() {
-    this.expertServices.expertListing().subscribe((response: any) => {
-      console.log(response);
 
-      this.allExperts = response.allExperts
-      this.currentUser = response.userId
-    }, (error) => {
-      console.log(error);
-
-    })
   }
 
 
@@ -55,11 +71,21 @@ export class ChatUserComponent {
   //show chats
 
   showChats(expertId: string) {
+
     this.selectedExpert = expertId
+
     console.log(this.selectedExpert, "current expert");
+
     this.chatService.showChats(expertId, this.currentUser).subscribe((response: any) => {
       console.log(response);
-      this.chats = response
+      if (Array.isArray(response) && response.length > 0) {
+        // Assuming messages are stored in the 'messages' property
+        this.chats = response[0].messages;
+        console.log(this.chats, "kalyaanee");
+      }
+      // console.log(response, "responseeeeeeee");
+      // console.log(this.chats, "responseeeeeeeeeeeeeeeeeeee");
+      console.log(this.chats, "kalyaanee");
 
     }, (error) => {
       console.log(error);
@@ -91,22 +117,11 @@ export class ChatUserComponent {
       receiverId: this.selectedExpert
 
     }
+    this.chats = [...this.chats, this.sendmessage];
     this.socket.emit('chatMessage', this.sendmessage)
-    // this.chatService.sendMessage(this.sendmessage).subscribe((response) => {
-
-    //   console.log(response);
-    //   this.message = ''
-    // }, (error) => {
-    //   console.log(error);
-
-    // })
+    this.message = ''
 
 
   }
-
-
-
-
-
 
 }

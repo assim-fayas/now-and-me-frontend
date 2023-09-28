@@ -29,7 +29,6 @@ export class ChatsComponent {
 
       this.allUsers = response.allUser
 
-      console.log("log inside function", this.currentExpert);
 
       this.socket.on(response.expertid, (message: any) => {
         console.log("message received successfully", message);
@@ -145,27 +144,10 @@ export class ChatsComponent {
       receiverId: this.selectedUser
 
     }
-
-    this.chatService.sendMessage(this.sendmessage).subscribe((response) => {
-      console.log(response);
-      this.message = ''
-    }, (error) => {
-      console.log(error);
-
-    })
-
-
+    this.chats = [...this.chats, this.sendmessage];
+    this.socket.emit('chatMessage', this.sendmessage)
+    this.message = ''
   }
-
-  // getExpertId() {
-  //   this.expertServices().getExpertId.subscribe((response: string) => {
-  //     console.log(response);
-
-  //   }, (error) => {
-  //     console.log(error);
-
-  //   })
-  // }
 
 
 

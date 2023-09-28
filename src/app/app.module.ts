@@ -11,8 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CloudinaryConfig } from '@cloudinary/url-gen';
 import { Cloudinary } from 'cloudinary-core';
 import { CloudinaryModule } from '@cloudinary/ng';
-
-
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+const config: SocketIoConfig = { url: `${environment.apiBaseUrl}`, options: {} };
 
 
 
@@ -22,7 +23,7 @@ import { CloudinaryModule } from '@cloudinary/ng';
   declarations: [
     AppComponent,
 
- 
+
 
 
 
@@ -34,7 +35,7 @@ import { CloudinaryModule } from '@cloudinary/ng';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-
+    SocketIoModule.forRoot(config),
 
 
   ],

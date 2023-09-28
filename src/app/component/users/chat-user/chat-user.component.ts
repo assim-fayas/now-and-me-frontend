@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ChatService } from 'src/app/service/chat.service';
 import { ExpertService } from 'src/app/service/expert.service';
 import { Message } from 'src/app/models';
-
+import { Socket } from 'ngx-socket-io';
 @Component({
   selector: 'app-chat-user',
   templateUrl: './chat-user.component.html',
@@ -16,8 +16,9 @@ export class ChatUserComponent {
   message!: string
   chats!: any
 
-  constructor(private expertServices: ExpertService, private chatService: ChatService) { }
+  constructor(private expertServices: ExpertService, private chatService: ChatService, private socket: Socket) { }
   ngOnInit() {
+    this.socket.connect()
     this.getExpert()
   }
 
@@ -90,14 +91,15 @@ export class ChatUserComponent {
       receiverId: this.selectedExpert
 
     }
+    this.socket.emit('chatMessage', this.sendmessage)
+    // this.chatService.sendMessage(this.sendmessage).subscribe((response) => {
 
-    this.chatService.sendMessage(this.sendmessage).subscribe((response) => {
-      console.log(response);
-      this.message = ''
-    }, (error) => {
-      console.log(error);
+    //   console.log(response);
+    //   this.message = ''
+    // }, (error) => {
+    //   console.log(error);
 
-    })
+    // })
 
 
   }

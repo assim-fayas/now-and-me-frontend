@@ -100,7 +100,7 @@ export interface Appointment {
     slotId: string;
     consultingFee: string;
     bookingType: string;
-    paymentStatus: boolean;
+    paymentStatus: string;
 }
 
 

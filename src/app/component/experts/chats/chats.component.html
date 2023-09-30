@@ -132,39 +132,39 @@
                                 </div>
 
                                 <!--first  message from expert -->
-                                <ng-container *ngFor="let message of chats">
-                                    <ng-container *ngFor="let item of message.messages">
-                                        <div class="  flex  pb-4 pt-4" *ngIf="item.senderType=='expert'">
-                                            <div class="flex  ">
-                                                <div class="mt-8  px-2">
-                                                    <img class="w-8 h-8 -mt-10 rounded-full "
-                                                        src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                                        alt="Rounded avatar">
-                                                </div>
-                                                <div class="py-2 px-7 text-sm bg-slate-100 rounded-r-lg h-fit">
-                                                    {{item.text}}
-                                                </div>
+                                <ng-container *ngFor="let item of chats">
+
+                                    <div class="  flex  pb-4 pt-4" *ngIf="item.senderType=='user'">
+                                        <div class="flex  ">
+                                            <div class="mt-8  px-2">
+                                                <img class="w-8 h-8 -mt-10 rounded-full "
+                                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                                    alt="Rounded avatar">
+                                            </div>
+                                            <div class="py-2 px-7 text-sm bg-slate-100 rounded-r-lg h-fit">
+                                                {{item.text}}
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <!-- first message of user -->
+                                    <!-- first message of user -->
 
-                                        <div class="  flex justify-end pb-4 pt-4 " *ngIf="item.senderType=='user'">
-                                            <div class="flex  space-y-2 space-x-2">
+                                    <div class="  flex justify-end pb-4 pt-4 " *ngIf="item.senderType=='expert'">
+                                        <div class="flex  space-y-2 space-x-2">
 
-                                                <div class="py-2 px-7 text-sm bg-slate-100 rounded-l-lg h-fit">
-                                                    {{item.text}}
-                                                </div>
+                                            <div class="py-2 px-7 text-sm bg-slate-100 rounded-l-lg h-fit">
+                                                {{item.text}}
+                                            </div>
 
-                                                <div class="mt-8  ">
-                                                    <img class="w-10 h-10 -mt-3 rounded-full  "
-                                                        src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                                        alt="Rounded avatar">
-                                                </div>
+                                            <div class="mt-8  ">
+                                                <img class="w-10 h-10 -mt-3 rounded-full  "
+                                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                                    alt="Rounded avatar">
                                             </div>
                                         </div>
+                                    </div>
 
-                                    </ng-container>
+
                                 </ng-container>
                             </div>
 

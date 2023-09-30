@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ExpertService } from 'src/app/service/expert.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,10 +8,17 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  constructor(private expert: ExpertService) { }
 
   isSidebarOpen = true; // Sidebar is initially open on medium screens
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+
+
+  logout() {
+    this.expert.logout()
   }
 }

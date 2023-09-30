@@ -13,7 +13,7 @@
         </div>
     </div>
     <!-- buttons -->
-    <div class=" mt-10 m-48  h-fit  border  pb-16  border-gray-500 ">
+    <div class=" mt-10 m-48  h-[500px]  border  pb-16  border-gray-500 ">
         <div class=" p-10 flex justify-center">
             <div><button (click)="showSchedules()" class="text-orange-500  bg-transparent font-medium py-2 px-51"
                     [ngClass]="{'border-b-2 border-gray-500 ':  schedules
@@ -26,7 +26,7 @@
         </div>
         <!-- Active schedules -->
         <ng-container *ngIf="schedules">
-            <div class="flex justify-center">
+            <div class="flex justify-center" *ngFor="let item of activeAppoinments">
                 <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
 
 
@@ -35,63 +35,24 @@
                             src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
                             class="h-12 w-12 rounded-lg object-cover" />
 
-                        <div class="flex space-x-16">
-                            <p class="font-medium text-black">Carol Daines</p>
-                            <p class="text-gray-500">Session with <span class="text-gray-700"> Carol Daines </span>
-                                Scheduleded at 2:00 PM </p>
+                        <div class="flex space-x-16 mt-i">
+                            <p class="font-medium text-black">{{item.expert.name}}</p>
+                            <p class="text-gray-500">Session
+                                Scheduleded On <span
+                                    class="font-medium text-black text-sm">{{item.scheduledAt.slot_date|date
+                                    }}</span> At
+                                <span class="font-medium text-black text-sm">{{item.scheduledAt.slot_time}}</span>
+                            </p>
                             <div class="mr-5 pr-10">
                                 <button
-                                    class="bg-orange-500 text-white px-10 py-2 text-base font-medium  rounded-xl ">Join</button>
+                                    class="bg-orange-500 text-white px-7 py-1.5 text-xs font-medium  rounded-lg ">Join</button>
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <div class="flex justify-center">
-                <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
 
-
-                    <div class="flex items-center gap-4 pl-4 ">
-                        <img alt="Women"
-                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                            class="h-12 w-12 rounded-lg object-cover" />
-
-                        <div class="flex space-x-16">
-                            <p class="font-medium text-black">Carol Daines</p>
-                            <p class="text-gray-500">Session with <span class="text-gray-700"> Carol Daines </span>
-                                Scheduleded at 2:00 PM </p>
-                            <div class="mr-5 pr-10">
-                                <button
-                                    class="bg-orange-500 text-white px-10 py-2 text-base font-medium  rounded-xl ">Join</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="flex justify-center">
-                <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
-
-
-                    <div class="flex items-center gap-4 pl-4 ">
-                        <img alt="Women"
-                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                            class="h-12 w-12 rounded-lg object-cover" />
-
-                        <div class="flex space-x-16">
-                            <p class="font-medium text-black">Carol Daines</p>
-                            <p class="text-gray-500">Session with <span class="text-gray-700"> Carol Daines </span>
-                                Scheduleded at 2:00 PM </p>
-                            <div class="mr-5 pr-10">
-                                <button
-                                    class="bg-orange-500 text-white px-10 py-2 text-base font-medium  rounded-xl ">Join</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </ng-container>
         <ng-container *ngIf="previouseSchedules">
             <div class="flex justify-center">
@@ -112,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>
@@ -134,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>
@@ -156,7 +117,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>

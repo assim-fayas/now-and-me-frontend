@@ -18,7 +18,7 @@ export class SlotsComponent implements OnInit {
   userInfo!: any
   currentSlotId!: string
   consultingFee!: number
-  paymentStatus = false
+  paymentStatus = 'pending'
   currentUser!: string
 
   @Input() currentExpertId!: string
@@ -48,7 +48,7 @@ export class SlotsComponent implements OnInit {
       this.userInfo = response.userDetails
       console.log(this.userInfo);
 
-      this.currentUser = this.userInfo._id
+      this.currentUser = response.userDetails._id
       console.log(this.currentUser);
 
 
@@ -76,8 +76,10 @@ export class SlotsComponent implements OnInit {
 
     this.slot.addAppoinment(edited).subscribe((response) => {
 
-      console.log(response);
-
+      if (response) {
+        console.log(response);
+        this.ngOnInit()
+      }
 
 
     }, (error) => {
@@ -147,7 +149,7 @@ export class SlotsComponent implements OnInit {
   }
   @HostListener('window:payment.success', ['$event'])
   onPaymentSuccess(event: any): void {
-    this.paymentStatus = true
+    this.paymentStatus = 'success'
     console.log("payment status", this.paymentStatus);
 
 

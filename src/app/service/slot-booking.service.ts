@@ -58,6 +58,28 @@ export class SlotBookingService {
   }
 
 
+  //get appoinments
+
+  getVideoAppoinment() {
+    return this.http.get(`${this.userUrl}/appoinmentVideo`).pipe(map(response => {
+
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+  }
+
+  // getChatAppoinment() {
+  //   return this.http.get(`${this.userUrl}/appoinmentVideo`).pipe(map(response => {
+
+  //     return response
+  //   }),
+  //     catchError((error) => {
+  //       return throwError(error)
+  //     }))
+  // }
+
 
 
 }

@@ -39,6 +39,16 @@ export class ChatService {
       )
   }
 
+  IsChatActive() {
+    return this.http.get(`${this.url}/IsChatActive`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
 
 
 }

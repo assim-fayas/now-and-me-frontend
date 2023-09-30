@@ -26,6 +26,7 @@ import { ViewExpertComponent } from './view-expert/view-expert.component';
 import { ChatUserComponent } from './chat-user/chat-user.component';
 import { AppoinmentsComponent } from './appoinments/appoinments.component';
 import { SlotsComponent } from './slots/slots.component';
+import { DatePipe } from '@angular/common';
 
 
 

@@ -97,7 +97,7 @@ export interface Message {
 export interface Appointment {
     expertId: string;
     userId: string;
-    slotId: string;
+    slotId?: string;
     consultingFee: string;
     bookingType: string;
     paymentStatus: string;

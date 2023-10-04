@@ -46,9 +46,9 @@
                 </div>
 
                 <ng-container *ngIf="activeChats">
-                    <div (click)="showChats(item._id)" *ngFor="let item of  allExperts"
+                    <div (click)="showChats(item.expert._id)" *ngFor="let item of ActiveChats"
                         class=" ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5 hover:bg-slate-100"
-                        [ngClass]="{'selected': selectedExpert === item._id}">
+                        [ngClass]="{'selected': selectedExpert === item.expert._id}">
 
 
                         <div class="flex items-center gap-4 pl-4 ">
@@ -57,7 +57,7 @@
                                 class="h-12 w-12 rounded-lg object-cover" />
 
                             <div>
-                                <p class="font-medium text-black">{{item.name}}</p>
+                                <p class="font-medium text-black">{{item.expert.name}}</p>
 
 
                             </div>
@@ -65,38 +65,33 @@
                     </div>
 
                 </ng-container>
-                <ng-container *ngIf=previousChats>
-                    <div class="  ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
+                <ng-container *ngIf="previousChats">
+
+                    <ng-container *ngFor="let item2 of ActiveChats">
+                        <ng-container *ngFor="let item of  previousChatdocs">
+                            <ng-container *ngIf="item.expert._id !== item2.expert._id">
+
+                                <div (click)="showChats(item.expert._id)"
+                                    class="  ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5 hover:bg-slate-100"
+                                    [ngClass]="{'selected': selectedExpert === item.expert._id} ">
 
 
-                        <div class="flex items-center gap-4 pl-4 ">
-                            <img alt="Women"
-                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                class="h-12 w-12 rounded-lg object-cover" />
+                                    <div class="flex items-center gap-4 pl-4 ">
+                                        <img alt="Women"
+                                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                            class="h-12 w-12 rounded-lg object-cover" />
 
-                            <div>
-                                <p class="font-medium text-black">Carol Daines</p>
+                                        <div>
 
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="  ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
+                                            <p class="font-medium text-black">{{item.expert.name}}</p>
 
 
-                        <div class="flex items-center gap-4 pl-4 ">
-                            <img alt="Women"
-                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                class="h-12 w-12 rounded-lg object-cover" />
-
-                            <div>
-                                <p class="font-medium text-black">Carol Daines</p>
-
-
-                            </div>
-                        </div>
-                    </div>
-
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
                 </ng-container>
 
 
@@ -105,29 +100,49 @@
             </div>
 
 
-            <!-- messaging area -->
+            <!-- messaging area Active-->
             <div class="relative w-full pb-4  ">
                 <ng-container *ngIf=" selectedExpert ;else svgContent">
                     <div class=" bg-white    pb-10 overflow-y-auto max-h-[500px]">
 
 
-                        <div class="  bg-[#FFC6B5]    pt-2 pb-2">
+                        <div class="  bg-[#FFC6B5]    pt-2 pb-2" *ngIf="activeChats">
+
+                            <ng-container>
+                                <div class="flex items-center gap-4 pl-4 " *ngFor="let item of  ActiveChats">
+                                    <ng-container *ngIf="item.expert._id=== selectedExpert">
+                                        <img alt="Women"
+                                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                            class="h-12 w-12 rounded-lg object-cover" />
+
+                                        <div>
+                                            <p class="font-medium text-black">{{item.expert.name}}</p>
 
 
-                            <div class="flex items-center gap-4 pl-4 " *ngFor="let item of  allExperts">
-                                <ng-container *ngIf="item._id=== selectedExpert">
-                                    <img alt="Women"
-                                        src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                        class="h-12 w-12 rounded-lg object-cover" />
-
-                                    <div>
-                                        <p class="font-medium text-black">{{item.name}}</p>
-
-
-                                    </div>
-                                </ng-container>
-                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
                         </div>
+                        <div class="  bg-[#FFC6B5]    pt-2 pb-2" *ngIf="previousChats">
+
+                            <ng-container>
+                                <div class="flex items-center gap-4 pl-4 " *ngFor="let item of   previousChatdocs">
+                                    <ng-container *ngIf="item.expert._id=== selectedExpert">
+                                        <img alt="Women"
+                                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                            class="h-12 w-12 rounded-lg object-cover" />
+
+                                        <div>
+                                            <p class="font-medium text-black">{{item.expert.name}}</p>
+
+
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+                        </div>
+
 
 
 
@@ -193,12 +208,21 @@
                                 <input type="text" id="chat" name="message" [(ngModel)]="message"
                                     class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Your message...">
-                                <button type="submit" [disabled]="!message"
+                                <button type="submit" [disabled]="!message" *ngIf="activeChats"
                                     class="inline-flex justify-center p-2 text-orange-500 rounded-full cursor-pointer hover:bg-orange-100 dark:text-blue-500 dark:hover:bg-gray-600">
                                     <svg class="w-5 h-5 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 18 20">
                                         <path
                                             d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z" />
+                                    </svg>
+                                    <span class="sr-only">Send message</span>
+                                </button>
+                                <button disabled *ngIf="previousChats"
+                                    class="inline-flex justify-center p-2 text-orange-500 rounded-full cursor-pointer hover:bg-orange-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                                        <path
+                                            d="M14 7h-1.5V4.5a4.5 4.5 0 1 0-9 0V7H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-5 8a1 1 0 1 1-2 0v-3a1 1 0 1 1 2 0v3Zm1.5-8h-5V4.5a2.5 2.5 0 1 1 5 0V7Z" />
                                     </svg>
                                     <span class="sr-only">Send message</span>
                                 </button>

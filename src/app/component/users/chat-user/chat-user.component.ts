@@ -16,9 +16,27 @@ export class ChatUserComponent {
   message!: string
   chats: any[] = []
   receivedMessage!: any
+  ActiveChats!: any
+  previousChatdocs!: any
 
   constructor(private expertServices: ExpertService, private chatService: ChatService, private socket: Socket) { this.socket.connect() }
   ngOnInit() {
+    this.chatService.previousChats().subscribe((response: any) => {
+      console.log(response, "previouse chats");
+      this.previousChatdocs = response
+    }, (error) => {
+      console.log(error);
+
+    })
+
+    this.chatService.IsChatActive().subscribe((response: any) => {
+      this.ActiveChats = response
+      console.log(response, "active chats");
+
+    }, (error) => {
+      console.log(error);
+
+    })
     this.expertServices.expertListing().subscribe((response: any) => {
       this.allExperts = response.allExperts
       this.currentUser = response.userId
@@ -44,6 +62,7 @@ export class ChatUserComponent {
       console.log(error);
 
     })
+
   }
 
   activeChats = true
@@ -52,19 +71,16 @@ export class ChatUserComponent {
   showActiveChats() {
     this.activeChats = true
     this.previousChats = false
+    this.selectedExpert = ''
   }
 
   showpreviousChats() {
     this.activeChats = false
     this.previousChats = true
+    this.selectedExpert = ''
   }
 
 
-  //get all experts for chatting note:should be changed
-
-  getExpert() {
-
-  }
 
 
 
@@ -123,5 +139,7 @@ export class ChatUserComponent {
 
 
   }
+
+
 
 }

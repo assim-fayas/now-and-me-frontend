@@ -11,9 +11,11 @@ import { SlotBookingService } from 'src/app/service/slot-booking.service';
 })
 export class AppoinmentsComponent implements OnInit {
   activeAppoinments!: any
+  previouseAppoinments!: any
   constructor(private appoiment: SlotBookingService) { }
   ngOnInit() {
     this.getAppoiment()
+    this.getPreviouseAppoinment()
 
   }
 
@@ -40,6 +42,19 @@ export class AppoinmentsComponent implements OnInit {
 
     })
   }
+  getPreviouseAppoinment() {
+    this.appoiment.getPreviousVideoAppoinment().subscribe((response) => {
+
+      this.previouseAppoinments = response
+      console.log("previouse appoinmentsss", this.previouseAppoinments);
+
+    }, (error) => {
+      console.log(error);
+
+    })
+
+  }
+
 
 
 }

@@ -50,5 +50,17 @@ export class ChatService {
   }
 
 
+  previousChats() {
+    return this.http.get(`${this.url}/previousChats`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
+
+
 
 }

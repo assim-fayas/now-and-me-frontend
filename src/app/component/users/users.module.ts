@@ -67,6 +67,7 @@ import { DatePipe } from '@angular/common';
 
 
 
-  ]
+  ],
+  providers: [DatePipe],
 })
 export class UsersModule { }

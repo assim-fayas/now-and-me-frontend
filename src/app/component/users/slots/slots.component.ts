@@ -8,26 +8,35 @@ declare var Razorpay: any;
 @Component({
   selector: 'app-slots',
   templateUrl: './slots.component.html',
-  styleUrls: ['./slots.component.css']
+  styleUrls: ['./slots.component.css'],
+
 })
 export class SlotsComponent implements OnInit {
   constructor(private slot: SlotBookingService, private expertservice: ExpertService, private userDetails: ProfileService) { }
 
   slots!: any
+  slotTomorrow!: any
   sessionCharge!: string
   userInfo!: any
   currentSlotId!: string
   consultingFee!: number
   paymentStatus = 'pending'
   currentUser!: string
+  showtodaySlots: boolean = true
+  showtommorowSlot: boolean = false
+
 
   @Input() currentExpertId!: string
   @Input() bookingType!: string
   ngOnInit(): void {
 
     this.slot.getSlots(this.currentExpertId).subscribe((response: any) => {
-      console.log(response);
-      this.slots = response[0].slotes;
+      console.log("ithu response", response);
+      this.slots = response?.slotToday[0];
+      this.slotTomorrow = response?.slotTomorrow[0];
+      console.log(this.slots, "slooot todayyy");
+      console.log(this.slotTomorrow, "slooot tomorrow");
+
 
 
     }, (error) => {
@@ -91,6 +100,19 @@ export class SlotsComponent implements OnInit {
 
   }
 
+  showToday() {
+    this.showtommorowSlot = false
+    this.showtodaySlots = true
+
+
+  }
+
+  showTomorrow() {
+    this.showtodaySlots = false
+    this.showtommorowSlot = true
+
+  }
+
 
   //razorpay payment integration
 
@@ -129,6 +151,8 @@ export class SlotsComponent implements OnInit {
     }
   };
   payNow(id: string) {
+    console.log("slot id", id);
+
     this.currentSlotId = id;
     this.error = '';
     this.options.amount = `${this.sessionCharge}00`;

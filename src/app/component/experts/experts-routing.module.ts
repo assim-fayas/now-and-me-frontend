@@ -16,6 +16,7 @@ import { ChatsComponent } from './chats/chats.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAppoinmentsComponent } from './view-appoinments/view-appoinments.component';
+import { VideocallComponent } from './videocall/videocall.component';
 
 const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'login', component: ExpertloginComponent },
@@ -31,8 +32,9 @@ const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'slots', component: FreeSlotsComponent },
 { path: 'chat', component: ChatsComponent },
 { path: 'reviews', component: ReviewsComponent },
-{ path: 'appoinments', component:ViewAppoinmentsComponent },
-{ path: 'sidebar', component:SidebarComponent },
+{ path: 'appoinments', component: ViewAppoinmentsComponent },
+{ path: 'sidebar', component: SidebarComponent },
+{ path: 'videomeet', component: VideocallComponent },
 //invalid routes
 { path: '**', redirectTo: '/experts' }
 ]

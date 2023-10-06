@@ -21,6 +21,7 @@ import { ChatsComponent } from './chats/chats.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ViewAppoinmentsComponent } from './view-appoinments/view-appoinments.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { VideocallComponent } from './videocall/videocall.component';
 
 
 
@@ -47,6 +48,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ReviewsComponent,
     ViewAppoinmentsComponent,
     SidebarComponent,
+    VideocallComponent,
 
 
 

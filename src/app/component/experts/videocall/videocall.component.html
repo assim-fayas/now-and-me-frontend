@@ -1,13 +1,13 @@
-<p>videocall works!</p>
-<div id="jitsi-iframe"></div>
+<div id="jitsi-iframe" style="height:500px;width:500px;"></div>
 
-<!--For Custom Controls-->
+<!-- For Custom Controls-->
 <div class="item-center">
     <span>Custom Controls</span>
 </div>
-<div class="item-center">
+<div class="item-center" style="height:500px;width:500px;">
     <i (click)="executeCommand('toggleAudio')" class="fas fa-2x grey-color"
-        [ngClass]="isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true" title="Mute / Unmute"></i>
+        [ngClass]="isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true" title="Mute / Unmute">
+    </i>
     <i (click)="executeCommand('hangup')" class="fas fa-phone-slash fa-2x red-color" aria-hidden="true"
         title="Leave"></i>
     <i (click)="executeCommand('toggleVideo')" class="fas fa-2x grey-color"

@@ -22,7 +22,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.room = 'NOW&ME Video Meet';
+    this.room = 'NOW&ME-Video-Meet';
     this.user = {
       name: 'Asim' // Set your username
     }

@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http"
 import { LoginResponse } from 'src/app/models';
 import { UserServiceService } from '../../../service/user-service.service'
 import { first } from 'rxjs/operators'
-import { initFlowbite } from 'flowbite';
+// import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-login',
@@ -28,17 +28,17 @@ export class LoginComponent implements OnInit {
     //redirect to home if user alredy loged in 
     if (localStorage.getItem('jwt_user')) {
       this.router.navigate(['/'])
-    }else{
+    } else {
       this.router.navigate(['/login'])
     }
   }
 
 
- //login form data
+  //login form data
 
   //error
   loginErrorMessage!: string
- 
+
   login(loginForm: NgForm) {
     if (!loginForm.valid) {
 
@@ -53,8 +53,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log(response, "loginnnnn");
-          const jwtToken=response.token
-          localStorage.setItem('jwt_user',jwtToken)
+          const jwtToken = response.token
+          localStorage.setItem('jwt_user', jwtToken)
           this.isLoading = false
           this.router.navigate(['/'])
         },
@@ -70,8 +70,8 @@ export class LoginComponent implements OnInit {
 
   //forgot password
 
- userEmail!:string
-  PasswordErrorMessage!:string
+  userEmail!: string
+  PasswordErrorMessage!: string
 
   forgotPassword(modalForm: NgForm) {
     console.log("inside modalll");
@@ -81,18 +81,18 @@ export class LoginComponent implements OnInit {
       return
     }
     this.isLoading = true
-    this.userEmail=modalForm.value.email
+    this.userEmail = modalForm.value.email
     //perform request call
 
-    this.user.otp(modalForm.value.email).subscribe((response:any) => {
-      const jwtToken =response.token;
-      console.log(jwtToken,"jwt");
-      
+    this.user.otp(modalForm.value.email).subscribe((response: any) => {
+      const jwtToken = response.token;
+      console.log(jwtToken, "jwt");
+
       this.isLoading = false
-      this.router.navigate(['/otp'],{queryParams:{email:this.userEmail}})
+      this.router.navigate(['/otp'], { queryParams: { email: this.userEmail } })
     },
       (errorMessage) => {
-      
+
         this.PasswordErrorMessage = errorMessage
         this.isLoading = false
 
@@ -103,8 +103,8 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    initFlowbite()
-   }
+    // initFlowbite()
+  }
 
 
 }

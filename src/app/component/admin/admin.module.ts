@@ -8,6 +8,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListExpertsComponent } from './list-experts/list-experts.component';
 import { NavsidebarComponent } from './navsidebar/navsidebar.component';
 import { FlagComponent } from './flag/flag.component';
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
+
+
+import { TooltipModule } from 'primeng/tooltip';
+import { BarchartComponent } from 'src/app/barchart/barchart.component';
+import { PiechartComponent } from 'src/app/piechart/piechart.component';
+import { ProfileComponent } from './profile/profile.component';
+
+
+
+
 // import {MatTableModule} from '@angular/material/table'
 // import {MatPaginatorModule}from '@angular/material/paginator'
 // import {MatSortModule}from '@angular/material/sort'
@@ -21,15 +33,27 @@ import { FlagComponent } from './flag/flag.component';
     AdminLoginComponent,
 
     ListExpertsComponent,
-      NavsidebarComponent,
-      FlagComponent,
+    NavsidebarComponent,
+    FlagComponent,
+    ProfileComponent,
 
-   ],
+
+
+
+
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    CardModule,
+    TagModule,
+    TooltipModule,
+    BarchartComponent,
+    PiechartComponent
+
+
     // MatTableModule,
     // MatPaginatorModule,
     // MatSortModule,

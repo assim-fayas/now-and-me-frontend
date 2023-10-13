@@ -43,14 +43,14 @@ export class CommunityService {
   }
 
   //thought of specific use
-  thoughtOfSpecificUser(){
-    return this.http.get(`${this.url}/thoughtSingleUser`,{withCredentials:true})
-    .pipe(map(response => {
-      return response
-    }),
-      catchError((error) => {
-        return throwError(error)
-      }))
+  thoughtOfSpecificUser() {
+    return this.http.get(`${this.url}/thoughtSingleUser`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
   }
 
 
@@ -133,39 +133,59 @@ export class CommunityService {
   }
 
 
-//delete comment
-deleteComment(id:string){
-return this.http.post(`${this.url}/deleteComment/${id}`,{withCredentials:true})
-.pipe(map(Response => {
-  return Response
-}),
-  catchError((error) => {
-    return throwError(error)
-  }))
-}
+  //delete comment
+  deleteComment(id: string) {
+    return this.http.post(`${this.url}/deleteComment/${id}`, { withCredentials: true })
+      .pipe(map(Response => {
+        return Response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
 
-//edit comment
-editComment(id:string){
-  return this.http.post(`${this.url}/editComment/${id}`,{withCredentials:true})
-  .pipe(map(Response => {
-    return Response
-  }),
-    catchError((error) => {
-      return throwError(error)
-    }))
-}
+  //edit comment
+  editComment(id: string) {
+    return this.http.post(`${this.url}/editComment/${id}`, { withCredentials: true })
+      .pipe(map(Response => {
+        return Response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
-//update comment
-updateComment(commentId:string,comment:string){
-  return this.http.patch(`${this.url}/updateComment/${commentId}`,{comment},{withCredentials:true})
-  .pipe(map(Response => {
-    return Response
-  }),
-    catchError((error) => {
-      return throwError(error)
-    }))
-}
+  //update comment
+  updateComment(commentId: string, comment: string) {
+    return this.http.patch(`${this.url}/updateComment/${commentId}`, { comment }, { withCredentials: true })
+      .pipe(map(Response => {
+        return Response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
+  getFlagedPosts() {
+    return this.http.get(`${this.url}/getFlaggedPosts`, { withCredentials: true })
+      .pipe(map(Response => {
+        return Response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
+  getSpecificPost(id: string) {
+    return this.http.post(`${this.url}/getSingleTHoughts/${id}`, { withCredentials: true })
+      .pipe(map(Response => {
+        return Response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
 
 }

@@ -1,11 +1,13 @@
-<app-navsidebar></app-navsidebar>
-<div class="p-4 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-        <!-- table              -->
+<div class="flex bg-cover bg-center h-full "
+    style=" background-image: url('../../../../assets/image/admindashboard.png'); ">
+    <app-navsidebar></app-navsidebar>
+    <main class=" min-w-0 flex-1 overflow-auto pt-28 ml-96 ">
+        <!-- table -->
 
 
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table
+            class="w-5/6 text-sm text-left border-3 brightness-95 border-green-50  text-gray-500 dark:text-gray-400 ">
+            <thead class="text-xs  text-white uppercase   bg-pink-600 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         No
@@ -25,33 +27,33 @@
                     <th scope="col" class="px-6 py-3">
                         Block
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <!-- <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
-                    </th>
+                    </th> -->
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-gray-600"
                     *ngFor="let item of experts;let i=index">
-                    <td class="px-6 py-4 ">
+                    <td class="px-6 py-4 text-gray-900 font-medium">
                         {{i+1}}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{item.name}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 text-gray-900 font-medium ">
                         {{item.phone}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 text-gray-900 font-medium">
                         {{item.email}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 text-gray-900 font-medium">
                         {{item.joined|date}}
 
                     </td>
                     <td class="px-6 py-4">
                         <button (click)="blockexpert(item._id)"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{item.isBlocked
+                            class="bg-orange-400 hover:bg-orange-600 text-white font-normal py-1.5 px-3.5 rounded-lg">{{item.isBlocked
                             ? "Unblock" : "Block" }}</button>
                     </td>
                     <!-- <td class="px-6 py-4 text-right">
@@ -66,5 +68,5 @@
 
         <!-- table end -->
 
-    </div>
+    </main>
 </div>

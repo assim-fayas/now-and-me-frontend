@@ -17,6 +17,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAppoinmentsComponent } from './view-appoinments/view-appoinments.component';
 import { VideocallComponent } from './videocall/videocall.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'login', component: ExpertloginComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'reviews', component: ReviewsComponent },
 { path: 'appoinments', component: ViewAppoinmentsComponent },
 { path: 'sidebar', component: SidebarComponent },
+{ path: 'profile', component: ProfileComponent },
 { path: 'videomeet', component: VideocallComponent },
 //invalid routes
 { path: '**', redirectTo: '/experts' }

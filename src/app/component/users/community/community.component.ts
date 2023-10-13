@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { communityPost } from 'src/app/models';
 import { CommunityService } from 'src/app/service/community.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
-import { initFlowbite } from 'flowbite';
+// import { initFlowbite } from 'flowbite';
 import { FlagFormvalue } from 'src/app/models';
 import { CommentFormValue } from 'src/app/models';
 import { NgForm } from '@angular/forms';
@@ -67,7 +67,7 @@ export class CommunityComponent implements OnInit {
 
   }
   ngOnInit() {
-    initFlowbite()
+    // initFlowbite()
     this.getLikesCommentCount()
 
 
@@ -178,11 +178,11 @@ export class CommunityComponent implements OnInit {
       this.allThoughts = response
 
       console.log("eeeeeeeeeeeeeeeeeeeeeeeee", this.allThoughts);
-      this.currentUserName=response[0].currentUserName
+      this.currentUserName = response[0].currentUserName
       let user = this.allThoughts[0].currentUser
       console.log(user, "user");
-      console.log(this.currentUserName,"user name");
-      
+      console.log(this.currentUserName, "user name");
+
 
       // Filter the responseData to get only the documents where likes contain the user ID
       this.currentLikePost = response.filter((item: any) => {

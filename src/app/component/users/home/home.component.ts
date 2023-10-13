@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { initFlowbite } from 'flowbite';
+// import { initFlowbite } from 'flowbite';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 @Component({
@@ -13,13 +13,13 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    initFlowbite()
+    // initFlowbite()
   }
 
   navigateToExpertListing() {
     this.Router.navigate(['/expertlisting'])
   }
-  navigateTocommunity(){
+  navigateTocommunity() {
     this.Router.navigate(['/community'])
   }
 

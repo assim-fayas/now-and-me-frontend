@@ -6,15 +6,20 @@ import { AdminListUsersComponent } from './admin-list-users/admin-list-users.com
 import { ListExpertsComponent } from './list-experts/list-experts.component';
 import { NavsidebarComponent } from './navsidebar/navsidebar.component';
 import { FlagComponent } from './flag/flag.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
-const routes: Routes = [{ path: '', component: AdminDashboardComponent },
+
+const routes: Routes = [{
+  path: '', component: AdminDashboardComponent
+},
 { path: 'login', component: AdminLoginComponent },
 { path: 'userslist', component: AdminListUsersComponent },
 { path: 'expertslist', component: ListExpertsComponent },
-{path:'navsidebar',component:NavsidebarComponent},
-{path:'flag',component:FlagComponent},
+{ path: 'navsidebar', component: NavsidebarComponent },
+{ path: 'flag', component: FlagComponent },
+{ path: 'profile', component: ProfileComponent },
 
 
 

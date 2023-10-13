@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   //user routes
-  {path:'',loadChildren:()=> import('./component/users/users.module').then(m=> m.UsersModule)},
+  { path: '', loadChildren: () => import('./component/users/users.module').then(m => m.UsersModule) },
   //admin routes
-  { path:'admin', loadChildren: () => import('./component/admin/admin.module').then(m => m.AdminModule) },
+  { path: 'admin', loadChildren: () => import('./component/admin/admin.module').then(m => m.AdminModule) },
   //experts route
-  {path:'experts',loadChildren:()=>import('./component/experts/experts.module').then(m=>m.ExpertsModule)},
+  { path: 'experts', loadChildren: () => import('./component/experts/experts.module').then(m => m.ExpertsModule) },
   //invalid routes
   { path: '**', redirectTo: '' }
 ];

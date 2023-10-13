@@ -15,6 +15,7 @@ import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 import { BarchartComponent } from 'src/app/barchart/barchart.component';
 import { PiechartComponent } from 'src/app/piechart/piechart.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -34,6 +35,7 @@ import { PiechartComponent } from 'src/app/piechart/piechart.component';
     ListExpertsComponent,
     NavsidebarComponent,
     FlagComponent,
+    ProfileComponent,
 
 
 

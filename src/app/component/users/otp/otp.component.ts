@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from 'src/app/service/user-service.service';
-import { initFlowbite } from 'flowbite';
+// import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -27,9 +27,9 @@ export class OtpComponent implements OnInit {
 
 
   ngOnInit(): void {
-  
+
     //flowbit
-    initFlowbite()
+    // initFlowbite()
 
 
     this.route.queryParams.subscribe((params) => {

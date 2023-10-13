@@ -9,12 +9,15 @@ import { FlagComponent } from './flag/flag.component';
 
 
 
-const routes: Routes = [{ path: '', component: AdminDashboardComponent },
+
+const routes: Routes = [{
+  path: '', component: AdminDashboardComponent
+},
 { path: 'login', component: AdminLoginComponent },
 { path: 'userslist', component: AdminListUsersComponent },
 { path: 'expertslist', component: ListExpertsComponent },
-{path:'navsidebar',component:NavsidebarComponent},
-{path:'flag',component:FlagComponent},
+{ path: 'navsidebar', component: NavsidebarComponent },
+{ path: 'flag', component: FlagComponent },
 
 
 

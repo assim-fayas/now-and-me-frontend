@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { initFlowbite } from 'flowbite';
 import { error } from 'jquery';
 import { ProfileService } from 'src/app/service/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +19,7 @@ export class ProfileComponent implements OnInit {
   modalclose: Boolean = false
   thougthSectionvisible = true
   anonymouseSectionVisible = false
-
+  modalOpen1 = false;
   //profile variables
 
   userDetails: any = []//want to create interface
@@ -38,7 +37,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private profileService: ProfileService, private upload: ImageuploadService, private community: CommunityService) { }
   ngOnInit() {
-    initFlowbite()
+    // initFlowbite()
     this.getUserDetails()
     this.getPostDetails()
   }
@@ -114,7 +113,7 @@ export class ProfileComponent implements OnInit {
       this.user = { ...response.userDetails }
       console.log(response);
       console.log("this.userDetailsssssssssssssss", this.userDetails);
-
+      this.modalOpen1 = true
 
     }, (error) => {
       console.log(error);
@@ -126,16 +125,14 @@ export class ProfileComponent implements OnInit {
 
 
 
-  closeModal() {
-
-
-    this.modalclose = false;
+  closeModal1() {
+    this.modalOpen1 = false;
   }
 
 
-  openModal() {
+  openModal1() {
     console.log("inside open modal");
-    this.modalclose = true;
+    this.modalOpen1 = true
   }
 
 

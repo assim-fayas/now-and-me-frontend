@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Validators } from '@angular/forms';
 import { UserServiceService } from '../../../service/user-service.service';
-import { initFlowbite } from 'flowbite';
+// import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,11 +20,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
     // initilising flowbite
-initFlowbite()
+    // initFlowbite()
 
 
 
-// derclaring the form 
+    // derclaring the form 
 
     this.form = this.formBuilder.group({
       name: ['', Validators.required],

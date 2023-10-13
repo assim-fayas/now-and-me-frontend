@@ -1,4 +1,4 @@
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<!-- <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start">
@@ -65,9 +65,9 @@
             </div>
         </div>
     </div>
-</nav>
+</nav> -->
 
-<aside id="logo-sidebar"
+<!-- <aside id="logo-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -124,5 +124,81 @@
 
 
         </ul>
+    </div>
+</aside> -->
+<!-- responsive-sidebar.component.html -->
+<aside>
+    <div class="flex h-screen fixed ">
+        <!-- Sidebar for Medium Screens -->
+        <div
+            class="bg-gradient-to-t from-pink-400 via-pink-500 to-pink-600  focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800  shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium  opacity-95  shadow-2xl  text-white w-52 p-4 md:block max-md:hidden m-7  ml-9 rounded-2xl">
+            <ul class="text-base font-medium">
+                <li class="mb-8">
+                    <a>
+                        <div class="flex space-x-2">
+                            <img src="../../../../assets/image/Groupnow me logo.png" class="h-[25px] " alt="">
+
+                        </div>
+                    </a>
+                </li>
+                <li class="-mb-1 ">
+                    <a routerLink="/admin">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Dashboard</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/admin/userslist">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Users</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/admin/expertslist">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Experts</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/admin/flag">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Flags</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a routerLink="/admin/flag">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">Profile</p>
+                    </a>
+                </li>
+                <li class="-mb-1 hidden">
+                    <a routerLink="///">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">review</p>
+                    </a>
+                </li>
+                <li class="-mb-1 hidden">
+                    <a routerLink="">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">review</p>
+                    </a>
+                </li>
+                <li class="-mb-1 hidden">
+                    <a routerLink="">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">review</p>
+                    </a>
+                </li>
+                <li class="-mb-1">
+                    <a (click)="logout()">
+                        <p class="mb-4 hover:bg-orange-100 hover:text-black py-2 px-2 rounded-lg">sign out</p>
+                    </a>
+                </li>
+
+                <!-- Add more sidebar links as needed -->
+            </ul>
+        </div>
+
+        <!-- Sidebar Toggle Button for Small Screens -->
+        <div class="fixed md:hidden top-0 left-0 z-50 w-16 bg-orange-900 text-white text-center p-2">
+            <button (click)="toggleSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
     </div>
 </aside>

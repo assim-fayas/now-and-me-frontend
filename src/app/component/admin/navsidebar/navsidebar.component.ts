@@ -11,6 +11,12 @@ export class NavsidebarComponent {
   constructor(private adminservice: AdminServiceService) {
 
   }
+  isSidebarOpen = true; // Sidebar is initially open on medium screens
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
 
   logout() {
     this.adminservice.logout()

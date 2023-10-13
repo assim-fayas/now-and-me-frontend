@@ -13,6 +13,13 @@ import { Cloudinary } from 'cloudinary-core';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
+import { ModalComponent } from './component/common/modal/modal.component';
+
+
+
+
+
+
 const config: SocketIoConfig = { url: `${environment.apiBaseUrl}`, options: {} };
 
 
@@ -22,6 +29,11 @@ const config: SocketIoConfig = { url: `${environment.apiBaseUrl}`, options: {} }
 @NgModule({
   declarations: [
     AppComponent,
+    ModalComponent,
+
+
+
+
 
 
 
@@ -36,6 +48,7 @@ const config: SocketIoConfig = { url: `${environment.apiBaseUrl}`, options: {} }
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     SocketIoModule.forRoot(config),
+
 
 
   ],

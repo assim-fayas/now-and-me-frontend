@@ -46,6 +46,14 @@ export class ProfileService {
       }))
 
   }
+  expertProfile() {
+    return this.http.get(`${this.url}/experts/expertProfile`, { withCredentials: true }).pipe(map(response => {
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+  }
 
 }
 

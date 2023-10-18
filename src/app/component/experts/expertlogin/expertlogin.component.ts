@@ -39,11 +39,14 @@ export class ExpertloginComponent implements OnInit {
   loginErrorMessage!: string
 
   login(loginForm: NgForm) {
+
+
     if (!loginForm.valid) {
 
       return
 
     }
+    console.log("inside form login");
     this.formSubmitted = true;
     this.isLoading = true
     //  perform the login request call 

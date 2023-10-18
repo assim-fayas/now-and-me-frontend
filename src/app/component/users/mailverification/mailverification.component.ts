@@ -1,8 +1,8 @@
-import { Component,OnInit } from '@angular/core';
-import{environment} from 'src/environments/environment'
+import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import {HttpClient}  from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-mailverification',
@@ -10,7 +10,7 @@ import {HttpClient}  from '@angular/common/http'
   styleUrls: ['./mailverification.component.css']
 })
 export class MailverificationComponent implements OnInit {
-readonly url=environment.apiBaseUrl
+  readonly url = environment.api
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -39,9 +39,9 @@ readonly url=environment.apiBaseUrl
         this.router.navigate(['/login']);
       },
       (err) => {
-       console.log( console.log(err))
-     
-       
+        console.log(console.log(err))
+
+
       }
     );
   }

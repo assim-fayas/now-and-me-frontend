@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MailverificationComponent implements OnInit {
   // url
-  readonly url = environment.apiBaseUrl
+  readonly url = environment.api
 
   token?: string
   expertId?: string

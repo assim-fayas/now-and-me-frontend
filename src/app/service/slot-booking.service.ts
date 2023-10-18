@@ -12,8 +12,10 @@ import { Appointment } from '../models';
 })
 export class SlotBookingService {
 
-  private readonly url = environment.expertUrl
-  private readonly userUrl = environment.apiBaseUrl
+  private readonly url = environment.api
+  private readonly userUrl = environment.api
+  // private readonly url = environment.expertUrl
+  // private readonly userUrl = environment.apiBaseUrl
   constructor(
 
     private http: HttpClient,
@@ -23,7 +25,7 @@ export class SlotBookingService {
   //add slotes
 
   addSlots(startTime: string, endTime: string, date: string) {
-    return this.http.post(`${this.url}/addslote`, { startTime, endTime, date })
+    return this.http.post(`${this.url}/experts/addslote`, { startTime, endTime, date })
       .pipe(map(response => {
         return response
       }),

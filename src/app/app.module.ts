@@ -23,7 +23,7 @@ import { SharedModule } from './shared/shared.module';
 
 
 
-const config: SocketIoConfig = { url: `${environment.apiBaseUrl}`, options: {} };
+const config: SocketIoConfig = { url: `${environment}`, options: {} };
 
 
 

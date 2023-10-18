@@ -13,7 +13,7 @@ export class ProfileService {
 
   constructor(private http: HttpClient, router: Router) { }
 
-  private readonly url = environment.apiBaseUrl
+  private readonly url = environment.api
 
 
   userDetails() {

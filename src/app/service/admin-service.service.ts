@@ -11,7 +11,7 @@ import { catchError, map, throwError } from 'rxjs';
 export class AdminServiceService {
 
   // backend url
-  private readonly url = environment.adminUrl
+  private readonly url = environment.api
 
 
   constructor(
@@ -24,7 +24,7 @@ export class AdminServiceService {
 
   // admin login
   login(email: string, password: string) {
-    return this.http.post<AdminLoginResponse>(`${this.url}/login`, { email, password }, { withCredentials: true })
+    return this.http.post<AdminLoginResponse>(`${this.url}/admin/login`, { email, password }, { withCredentials: true })
       .pipe(map(AdminLoginResponse => {
         localStorage.setItem('jwt_admin', JSON.stringify(AdminLoginResponse))
         console.log(AdminLoginResponse, "admin response");
@@ -43,7 +43,7 @@ export class AdminServiceService {
   //list all users
   getuserErrorMessage: string = 'An Error Occured'
   getusers() {
-    return this.http.get(`${this.url}/listUsers`, { withCredentials: true })
+    return this.http.get(`${this.url}/admin/listUsers`, { withCredentials: true })
       .pipe(map(response => {
         return response
 
@@ -60,7 +60,7 @@ export class AdminServiceService {
   //list all expert
   getexpertErrorMessage: string = 'An Error Occured'
   getexperts() {
-    return this.http.get(`${this.url}/listExperts`, { withCredentials: true })
+    return this.http.get(`${this.url}/admin/listExperts`, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -75,11 +75,11 @@ export class AdminServiceService {
 
   //block  and unblock expert
   blockexpert(id: string) {
-    return this.http.post(`${this.url}/expert/block/${id}`, { withCredentials: true })
+    return this.http.post(`${this.url}/admin/expert/block/${id}`, { withCredentials: true })
   }
   //block  and unblock expert
   blockuser(id: string) {
-    return this.http.post(`${this.url}/user/block/${id}`, { withCredentials: true })
+    return this.http.post(`${this.url}/admin/user/block/${id}`, { withCredentials: true })
   }
 
 
@@ -89,7 +89,7 @@ export class AdminServiceService {
 
 
   getDashboardDetails() {
-    return this.http.get(`${this.url}/dashboard`, { withCredentials: true })
+    return this.http.get(`${this.url}/admin/dashboard`, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -98,7 +98,7 @@ export class AdminServiceService {
         }))
   }
   adminpieData() {
-    return this.http.get(`${this.url}/adminPie`, { withCredentials: true })
+    return this.http.get(`${this.url}/admin/adminPie`, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -109,7 +109,7 @@ export class AdminServiceService {
   }
 
   topPerfomers() {
-    return this.http.get(`${this.url}/topperformers`, { withCredentials: true })
+    return this.http.get(`${this.url}/admin/topperformers`, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -119,7 +119,7 @@ export class AdminServiceService {
 
   }
   expertRequest() {
-    return this.http.get(`${this.url}/expertRequest`, { withCredentials: true })
+    return this.http.get(`${this.url}/admin/expertRequest`, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),

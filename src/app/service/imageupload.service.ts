@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment';
 export class ImageuploadService {
   constructor(private http: HttpClient) { }
 
-  private readonly cloudUrl = environment.cloudinaryUrl
+  private readonly cloudUrl = environment
 
 
   uploadImage(value: any) {
-    return this.http.post(`${this.cloudUrl}/upload`,value)
+    return this.http.post(`${this.cloudUrl}/upload`, value)
   }
 
 

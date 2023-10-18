@@ -78,27 +78,24 @@ export class ProfileComponent implements OnInit {
 
   // cloudinary image upload
 
-  private uploadPreset = environment.uploadPreset
-  private cloudName = environment.cloudName
+
   onFileSelected(event: any) {
 
     const file = event.target.files[0]; // Get the first (and only) file from the input
     if (file) {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', this.uploadPreset);
-      formData.append('cloud_name', this.cloudName);
+
 
       console.log(formData, "form dataaa");
 
-      this.upload.uploadImage(formData).subscribe(
-        (res) => {
-          console.log("cloudinary", res);
-        },
-        (error) => {
-          console.log('upload error', error);
-        }
-      );
+      // this.upload.uploadImage(formData).subscribe(
+      //   (res) => {
+      //     console.log("cloudinary", res);
+      //   },
+      //   (error) => {
+      //     console.log('upload error', error);
+      //   }
+      // );
     }
   }
 

@@ -14,7 +14,7 @@ import { User } from '../models';
 export class UserServiceService implements OnInit {
 
   // backend url
-  private readonly url = environment.apiBaseUrl
+  private readonly url = environment.api
 
 
   constructor(

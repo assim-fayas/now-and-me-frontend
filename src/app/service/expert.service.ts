@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators'
 export class ExpertService implements OnInit {
 
   //backend url
-  private readonly url = environment.expertUrl
+  private readonly url = environment
 
   constructor(
     private http: HttpClient,
@@ -25,7 +25,7 @@ export class ExpertService implements OnInit {
 
   loginErrorMessage: string = 'An Error Occurred';
   login(email: string, password: string) {
-    return this.http.post<ExpertLoginResponse>(`${this.url}/login`, { email, password }, { withCredentials: true })
+    return this.http.post<ExpertLoginResponse>(`{this.url}/experts/login`, { email, password }, { withCredentials: true })
       .pipe(
         map((response: ExpertLoginResponse) => {
           localStorage.setItem('jwt_expert', JSON.stringify(response));
@@ -48,7 +48,7 @@ export class ExpertService implements OnInit {
 
   //expert registratttion
   registerExpert(expert: any) {
-    return this.http.post(`${this.url}/register1`, expert, { withCredentials: true })
+    return this.http.post(`{this.url}/experts/register1`, expert, { withCredentials: true })
 
       .pipe(
         catchError(errorRes => {
@@ -61,7 +61,7 @@ export class ExpertService implements OnInit {
 
   //registration form 1
   registerForm1(form1: any) {
-    return this.http.post(`${this.url}/register1`, form1, { withCredentials: true })
+    return this.http.post(`{this.url}/experts/register1`, form1, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -72,7 +72,7 @@ export class ExpertService implements OnInit {
 
   //registration form2
   registerForm2(form2: any, id: string) {
-    return this.http.post(`${this.url}/register2`, { form2, id }, { withCredentials: true })
+    return this.http.post(`{this.url}/experts/register2`, { form2, id }, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -83,7 +83,7 @@ export class ExpertService implements OnInit {
 
   //registration form3
   registerForm3(form3: any, id: string) {
-    return this.http.post(`${this.url}/register3`, { form3, id }, { withCredentials: true })
+    return this.http.post(`{this.url}/experts/register3`, { form3, id }, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -92,27 +92,27 @@ export class ExpertService implements OnInit {
         }))
   }
 
-expertListing(){
-  return this.http.get(`${this.url}/expertListing`,{withCredentials:true})
-  .pipe(map(response => {
-    return response
-  }),
-    catchError((error) => {
-      return throwError(error)
-    }))
-}
+  expertListing() {
+    return this.http.get(`{this.url}/experts/expertListing`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
 
 
-viewExpert(Expertid:string){
-  return this.http.post(`${this.url}/viewExpert/${Expertid}`,{withCredentials:true})
-  .pipe(map(response => {
-    return response
-  }),
-    catchError((error) => {
-      return throwError(error)
-    }))
-}
+  viewExpert(Expertid: string) {
+    return this.http.post(`{this.url}/experts/viewExpert/${Expertid}`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
 
   // expert logout

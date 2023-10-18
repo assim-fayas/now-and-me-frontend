@@ -29,6 +29,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 
+
 @NgModule({
   declarations: [
 
@@ -52,6 +53,7 @@ import { ProfileComponent } from './profile/profile.component';
     SidebarComponent,
     VideocallComponent,
     ProfileComponent,
+
 
 
 

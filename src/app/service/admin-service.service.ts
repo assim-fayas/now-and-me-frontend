@@ -87,6 +87,53 @@ export class AdminServiceService {
     return localStorage.getItem('jwt_admin')
   }
 
+
+  getDashboardDetails() {
+    return this.http.get(`${this.url}/dashboard`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+  adminpieData() {
+    return this.http.get(`${this.url}/adminPie`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+
+  }
+
+  topPerfomers() {
+    return this.http.get(`${this.url}/topperformers`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+
+  }
+  expertRequest() {
+    return this.http.get(`${this.url}/expertRequest`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
+
+
+
+
+
+
   logout() {
     // remove the user from local and set the current user null
     localStorage.removeItem('jwt_admin');

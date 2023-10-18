@@ -10,8 +10,6 @@ import { OtpComponent } from './otp/otp.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
-import { CarouselComponent } from 'src/app/carousel/carousel.component';
 import { ExpertListingComponent } from './expert-listing/expert-listing.component';
 import { CommunityComponent } from './community/community.component';
 import { CardModule } from 'primeng/card';
@@ -27,6 +25,9 @@ import { ChatUserComponent } from './chat-user/chat-user.component';
 import { AppoinmentsComponent } from './appoinments/appoinments.component';
 import { SlotsComponent } from './slots/slots.component';
 import { DatePipe } from '@angular/common';
+import { LoadingSpinnerUserComponent } from './loading-spinner-user';
+
+
 
 
 
@@ -40,7 +41,6 @@ import { DatePipe } from '@angular/common';
     OtpComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    LoadingSpinnerComponent,
     ExpertListingComponent,
     CommunityComponent,
     RelativeTimePipe,
@@ -50,7 +50,8 @@ import { DatePipe } from '@angular/common';
     ViewExpertComponent,
     ChatUserComponent,
     AppoinmentsComponent,
-    SlotsComponent
+    SlotsComponent,
+    LoadingSpinnerUserComponent
 
   ],
   imports: [
@@ -58,14 +59,10 @@ import { DatePipe } from '@angular/common';
     UsersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CarouselComponent,
     CardModule,
     TooltipModule,
     ChipModule,
     TagModule,
-
-
-
 
   ],
   providers: [DatePipe],

@@ -8,6 +8,7 @@ import { ProfileService } from 'src/app/service/profile.service';
 })
 export class ProfileComponent implements OnInit {
   admin!: any
+  loadingspinner = true
   constructor(private adminProfile: ProfileService) { }
   ngOnInit(): void {
     this.profile()
@@ -16,11 +17,12 @@ export class ProfileComponent implements OnInit {
   profile() {
     this.adminProfile.adminProfile().subscribe((response) => {
       this.admin = response
+      this.loadingspinner = false
       console.log(this.admin);
 
     }, (error) => {
       console.log(error);
-
+      this.loadingspinner = false
     })
   }
 

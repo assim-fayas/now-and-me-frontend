@@ -5,9 +5,12 @@
         <!-- table -->
 
 
+
         <table
             class="w-5/6 text-sm text-left border-3 brightness-95 border-green-50  text-gray-500 dark:text-gray-400 ">
             <thead class="text-xs  text-white uppercase   bg-pink-600 dark:bg-gray-700 dark:text-gray-400">
+
+
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         No
@@ -19,10 +22,10 @@
                         Email
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Phone
+                        Date of Joined
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Date of Joined
+                        Status
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Block
@@ -31,38 +34,70 @@
                         <span class="sr-only">Edit</span>
                     </th> -->
                 </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-gray-600"
-                    *ngFor="let item of experts;let i=index">
-                    <td class="px-6 py-4 text-gray-900 font-medium">
-                        {{i+1}}
-                    </td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{item.name}}
-                    </td>
-                    <td class="px-6 py-4 text-gray-900 font-medium ">
-                        {{item.phone}}
-                    </td>
-                    <td class="px-6 py-4 text-gray-900 font-medium">
-                        {{item.email}}
-                    </td>
-                    <td class="px-6 py-4 text-gray-900 font-medium">
-                        {{item.joined|date}}
 
-                    </td>
-                    <td class="px-6 py-4">
-                        <button (click)="blockexpert(item._id)"
-                            class="bg-orange-400 hover:bg-orange-600 text-white font-normal py-1.5 px-3.5 rounded-lg">{{item.isBlocked
-                            ? "Unblock" : "Block" }}</button>
-                    </td>
-                    <!-- <td class="px-6 py-4 text-right">
+            </thead>
+            <ng-container class="ml-96 relative" *ngIf="loadingspinner==true">
+                <div class="ml-96">
+                    <app-loading-spinner></app-loading-spinner>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="loadingspinner==false">
+                <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-gray-600"
+                        *ngFor="let item of experts;let i=index">
+                        <td class="px-6 py-4 text-gray-900 font-medium">
+                            {{i+1}}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{item.name}}
+                        </td>
+                        <td class="px-6 py-4 text-gray-900 font-medium ">
+                            {{item.email}}
+                        </td>
+                        <td class="px-6 py-4 text-gray-900 font-medium">
+                            {{item.joined|date}}
+                        </td>
+                        <td class="px-6 py-4 text-gray-900 font-medium">
+
+                            <ng-container *ngIf="item.isBlocked==false">
+                                <span
+                                    class="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="-ms-1 me-1.5 h-4 w-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+
+                                    <p class="whitespace-nowrap text-sm">Active</p>
+                                </span>
+
+                            </ng-container>
+                            <ng-container *ngIf="item.isBlocked==true">
+                                <span
+                                    class="inline-flex items-center justify-center rounded-full bg-red-100 px-2.5 py-0.5 text-red-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="-ms-1 me-1.5 h-4 w-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                    </svg>
+
+                                    <p class="whitespace-nowrap text-sm">Blocked</p>
+                                </span>
+                            </ng-container>
+                        </td>
+                        <td class="px-6 py-4">
+                            <button (click)="blockexpert(item._id)"
+                                class="bg-orange-400 hover:bg-orange-600 text-white font-normal py-1.5 px-3.5 rounded-lg">{{item.isBlocked
+                                ? "Unblock" : "Block" }}</button>
+                        </td>
+                        <!-- <td class="px-6 py-4 text-right">
                         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                     </td> -->
-                </tr>
+                    </tr>
 
 
-            </tbody>
+                </tbody>
+            </ng-container>
         </table>
 
 

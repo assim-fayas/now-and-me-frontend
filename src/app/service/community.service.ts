@@ -187,5 +187,27 @@ export class CommunityService {
         }))
   }
 
+  sendMail(id: string, postid: string) {
+    return this.http.post(`${this.url}/admin/sendmail/${id}/${postid}`, { withCredentials: true })
+      .pipe(map(Response => {
+        return Response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
+  blockPost(id: string, postid: string) {
+    return this.http.post(`${this.url}/admin/blockPost/${id}/${postid}`, { withCredentials: true })
+      .pipe(map(Response => {
+        return Response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+
+  }
 }
+
+
+

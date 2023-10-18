@@ -41,7 +41,7 @@ export class ExpertListingComponent implements OnInit {
 
     console.log("inside view expert");
 
-    this.router.navigate(['expertView', id])  
+    this.router.navigate(['expertView', id])
   }
 
 

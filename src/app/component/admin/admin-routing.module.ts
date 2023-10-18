@@ -7,6 +7,8 @@ import { ListExpertsComponent } from './list-experts/list-experts.component';
 import { NavsidebarComponent } from './navsidebar/navsidebar.component';
 import { FlagComponent } from './flag/flag.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewExpertComponent } from './view-expert/view-expert.component';
+
 
 
 
@@ -19,7 +21,9 @@ const routes: Routes = [{
 { path: 'expertslist', component: ListExpertsComponent },
 { path: 'navsidebar', component: NavsidebarComponent },
 { path: 'flag', component: FlagComponent },
-{ path: 'profile', component: ProfileComponent },
+{ path: 'viewExpert', component: ViewExpertComponent },
+{ path: 'profile', component: ProfileComponent }
+
 
 
 

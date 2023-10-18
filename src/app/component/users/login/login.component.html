@@ -11,7 +11,7 @@
         <div class="md:w-1/2 px-16">
             <h2 class="font-bold text-3xl text-white">Login</h2>
             <div *ngIf="isLoading">
-                <app-loading-spinner></app-loading-spinner>
+                <app-loading-spinner-user></app-loading-spinner-user>
             </div>
             <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="flex flex-col gap-4" *ngIf="!isLoading">
                 <input type="email" name="email" placeholder="E-mail" #email="ngModel" ngModel required email
@@ -132,7 +132,7 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="E-mail">
                     <div *ngIf="isLoading">
-                        <app-loading-spinner></app-loading-spinner>
+                        <app-loading-spinner-user></app-loading-spinner-user>
                     </div>
 
                     <button type="submit" [disabled]=" !modalForm.valid "
@@ -167,4 +167,3 @@
         </div>
     </div>
 </div>
-

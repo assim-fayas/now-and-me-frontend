@@ -21,11 +21,11 @@ export class AdminLoginComponent {
     private router: Router) {
 
     // redirect to asdmin dashboard if admin already7 logged in
-    // if (localStorage.getItem('jwt_admin')) {
-    //   this.router.navigate(['/admin'])
-    // } else {
-    //   this.router.navigate(['/admin/login'])
-    // }
+    if (localStorage.getItem('jwt_admin')) {
+      this.router.navigate(['/admin'])
+    } else {
+      this.router.navigate(['/admin/login'])
+    }
   }
 
   // login form data

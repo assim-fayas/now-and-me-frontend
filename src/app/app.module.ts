@@ -14,6 +14,9 @@ import { CloudinaryModule } from '@cloudinary/ng';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { ModalComponent } from './component/common/modal/modal.component';
+import { SharedModule } from './shared/shared.module';
+
+
 
 
 
@@ -39,6 +42,8 @@ const config: SocketIoConfig = { url: `${environment.apiBaseUrl}`, options: {} }
 
 
 
+
+
   ],
   imports: [
     CommonModule,
@@ -46,6 +51,7 @@ const config: SocketIoConfig = { url: `${environment.apiBaseUrl}`, options: {} }
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    SharedModule,
     ToastrModule.forRoot(),
     SocketIoModule.forRoot(config),
 

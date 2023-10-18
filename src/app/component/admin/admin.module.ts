@@ -16,8 +16,14 @@ import { TooltipModule } from 'primeng/tooltip';
 import { BarchartComponent } from 'src/app/barchart/barchart.component';
 import { PiechartComponent } from 'src/app/piechart/piechart.component';
 import { ProfileComponent } from './profile/profile.component';
-
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { APP_INITIALIZER } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { DataService } from 'src/app/service/data.service';
+import { ChartModule } from 'primeng/chart';
+import { ViewExpertComponent } from './view-expert/view-expert.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 // import {MatTableModule} from '@angular/material/table'
@@ -27,15 +33,38 @@ import { ProfileComponent } from './profile/profile.component';
 // import{MatInputModule}from '@angular/material/input'
 
 
+// const URL = environment.adminUrl
+
+// Function to load the data from the backend
+// export function loadData(dataService: DataService, httpClient: HttpClient) {
+//   return () => {
+//     httpClient.get(`${URL}/adminPie`).subscribe((data: any) => {
+//       dataService.data = data;
+//     });
+//   };
+// }
+
+
+
+
+
+
+
+
+
+
 @NgModule({
-  declarations: [AdminDashboardComponent,
+  declarations: [
+    AdminDashboardComponent,
     AdminListUsersComponent,
     AdminLoginComponent,
-
     ListExpertsComponent,
     NavsidebarComponent,
     FlagComponent,
     ProfileComponent,
+    ViewExpertComponent,
+
+
 
 
 
@@ -51,7 +80,11 @@ import { ProfileComponent } from './profile/profile.component';
     TagModule,
     TooltipModule,
     BarchartComponent,
-    PiechartComponent
+    PiechartComponent,
+    NgxChartsModule,
+    ChartModule,
+    SharedModule
+
 
 
     // MatTableModule,
@@ -62,6 +95,10 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 
+
+  ],
+
+  providers: [
 
   ],
 })

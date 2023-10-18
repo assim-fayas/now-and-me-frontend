@@ -7,7 +7,6 @@ import { OtpComponent } from './otp/otp.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MailverificationComponent } from './mailverification/mailverification.component';
 import { AuthGuard, ConsecutiveGuard } from 'src/app/authguard.guard';
-import { CarouselComponent } from 'src/app/carousel/carousel.component';
 import { ExpertListingComponent } from './expert-listing/expert-listing.component';
 import { CommunityComponent } from './community/community.component';
 import { SchedulesComponent } from './schedules/schedules.component';
@@ -23,12 +22,11 @@ const routes: Routes = [
   { path: "otp", component: OtpComponent },
   { path: "resetPassword", component: ResetPasswordComponent },
   { path: 'user/:id/verify/:token', component: MailverificationComponent },
-  { path: 'carousel', component: CarouselComponent },
-  { path: 'expertlisting', component: ExpertListingComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
-  { path: 'community', component: CommunityComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
-  {path:'schedules',component:SchedulesComponent},
-  {path:'profile',component:ProfileComponent, canActivate: [AuthGuard,ConsecutiveGuard] },
-  {path:'expertView/:id',component:ViewExpertComponent}
+  { path: 'expertlisting', component: ExpertListingComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
+  { path: 'community', component: CommunityComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
+  { path: 'schedules', component: SchedulesComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
+  { path: 'expertView/:id', component: ViewExpertComponent }
 
   // {path:'**',redirectTo:""}
 

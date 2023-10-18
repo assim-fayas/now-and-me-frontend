@@ -12,8 +12,8 @@ import { Appointment } from '../models';
 })
 export class SlotBookingService {
 
-  private readonly url = environment
-  private readonly userUrl = environment
+  private readonly url = environment.api
+  private readonly userUrl = environment.api
   // private readonly url = environment.expertUrl
   // private readonly userUrl = environment.apiBaseUrl
   constructor(

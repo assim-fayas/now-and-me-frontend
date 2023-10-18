@@ -12,7 +12,7 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly url = environment
+  private readonly url = environment.api
 
 
   //user message sending

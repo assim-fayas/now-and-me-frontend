@@ -14,7 +14,7 @@ export class CommunityService {
 
   constructor(private http: HttpClient, router: Router) { }
 
-  private readonly url = environment
+  private readonly url = environment.api
 
 
   // thoughts sharing 

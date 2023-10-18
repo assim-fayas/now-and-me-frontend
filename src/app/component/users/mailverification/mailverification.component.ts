@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http'
   styleUrls: ['./mailverification.component.css']
 })
 export class MailverificationComponent implements OnInit {
-  readonly url = environment
+  readonly url = environment.api
   constructor(
     private http: HttpClient,
     private router: Router,

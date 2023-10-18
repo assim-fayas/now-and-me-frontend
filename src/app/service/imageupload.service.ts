@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ImageuploadService {
   constructor(private http: HttpClient) { }
 
-  private readonly cloudUrl = environment
+  private readonly cloudUrl = environment.api
 
 
   uploadImage(value: any) {

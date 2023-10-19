@@ -32,8 +32,8 @@ export class SlotsComponent implements OnInit {
 
     this.slot.getSlots(this.currentExpertId).subscribe((response: any) => {
       console.log("ithu response", response);
-      this.slots = response?.slotToday[0];
-      this.slotTomorrow = response?.slotTomorrow[0];
+      this.slots = response?.slotToday
+      this.slotTomorrow = response?.slotTomorrow
       console.log(this.slots, "slooot todayyy");
       console.log(this.slotTomorrow, "slooot tomorrow");
 

@@ -8,21 +8,22 @@ import { NavsidebarComponent } from './navsidebar/navsidebar.component';
 import { FlagComponent } from './flag/flag.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewExpertComponent } from './view-expert/view-expert.component';
+import { AdminGuard, ConsecutiveGuard } from 'src/app/guards/admin.guard';
 
 
 
 
 
 const routes: Routes = [{
-  path: '', component: AdminDashboardComponent
+  path: '', component: AdminDashboardComponent, canActivate: [AdminGuard, ConsecutiveGuard]
 },
-{ path: 'login', component: AdminLoginComponent },
-{ path: 'userslist', component: AdminListUsersComponent },
-{ path: 'expertslist', component: ListExpertsComponent },
-{ path: 'navsidebar', component: NavsidebarComponent },
-{ path: 'flag', component: FlagComponent },
-{ path: 'viewExpert', component: ViewExpertComponent },
-{ path: 'profile', component: ProfileComponent }
+{ path: 'login', component: AdminLoginComponent, canActivate: [AdminGuard, ConsecutiveGuard] },
+{ path: 'userslist', component: AdminListUsersComponent, canActivate: [AdminGuard, ConsecutiveGuard] },
+{ path: 'expertslist', component: ListExpertsComponent, canActivate: [AdminGuard, ConsecutiveGuard] },
+{ path: 'navsidebar', component: NavsidebarComponent, canActivate: [AdminGuard, ConsecutiveGuard] },
+{ path: 'flag', component: FlagComponent, canActivate: [AdminGuard, ConsecutiveGuard] },
+{ path: 'viewExpert', component: ViewExpertComponent, canActivate: [AdminGuard, ConsecutiveGuard] },
+{ path: 'profile', component: ProfileComponent, canActivate: [AdminGuard, ConsecutiveGuard] }
 
 
 

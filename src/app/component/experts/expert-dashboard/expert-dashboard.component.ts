@@ -8,14 +8,19 @@ import { Router } from '@angular/router';
 })
 export class ExpertDashboardComponent {
 
-  constructor(  private router: Router) {
-  
-}
+  constructor(private router: Router) {
 
-ExpertRegiterForm(){
-  console.log("clicked");
-  
-this.router.navigate(['/experts/registration'])
-}
+  }
+
+  ExpertRegiterForm() {
+    console.log("clicked");
+
+    this.router.navigate(['/experts/registration'])
+  }
+  expertLogin() {
+    console.log("clicked");
+    this.router.navigate(['/experts/login'])
+
+  }
 
 }

@@ -93,7 +93,7 @@ export class ChatUserComponent {
     console.log(this.selectedExpert, "current expert");
 
     this.chatService.showChats(expertId, this.currentUser).subscribe((response: any) => {
-      console.log(response);
+      console.log(response, "full response");
       if (Array.isArray(response) && response.length > 0) {
         // Assuming messages are stored in the 'messages' property
         this.chats = response[0].messages;

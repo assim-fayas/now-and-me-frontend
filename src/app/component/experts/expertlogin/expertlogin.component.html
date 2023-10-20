@@ -93,7 +93,7 @@
             <div class="mt-3 text-xs flex justify-between items-center">
                 <p class="text-gray-400">If you don't have an account?</p>
                 <button class=" hover:scale-105 duration-300 py-2 px-5 bg-orange-500  text-white rounded-xl "
-                    [routerLink]="['/experts/register']">Register</button>
+                    [routerLink]="['/experts/registration']">Register</button>
             </div>
         </div>
         <!-- image -->
@@ -125,22 +125,22 @@
                 <h3 class="mb-4 text-xl font-medium text-white dark:text-white">forgot Your password?</h3>
                 <!-- modal form -->
 
-<!-- 
+                <!-- 
                 <form class="space-y-6" #modalForm="ngForm" (ngSubmit)="forgotPassword(modalForm)">
 
                     <input type="email" name="email" required email #email="ngModel" ngModel
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="E-mail">
                     <div *ngIf="isLoading"> -->
-                        <!-- <app-loading-spinner></app-loading-spinner> -->
-                    <!-- </div>
+                <!-- <app-loading-spinner></app-loading-spinner> -->
+                <!-- </div>
 
                     <button type="submit" [disabled]=" !modalForm.valid "
                         class="w-full text-white bg-orange-500  hover:scale-105 duration-300 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         Reset</button> -->
 
-                    <!-- //validation message -->
-                    <!-- <div *ngIf=" PasswordErrorMessage && !email.invalid  && !email.errors">
+                <!-- //validation message -->
+                <!-- <div *ngIf=" PasswordErrorMessage && !email.invalid  && !email.errors">
 
                         <p class="text-xs px-2 text-red-600 dark:text-red-400"> {{PasswordErrorMessage}}</p>
                     </div>
@@ -159,7 +159,7 @@
 
                 </form> -->
                 <div class="text-sm  my-7 font-medium text-white dark:text-gray-300">
-                    Not registered? <a [routerLink]="['/experts/register']"
+                    Not registered? <a [routerLink]="['/experts/registration']"
                         class="text-gray-500 hover:text-orange-500 cursor-pointer duration-300">Create
                         account</a>
                 </div>

@@ -29,6 +29,7 @@ export class SlotsComponent implements OnInit {
   @Input() currentExpertId!: string
   @Input() bookingType!: string
   ngOnInit(): void {
+    console.log(this.currentExpertId, "expert idddd");
 
     this.slot.getSlots(this.currentExpertId).subscribe((response: any) => {
       console.log("ithu response", response);
@@ -82,7 +83,12 @@ export class SlotsComponent implements OnInit {
       bookingType: this.bookingType,
       paymentStatus: this.paymentStatus
     }
+    if (!edited) {
+      console.log(edited, "editttted");
 
+      console.log('The `edited` object is null.');
+      return;
+    }
     this.slot.addAppoinment(edited).subscribe((response) => {
 
       if (response) {

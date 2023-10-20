@@ -12,6 +12,7 @@ import { SlotBookingService } from 'src/app/service/slot-booking.service';
 export class AppoinmentsComponent implements OnInit {
   activeAppoinments!: any
   previouseAppoinments!: any
+  activateJoinButton = ''
   constructor(private appoiment: SlotBookingService) { }
   ngOnInit() {
     this.getAppoiment()

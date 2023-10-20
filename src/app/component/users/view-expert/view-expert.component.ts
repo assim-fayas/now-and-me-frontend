@@ -74,7 +74,7 @@ export class ViewExpertComponent implements OnInit {
 
   BookChat() {
     this.bookingType = 'chat'
-    this.payNow()
+    this.addAppoinment()
 
 
   }
@@ -89,9 +89,12 @@ export class ViewExpertComponent implements OnInit {
 
     this.bookChat.addAppoinment(edited).subscribe((response) => {
 
+
       if (response) {
         console.log(response);
-        this.ngOnInit()
+        this.payNow()
+
+
       }
 
 
@@ -165,11 +168,9 @@ export class ViewExpertComponent implements OnInit {
   onPaymentSuccess(event: any): void {
     this.paymentStatus = 'success'
     console.log("payment status", this.paymentStatus);
-
-
     this.message = "Payment Done Successfully";
     console.log(this.message);
-    this.addAppoinment()
+
 
   }
 

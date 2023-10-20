@@ -46,6 +46,9 @@ export class CommunityComponent implements OnInit {
   currentCommentId!: string
   showEditcomment = false
   editcomment = false
+  modalOpen1 = false
+  EditModalOpen = false
+  FlagModalOpen = false
 
 
   constructor(private editFb: FormBuilder, private router: Router, private fb: FormBuilder, private communityService: CommunityService, private userservice: UserServiceService) {
@@ -100,6 +103,7 @@ export class CommunityComponent implements OnInit {
   onSubmit() {
     this.submitted = true
     if (this.form.valid) {
+      this.form.reset()
       this.submittedFormValue = {
         thoughts: '',
         tags: [],
@@ -135,8 +139,10 @@ export class CommunityComponent implements OnInit {
       ...this.editForm.value,
       tags: this.selectedTags
     }
+
     console.log(this.submittedFormValue, "last value");
     this.communityService.updatePost(this.currentPost, this.submittedFormValue).subscribe((Response) => {
+      this.closeEditModal()
       console.log(Response);
       this.ngOnInit()
 
@@ -153,7 +159,15 @@ export class CommunityComponent implements OnInit {
   removeAlltags() {
     this.selectedTags.length = 0;
     console.log("array cleared");
+    this.closeModal1()
+    this.form.reset()
 
+
+  }
+  removetagsAndCloseModel() {
+    this.selectedTags.length = 0;
+    this.closeEditModal()
+    this.editForm.reset()
   }
 
 
@@ -212,7 +226,7 @@ export class CommunityComponent implements OnInit {
   //edit post
   editPost(postId: string) {//type indakkanam
     console.log("edit clicked");
-
+    this.openEditModal()
     this.communityService.editPost(postId).subscribe((Response: any) => {
       console.log(Response);
       if (Response) {
@@ -260,12 +274,14 @@ export class CommunityComponent implements OnInit {
       this.errorInFlagPost = true
       return
     }
+
     this.flagFormvalue = {
       report: this.selectedOption,
       reason: this.additionalComments
     }
     console.log("flag post valueeee", this.flagFormvalue);
     this.communityService.flagPost(this.currentPost, this.flagFormvalue).subscribe((response) => {
+      this.closeFlagModal()
       console.log(response);
     }, (error) => {
       console.log(error);
@@ -277,6 +293,7 @@ export class CommunityComponent implements OnInit {
   flagPost(postid: string) {
     this.currentPost = postid
     this.showeditpost(postid)
+    this.openFlagModal()
   }
 
 
@@ -384,5 +401,36 @@ export class CommunityComponent implements OnInit {
       console.log(error);
     })
   }
+
+
+
+  openModal1() {
+    this.modalOpen1 = true
+  }
+
+  closeModal1() {
+    this.modalOpen1 = false
+    this.form.reset()
+  }
+
+
+  openEditModal() {
+    this.EditModalOpen = true
+  }
+
+  closeEditModal() {
+    this.EditModalOpen = false
+
+  }
+  openFlagModal() {
+    this.FlagModalOpen = true
+  }
+
+  closeFlagModal() {
+    this.FlagModalOpen = false
+
+
+  }
+
 
 }

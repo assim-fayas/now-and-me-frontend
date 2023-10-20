@@ -18,9 +18,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAppoinmentsComponent } from './view-appoinments/view-appoinments.component';
 import { VideocallComponent } from './videocall/videocall.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ConsecutiveGuard, ProfessionalGuard } from 'src/app/guards/expert.guard';
 
 const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
-{ path: 'login', component: ExpertloginComponent },
+{ path: 'login', component: ExpertloginComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
 { path: 'registration', component: RegistrationComponent },
 { path: 'register', component: ExpertregisterComponent },
 { path: 'otp', component: ExpertOtpComponent },
@@ -29,14 +30,14 @@ const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'regform1', component: Regform1Component },
 { path: 'regform2/:id', component: Regform2Component },
 { path: 'regform3/:id', component: Regform3Component },
-{ path: 'home', component: ExpertHomeComponent },
-{ path: 'slots', component: FreeSlotsComponent },
-{ path: 'chat', component: ChatsComponent },
-{ path: 'reviews', component: ReviewsComponent },
-{ path: 'appoinments', component: ViewAppoinmentsComponent },
-{ path: 'sidebar', component: SidebarComponent },
-{ path: 'profile', component: ProfileComponent },
-{ path: 'videomeet', component: VideocallComponent },
+{ path: 'home', component: ExpertHomeComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
+{ path: 'slots', component: FreeSlotsComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
+{ path: 'chat', component: ChatsComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
+{ path: 'reviews', component: ReviewsComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
+{ path: 'appoinments', component: ViewAppoinmentsComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
+{ path: 'sidebar', component: SidebarComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
+{ path: 'profile', component: ProfileComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
+{ path: 'videomeet', component: VideocallComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
 //invalid routes
 { path: '**', redirectTo: '/experts' }
 ]

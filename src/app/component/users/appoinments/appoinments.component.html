@@ -13,8 +13,8 @@
         </div>
     </div>
     <!-- buttons -->
-    <div class=" mt-10 m-48  h-[500px]  border  pb-16  border-gray-500 ">
-        <div class=" p-10 flex justify-center">
+    <div class=" mt-10 m-48  h-[500px]  border  pb-16  border-gray-500 overflow-y-scroll">
+        <div class=" p-10 flex justify-center ">
             <div><button (click)="showSchedules()" class="text-orange-500  bg-transparent font-medium py-2 px-51"
                     [ngClass]="{'border-b-2 border-gray-500 ':  schedules
                 }">Schedules</button>
@@ -43,10 +43,27 @@
                                     }}</span> At
                                 <span class="font-medium text-black text-sm">{{item.scheduledAt.slot_time}}</span>
                             </p>
-                            <div class="mr-5 pr-10">
-                                <button
-                                    class="bg-orange-500 text-white px-7 py-1.5 text-xs font-medium  rounded-lg ">Join</button>
-                            </div>
+                            <ng-container *ngIf="activateJoinButton; else notactive ">
+                                <div class="mr-5 pr-10">
+                                    <button
+                                        class="bg-orange-500 text-white px-7 py-1.5 text-xs font-medium  rounded-lg ">Join</button>
+                                </div>
+                            </ng-container>
+
+                            <ng-template #notactive>
+
+                                <svg class="w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+
+                                <div>
+
+                                </div>
+                            </ng-template>
+
+
                         </div>
                     </div>
 
@@ -55,9 +72,10 @@
 
         </ng-container>
         <!-- previouse schedules -->
+
         <ng-container *ngIf="previouseSchedules">
-            <div class="flex justify-center" *ngFor="let item of previouseAppoinments">
-                <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200 space-y-4  pt-5 pb-5">
+            <div class="flex justify-center " *ngFor="let item of previouseAppoinments">
+                <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200 space-y-4  pt-5 pb-5 ">
 
 
                     <div class="flex items-center gap-4 pl-4 ">

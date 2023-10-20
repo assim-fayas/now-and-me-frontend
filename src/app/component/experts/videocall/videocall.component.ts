@@ -6,14 +6,12 @@ declare var JitsiMeetExternalAPI: any;
   templateUrl: './videocall.component.html',
   styleUrls: ['./videocall.component.css']
 })
-export class VideocallComponent implements OnInit, AfterViewInit {
+export class VideocallComponent implements OnInit {
   domain: string = "meet.jit.si"; // For self hosted use your domain
-  room: any;
+  room!: string;
   options: any;
   api: any;
   user: any;
-
-  // For Custom Controls
   isAudioMuted = false;
   isVideoMuted = false;
 
@@ -24,26 +22,40 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.room = 'NOW&ME-Video-Meet';
     this.user = {
-      name: 'Asim' // Set your username
+      name: 'Asim'
     }
+    this.videoStart()
+  }
+  ngOnDestroy() {
+    this.disposeVideoCall();
   }
 
-  ngAfterViewInit(): void {
+  // processData() {
+  //   if (this.room) {
+  //     this.getDetails()
+  //   }
+  // }
+  // getDetails() {
+
+  //   this.videoStart()
+
+  // };
+
+  videoStart() {
     this.options = {
       roomName: this.room,
-      width: 900,
-      height: 500,
-      configOverwrite: { prejoinPageEnabled: false },
-      interfaceConfigOverwrite: {
+      configOverWrite: { proJoinPageEnabe: false },
+      interfaceConfigOverWrite: {
         TILE_VIEW_MAX_COLUMNS: 8
       },
-      parentNode: document.querySelector('#jitsi-iframe'),
+      parantNode: document.querySelector('#jist-iframe'),
       userInfo: {
         displayName: this.user.name
       }
     }
 
     this.api = new JitsiMeetExternalAPI(this.domain, this.options);
+
 
     // Event handlers
     this.api.addEventListeners({
@@ -52,13 +64,13 @@ export class VideocallComponent implements OnInit, AfterViewInit {
       participantJoined: this.handleParticipantJoined,
       videoConferenceJoined: this.handleVideoConferenceJoined,
       videoConferenceLeft: this.handleVideoConferenceLeft,
-      audioMuteStatusChanged: this.handleMuteStatus,
-      videoMuteStatusChanged: this.handleVideoStatus
+      audioMuteStatusChanged: this.handleAudioMuteStatusChanged,
+      videoMuteStatusChanged: this.handleVideoMuteStatusChanged
     });
 
   }
   handleClose = () => {
-    console.log("handleClose");
+    console.log("closing meet");
   }
 
   handleParticipantLeft = async (participant: any) => {
@@ -78,15 +90,15 @@ export class VideocallComponent implements OnInit, AfterViewInit {
 
   handleVideoConferenceLeft = () => {
     console.log("handleVideoConferenceLeft");
-    this.router.navigate(['/experts/home']);
+    this.router.navigate(['/']);
   }
 
-  handleMuteStatus = (audio: any) => {
-    console.log("handleMuteStatus", audio); // { muted: true }
+  handleAudioMuteStatusChanged = (audio: any) => {
+    console.log("handleAudioMuteStatusChanged", audio);
   }
 
-  handleVideoStatus = (video: any) => {
-    console.log("handleVideoStatus", video); // { muted: true }
+  handleVideoMuteStatusChanged = (video: any) => {
+    console.log("handleAudioMuteStatusChanged", video);
   }
 
   //want to get all participants
@@ -102,7 +114,7 @@ export class VideocallComponent implements OnInit, AfterViewInit {
   executeCommand(command: string) {
     this.api.executeCommand(command);;
     if (command == 'hangup') {
-      this.router.navigate(['/experts/home']);
+      this.router.navigate(['/']);
       return;
     }
 
@@ -115,6 +127,11 @@ export class VideocallComponent implements OnInit, AfterViewInit {
     }
   }
 
-
+  disposeVideoCall() {
+    if (this.api) {
+      this.api.dispose(); // Cleanup Jitsi Meet API instance
+      this.api = null; // Reset the API instance
+    }
+  }
 
 }

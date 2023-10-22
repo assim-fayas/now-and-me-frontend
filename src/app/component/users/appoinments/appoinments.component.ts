@@ -16,7 +16,7 @@ export class AppoinmentsComponent implements OnInit {
   constructor(private appoiment: SlotBookingService) { }
   ngOnInit() {
     this.getAppoiment()
-    this.getPreviouseAppoinment()
+
 
   }
 
@@ -34,7 +34,9 @@ export class AppoinmentsComponent implements OnInit {
 
 
   getAppoiment() {
+
     this.appoiment.getVideoAppoinment().subscribe((response) => {
+      this.getPreviouseAppoinment()
       this.activeAppoinments = response
       console.log(this.activeAppoinments);
 

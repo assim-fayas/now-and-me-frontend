@@ -82,18 +82,27 @@ export class SlotBookingService {
   }
 
 
+  getExpertsVideoAppoinment() {
+    return this.http.get(`${this.url}/experts/appoinmentVideo`).pipe(map(response => {
 
-  // getChatAppoinment() {
-  //   return this.http.get(`${this.userUrl}/appoinmentVideo`).pipe(map(response => {
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
 
-  //     return response
-  //   }),
-  //     catchError((error) => {
-  //       return throwError(error)
-  //     }))
-  // }
+  }
 
+  getPreviousExpertVideoAppoinment() {
+    return this.http.get(`${this.url}/experts/previousappoinmentVideo`).pipe(map(response => {
 
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+
+  }
 
 }
 

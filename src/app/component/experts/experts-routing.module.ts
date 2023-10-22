@@ -38,8 +38,8 @@ const routes: Routes = [{ path: '', component: ExpertDashboardComponent },
 { path: 'sidebar', component: SidebarComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
 { path: 'profile', component: ProfileComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
 { path: 'videomeet', component: VideocallComponent, canActivate: [ProfessionalGuard, ConsecutiveGuard] },
-//invalid routes
-{ path: '**', redirectTo: '/experts' }
+  //invalid routes
+  // { path: '**', redirectTo: '/experts' }
 ]
 
 @NgModule({

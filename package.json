@@ -21,6 +21,7 @@
     "@cloudinary/url-gen": "^1.11.2",
     "@ctrl/ngx-emoji-mart": "^9.2.0",
     "@swimlane/ngx-charts": "^20.4.1",
+    "@zegocloud/zego-uikit-prebuilt": "^1.8.11",
     "chart.js": "^4.4.0",
     "cloudinary-core": "^2.13.0",
     "flowbite": "^1.8.1",

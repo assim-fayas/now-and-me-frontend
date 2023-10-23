@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SlotBookingService } from 'src/app/service/slot-booking.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ViewAppoinmentsComponent implements OnInit {
   activeAppoinments!: any
   previouseAppoinments!: any
   activateJoinButton = ''
-  constructor(private appoiment: SlotBookingService) { }
+  constructor(private appoiment: SlotBookingService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAppoinments()
@@ -62,6 +63,42 @@ export class ViewAppoinmentsComponent implements OnInit {
 
   }
 
+  isTimeToDisplayButton(appointment: any): boolean {
+    console.log("inside is time to display button");
+
+    console.log(appointment);
+
+    const currentTime = new Date();
+    console.log("current time", currentTime);
+
+    const slotTime = this.parseSlotTime(appointment.scheduledAt.slot_time);
+    console.log(slotTime);
+
+    return currentTime >= slotTime;
+  }
+
+  private parseSlotTime(timeString: string): Date {
+    const [time, period] = timeString.split(' ');
+    const [hours, minutes] = time.split(':');
+    let hours24 = parseInt(hours);
+
+    // Convert to 24-hour format if necessary
+    if (period.toLowerCase() === 'pm' && hours24 < 12) {
+      hours24 += 12;
+    }
+
+    const slotTime = new Date();
+    slotTime.setHours(hours24, parseInt(minutes), 0, 0);
+
+    return slotTime;
+  }
+
+  sendDetail(appoinmentId: string, slot_date: string, slot_time: string, user_id: string) {
+    console.log("clicked");
+
+    this.router.navigate(['/experts/videomeet', { appoinmentId: appoinmentId, slot_date: slot_date, slot_time: slot_time, userId: user_id }])
+
+  }
 
 
 }

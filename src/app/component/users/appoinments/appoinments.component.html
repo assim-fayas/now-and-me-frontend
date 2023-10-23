@@ -13,7 +13,7 @@
         </div>
     </div>
     <!-- buttons -->
-    <div class=" mt-10 m-48  h-[500px]  border  pb-16  border-gray-500 overflow-y-scroll">
+    <div class=" mt-10 m-48  h-[500px]  border border-dashed  pb-16  border-gray-500 overflow-y-scroll">
         <div class=" p-10 flex justify-center ">
             <div><button (click)="showSchedules()" class="text-orange-500  bg-transparent font-medium py-2 px-51"
                     [ngClass]="{'border-b-2 border-gray-500 ':  schedules
@@ -26,87 +26,112 @@
         </div>
         <!-- Active schedules -->
         <ng-container *ngIf="schedules">
-            <div class="flex justify-center" *ngFor="let item of activeAppoinments">
-                <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
+            <ng-container *ngIf="activeAppoinments?.length!=0 ;else nocontent ">
+                <div class="flex justify-center" *ngFor="let item of activeAppoinments">
+                    <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
 
 
-                    <div class="flex items-center gap-4 pl-4 ">
-                        <img alt="Women"
-                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                            class="h-12 w-12 rounded-lg object-cover" />
+                        <div class="flex items-center gap-4 pl-4 ">
+                            <img alt="Women"
+                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                class="h-12 w-12 rounded-lg object-cover" />
 
-                        <div class="flex space-x-16 mt-i">
-                            <p class="font-medium text-black">{{item.expert.name}}</p>
-                            <p class="text-gray-500">Session
-                                Scheduleded On <span
-                                    class="font-medium text-black text-sm">{{item.scheduledAt.slot_date|date
-                                    }}</span> At
-                                <span class="font-medium text-black text-sm">{{item.scheduledAt.slot_time}}</span>
-                            </p>
-                            <ng-container *ngIf="activateJoinButton; else notactive ">
-                                <div class="mr-5 pr-10">
-                                    <button
-                                        class="bg-orange-500 text-white px-7 py-1.5 text-xs font-medium  rounded-lg ">Join</button>
-                                </div>
-                            </ng-container>
+                            <div class="flex space-x-16 mt-i">
+                                <p class="font-medium text-black">{{item.expert.name}}</p>
+                                <p class="text-gray-500">Session
+                                    Scheduleded On <span
+                                        class="font-medium text-black text-sm">{{item.scheduledAt.slot_date|date
+                                        }}</span> At
+                                    <span class="font-medium text-black text-sm">{{item.scheduledAt.slot_time}}</span>
+                                </p>
+                                <ng-container *ngIf="isIdInActiveCalls(item._id); else notactive ">
+                                    <div class="mr-5 pr-10">
+                                        <button
+                                            class="bg-orange-500 text-white px-7 py-1.5 text-xs font-medium  rounded-lg "
+                                            (click)="openLinkInNewWindow()">Join</button>
+                                    </div>
+                                </ng-container>
 
-                            <ng-template #notactive>
+                                <ng-template #notactive>
 
-                                <svg class="w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
-                                        d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
+                                    <svg class="w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
 
-                                <div>
+                                    <div>
 
-                                </div>
-                            </ng-template>
+                                    </div>
+                                </ng-template>
 
 
+                            </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
 
+            </ng-container>
         </ng-container>
         <!-- previouse schedules -->
 
         <ng-container *ngIf="previouseSchedules">
-            <div class="flex justify-center " *ngFor="let item of previouseAppoinments">
-                <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200 space-y-4  pt-5 pb-5 ">
+            <ng-container *ngIf="previouseAppoinments?.length!=0;else nocontent">
+                <div class="flex justify-center " *ngFor="let item of previouseAppoinments">
+                    <div class=" w-2/3 ml-8 mr-8 mb-0 border border-gray-200 space-y-4  pt-5 pb-5 ">
 
 
-                    <div class="flex items-center gap-4 pl-4 ">
-                        <img alt="Women"
-                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                            class="h-12 w-12 rounded-lg object-cover" />
+                        <div class="flex items-center gap-4 pl-4 ">
+                            <img alt="Women"
+                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                class="h-12 w-12 rounded-lg object-cover" />
 
-                        <div class="flex space-x-16">
-                            <p class="font-medium text-black">{{item.expert.name}}</p>
-                            <p class="text-gray-500">Session
-                                Conducted On <span
-                                    class="font-medium text-black text-sm">{{item.scheduledAt.slot_date|date
-                                    }}</span> At
-                                <span class="font-medium text-black text-sm">{{item.scheduledAt.slot_time}}</span>
-                            </p>
-                            <div class="mr-5 pr-10">
+                            <div class="flex space-x-16">
+                                <p class="font-medium text-black">{{item.expert.name}}</p>
+                                <p class="text-gray-500">Session
+                                    Conducted On <span
+                                        class="font-medium text-black text-sm">{{item.scheduledAt.slot_date|date
+                                        }}</span> At
+                                    <span class="font-medium text-black text-sm">{{item.scheduledAt.slot_time}}</span>
+                                </p>
+                                <div class="mr-5 pr-10">
 
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
 
 
 
+            </ng-container>
         </ng-container>
 
     </div>
 
+    <ng-template #nocontent>
+        <div class="h-56 w-96 ml-96">
+            <img src="../../../../assets/image/undraw_schedule_meeting_52nu.png" alt="">
+        </div>
+        <div>
+            <a routerLink="/expertlisting">
 
+
+                <div class="flex ml-[480px] cursor-pointer">
+
+                    <p class="text-gray-500 font-medium ">Book Now</p>
+                    <svg class=" w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                    </svg>
+
+                </div>
+            </a>
+        </div>
+    </ng-template>
 
 </section>

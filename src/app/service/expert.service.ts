@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
-export class ExpertService implements OnInit {
+export class ExpertService {
 
   //backend url
   private readonly url = environment.api
@@ -114,6 +114,29 @@ export class ExpertService implements OnInit {
         }))
   }
 
+  ActivateSloteOfUser(appoinmentId: string, slot_date: string, slot_time: string, link: string, user: string) {
+
+    return this.http.post(`${this.url}/experts/activateJoinButton`, { appoinmentId, slot_date, slot_time, link, user }, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+
+  }
+
+  deativateTheJoinButton(appoinmentId: string) {
+    return this.http.delete(`${this.url}/experts/DeActivateJoinButton/${appoinmentId}`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+
+  }
+
 
   // expert logout
   logout() {
@@ -124,8 +147,5 @@ export class ExpertService implements OnInit {
 
 
 
-  ngOnInit(): void {
-
-  }
 
 }

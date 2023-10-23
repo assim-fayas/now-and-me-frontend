@@ -25,7 +25,7 @@ export class SlotBookingService {
   //add slotes
 
   addSlots(startTime: string, endTime: string, date: string) {
-    return this.http.post(`${this.url}/experts/addslote`, { startTime, endTime, date })
+    return this.http.post(`${this.url}/experts/addslote`, { startTime, endTime, date }, { withCredentials: true })
       .pipe(map(response => {
         return response
       }),
@@ -38,7 +38,7 @@ export class SlotBookingService {
 
   //fetching specified slot
   getSlots(id: string) {
-    return this.http.get(`${this.userUrl}/getSlots/${id}`).pipe(map(response => {
+    return this.http.get(`${this.userUrl}/getSlots/${id}`, { withCredentials: true }).pipe(map(response => {
 
       return response
     }),
@@ -50,7 +50,7 @@ export class SlotBookingService {
 
   //add appoinment
   addAppoinment(appoinment: Appointment) {
-    return this.http.post(`${this.userUrl}/addAppoinment`, appoinment).pipe(map(response => {
+    return this.http.post(`${this.userUrl}/addAppoinment`, appoinment, { withCredentials: true }).pipe(map(response => {
 
       return response
     }),
@@ -63,7 +63,7 @@ export class SlotBookingService {
   //get appoinments
 
   getVideoAppoinment() {
-    return this.http.get(`${this.userUrl}/appoinmentVideo`).pipe(map(response => {
+    return this.http.get(`${this.userUrl}/appoinmentVideo`, { withCredentials: true }).pipe(map(response => {
 
       return response
     }),
@@ -72,7 +72,7 @@ export class SlotBookingService {
       }))
   }
   getPreviousVideoAppoinment() {
-    return this.http.get(`${this.userUrl}/previousappoinmentVideo`).pipe(map(response => {
+    return this.http.get(`${this.userUrl}/previousappoinmentVideo`, { withCredentials: true }).pipe(map(response => {
 
       return response
     }),
@@ -83,7 +83,7 @@ export class SlotBookingService {
 
 
   getExpertsVideoAppoinment() {
-    return this.http.get(`${this.url}/experts/appoinmentVideo`).pipe(map(response => {
+    return this.http.get(`${this.url}/experts/appoinmentVideo`, { withCredentials: true }).pipe(map(response => {
 
       return response
     }),
@@ -94,13 +94,24 @@ export class SlotBookingService {
   }
 
   getPreviousExpertVideoAppoinment() {
-    return this.http.get(`${this.url}/experts/previousappoinmentVideo`).pipe(map(response => {
+    return this.http.get(`${this.url}/experts/previousappoinmentVideo`, { withCredentials: true }).pipe(map(response => {
 
       return response
     }),
       catchError((error) => {
         return throwError(error)
       }))
+
+  }
+  getActivatedAppoinments() {
+    return this.http.get(`${this.url}/activateJoinButton`, { withCredentials: true }).pipe(map(response => {
+
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+
 
   }
 

@@ -11,8 +11,11 @@ import { SlotBookingService } from 'src/app/service/slot-booking.service';
 })
 export class AppoinmentsComponent implements OnInit {
   activeAppoinments!: any
+  activeVideoCall!: any
   previouseAppoinments!: any
+  activeCalls!: any
   activateJoinButton = ''
+  link!: string
   constructor(private appoiment: SlotBookingService) { }
   ngOnInit() {
     this.getAppoiment()
@@ -36,7 +39,8 @@ export class AppoinmentsComponent implements OnInit {
   getAppoiment() {
 
     this.appoiment.getVideoAppoinment().subscribe((response) => {
-      this.getPreviouseAppoinment()
+      this.getActivateVideoCall()
+
       this.activeAppoinments = response
       console.log(this.activeAppoinments);
 
@@ -45,6 +49,39 @@ export class AppoinmentsComponent implements OnInit {
 
     })
   }
+  getActivateVideoCall() {
+    this.appoiment.getActivatedAppoinments().subscribe((response) => {
+      this.getPreviouseAppoinment()
+      console.log(response);
+      this.activeVideoCall = response
+      console.log("active video call");
+
+      const matchingData = this.activeAppoinments
+        .filter((firstItem: any) => {
+          return this.activeVideoCall.some((secondItem: any) => firstItem._id === secondItem.appointment);
+        })
+        .map((matchedItem: any) => {
+          const matchingVideoCall = this.activeVideoCall.find((item: any) => item.appointment === matchedItem._id);
+          if (matchingVideoCall) {
+            this.link = matchingVideoCall.link
+            return {
+              _id: matchedItem._id,
+              link: matchingVideoCall.link
+            };
+          } else {
+            return {}; // Provide a default empty object as a return value
+          }
+        });
+
+      console.log("matching data: ", matchingData);
+      this.activeCalls = matchingData
+
+    }, (error) => {
+      console.log(error);
+
+    })
+  }
+
   getPreviouseAppoinment() {
     this.appoiment.getPreviousVideoAppoinment().subscribe((response) => {
 
@@ -57,7 +94,14 @@ export class AppoinmentsComponent implements OnInit {
     })
 
   }
+  isIdInActiveCalls(id: string): boolean {
+    return this.activeCalls ? this.activeCalls.some((item: any) => item._id === id) : false;
+  }
 
+
+  openLinkInNewWindow() {
+    window.open(this.link, '_blank');
+  }
 
 
 }

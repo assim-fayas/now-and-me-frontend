@@ -43,7 +43,10 @@ export class VideocallComponent implements OnInit {
     );
 
     this.jitsiService.api.executeCommand(data).subscribe((data: any) => {
+
+
       this.isAudioMuted = data
+      console.log("isAudioMuted", this.isAudioMuted);
     })
   }
 
@@ -82,6 +85,22 @@ export class VideocallComponent implements OnInit {
       console.log(error);
 
     })
+  }
+
+  backToAppoinment() {
+    //revoke the meet link
+    this.expertSservice.deativateTheJoinButton(this.appoinmentDetails.appoinmentId).subscribe((response) => {
+
+      console.log(response);
+
+      this.router.navigate(['/experts/appoinments'])
+    }, (error) => {
+      this.router.navigate(['/experts/appoinments'])
+      console.log(error);
+
+
+    })
+
   }
 
 

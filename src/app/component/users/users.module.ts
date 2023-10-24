@@ -26,7 +26,7 @@ import { AppoinmentsComponent } from './appoinments/appoinments.component';
 import { SlotsComponent } from './slots/slots.component';
 import { DatePipe } from '@angular/common';
 import { LoadingSpinnerUserComponent } from './loading-spinner-user';
-
+import { RatingModule } from 'primeng/rating';
 
 
 
@@ -63,6 +63,7 @@ import { LoadingSpinnerUserComponent } from './loading-spinner-user';
     TooltipModule,
     ChipModule,
     TagModule,
+    RatingModule
 
   ],
   providers: [DatePipe],

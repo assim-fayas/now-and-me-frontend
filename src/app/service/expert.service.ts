@@ -137,6 +137,21 @@ export class ExpertService {
 
   }
 
+  addexpertReview(value: number, expertId: string) {
+    return this.http.post(`${this.url}/experts/addrating/${expertId}`, { value }, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+
+
+  }
+
+
+
+
 
   // expert logout
   logout() {

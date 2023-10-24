@@ -115,6 +115,20 @@ export class SlotBookingService {
 
   }
 
+
+
+  changeAppoinmentStatus(appoinmentId: string) {
+    return this.http.post(`${this.url}/experts/changeAppoinmentStatus/${appoinmentId}`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+
+  }
+
+
 }
 
 

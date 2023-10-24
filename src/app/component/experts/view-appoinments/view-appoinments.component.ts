@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ExpertService } from 'src/app/service/expert.service';
 import { SlotBookingService } from 'src/app/service/slot-booking.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class ViewAppoinmentsComponent implements OnInit {
   activeAppoinments!: any
   previouseAppoinments!: any
   activateJoinButton = ''
+  showRatingModal!: false
   constructor(private appoiment: SlotBookingService, private router: Router) { }
 
   ngOnInit(): void {
@@ -66,18 +68,15 @@ export class ViewAppoinmentsComponent implements OnInit {
   isTimeToDisplayButton(appointment: any): boolean {
     console.log("inside is time to display button");
 
-    console.log(appointment);
-
     const currentTime = new Date();
-    console.log("current time", currentTime);
+    const slotDateTime = this.parseSlotDateTime(appointment.scheduledAt.slot_date, appointment.scheduledAt.slot_time);
 
-    const slotTime = this.parseSlotTime(appointment.scheduledAt.slot_time);
-    console.log(slotTime);
-
-    return currentTime >= slotTime;
+    // Compare both date and time
+    return currentTime >= slotDateTime;
   }
 
-  private parseSlotTime(timeString: string): Date {
+  private parseSlotDateTime(dateString: string, timeString: string): Date {
+    const [year, month, day] = dateString.split('-').map(Number);
     const [time, period] = timeString.split(' ');
     const [hours, minutes] = time.split(':');
     let hours24 = parseInt(hours);
@@ -87,14 +86,13 @@ export class ViewAppoinmentsComponent implements OnInit {
       hours24 += 12;
     }
 
-    const slotTime = new Date();
-    slotTime.setHours(hours24, parseInt(minutes), 0, 0);
+    const slotDateTime = new Date(year, month - 1, day, hours24, parseInt(minutes), 0, 0); // Month is 0-based in JavaScript
 
-    return slotTime;
+    return slotDateTime;
   }
 
   sendDetail(appoinmentId: string, slot_date: string, slot_time: string, user_id: string) {
-    console.log("clicked");
+
 
     this.router.navigate(['/experts/videomeet', { appoinmentId: appoinmentId, slot_date: slot_date, slot_time: slot_time, userId: user_id }])
 

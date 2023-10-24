@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { error } from 'jquery';
+import { ExpertService } from 'src/app/service/expert.service';
 import { SlotBookingService } from 'src/app/service/slot-booking.service';
 
 @Component({
@@ -16,7 +17,13 @@ export class AppoinmentsComponent implements OnInit {
   activeCalls!: any
   activateJoinButton = ''
   link!: string
-  constructor(private appoiment: SlotBookingService) { }
+  showRatingModal = false
+  currentExpertId!: string
+  reviewStatus = ['Poor', 'Below Average', 'Good', 'Very Good', 'Excellent']
+
+
+
+  constructor(private appoiment: SlotBookingService, private addReview: ExpertService) { }
   ngOnInit() {
     this.getAppoiment()
 
@@ -99,8 +106,46 @@ export class AppoinmentsComponent implements OnInit {
   }
 
 
-  openLinkInNewWindow() {
-    window.open(this.link, '_blank');
+  openLinkInNewWindow(appoinmentId: string, expertId: string) {
+    this.currentExpertId = expertId
+    // should uncomment
+
+    // this.appoiment.changeAppoinmentStatus(appoinmentId).subscribe((response) => {
+    //   console.log(response);
+
+
+    // }, (error) => {
+    //   console.log(error);
+
+    // })
+
+    // window.open(this.link, '_blank');
+
+    this.showRatingModal = true
+
+
+  }
+
+  value!: number;// Property to store the rating value
+
+  ratingValue() {
+    this.showRatingModal = false
+    // This function will be called when the form is submitted
+    console.log('Selected rating value:', this.value);
+    // You can perform further actions with the selected value here
+    this.addReview.addexpertReview(this.value, this.currentExpertId).subscribe((response) => {
+      console.log(response);
+
+    }, (error) => {
+      console.log(error);
+
+    })
+
+  }
+
+
+  closeRatingModal() {
+    this.showRatingModal = false
   }
 
 

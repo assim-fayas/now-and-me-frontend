@@ -145,7 +145,7 @@ roomName: "PrincipalRoom"
 
   // handleVideoConferenceLeft = () => {
   //   console.log('handleVideoConferenceLeft');
-  //   this.route.navigate(['/experts/home']);
+  //   this.route.navigate(['/experts/appoinments']);
   // };
 
   handleMuteStatus = (audio: any) => {
@@ -173,6 +173,8 @@ roomName: "PrincipalRoom"
     }
 
     if (command == 'toggleAudio') {
+      console.log('toggleAudio');
+
       this.isAudioMuted = !this.isAudioMuted;
     }
 

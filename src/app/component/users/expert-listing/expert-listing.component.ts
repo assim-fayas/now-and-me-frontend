@@ -19,7 +19,7 @@ export class ExpertListingComponent implements OnInit {
   }
 
   listExperts!: any
-
+  RatingCount!: number
 
 
 

@@ -361,6 +361,7 @@
                                         <option value="they/them">They/Them</option>
 
                                     </select>
+
                                 </div>
                                 <div class="w-full md:w-1/2 md:pl-2">
                                     <label for="gender"
@@ -382,6 +383,9 @@
                                 <textarea id="bio" name="bio" [(ngModel)]="user.bio"
                                     class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500"
                                     required></textarea>
+                                <div *ngIf="userForm.submitted && !user.bio" class="text-red-500 text-xs mt-1">
+                                    Bio is required
+                                </div>
                             </div>
 
                             <div class="mb-4">
@@ -391,7 +395,7 @@
                                     class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500">
                             </div>
 
-                            <button type="submit" [disabled]="!userForm.valid"
+                            <button type="submit"
                                 class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-full transform transition-transform hover:scale-105 focus:outline-none focus:ring focus:border-orange-500 w-full mt-4">
                                 Save Changes
                             </button>

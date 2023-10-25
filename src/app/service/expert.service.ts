@@ -149,8 +149,15 @@ export class ExpertService {
 
   }
 
-
-
+  getDashboardDetails() {
+    return this.http.get(`${this.url}/experts/dashboard`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
 
   // expert logout

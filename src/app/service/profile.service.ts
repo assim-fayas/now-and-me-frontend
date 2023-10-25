@@ -5,6 +5,7 @@ import { Router } from '@angular/router'
 import { map, catchError } from 'rxjs/operators'
 import { throwError } from 'rxjs'
 import { UserProfile } from '../models';
+import { ExpertProfile } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,18 @@ export class ProfileService {
         return throwError(error)
       }))
   }
+
+
+  updateExpertProfile(expertProfile: ExpertProfile, id: string) {
+    return this.http.post(`${this.url}/experts/updateExpertProfile/${id}`, expertProfile, { withCredentials: true }).pipe(map(response => {
+      return response
+    }),
+      catchError((error) => {
+        return throwError(error)
+      }))
+  }
+
+
 
 }
 

@@ -12,7 +12,6 @@ import { CommunityService } from 'src/app/service/community.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   thoughts: any = []
   showpost: boolean = false
   currentPost!: string
@@ -60,11 +59,14 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(userForm: NgForm) {
     if (userForm.valid) {
+
+
       // Form is valid, you can access the form values through this.user
       console.log('Form submitted:', this.user);
       this.profileService.updateProfile(this.user).subscribe((response) => {
         console.log(response);
         this.ngOnInit()
+        this.closeModal1()
       }, (error) => {
         console.log(error);
 

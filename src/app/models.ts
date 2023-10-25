@@ -103,6 +103,14 @@ export interface Appointment {
     paymentStatus: string;
 }
 
+export interface ExpertProfile {
+
+    bio: string,
+    name: string,
+    city?: string,
+    profileImage?: null
+}
+
 
 
 

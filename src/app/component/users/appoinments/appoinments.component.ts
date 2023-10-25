@@ -110,18 +110,18 @@ export class AppoinmentsComponent implements OnInit {
     this.currentExpertId = expertId
     // should uncomment
 
-    // this.appoiment.changeAppoinmentStatus(appoinmentId).subscribe((response) => {
-    //   console.log(response);
+    this.appoiment.changeAppoinmentStatus(appoinmentId).subscribe((response) => {
+      console.log(response);
 
+      this.showRatingModal = true
+    }, (error) => {
+      console.log(error);
 
-    // }, (error) => {
-    //   console.log(error);
+    })
 
-    // })
+    window.open(this.link, '_blank');
 
-    // window.open(this.link, '_blank');
-
-    this.showRatingModal = true
+    // this.showRatingModal = true
 
 
   }
@@ -129,6 +129,7 @@ export class AppoinmentsComponent implements OnInit {
   value!: number;// Property to store the rating value
 
   ratingValue() {
+    this.getAppoiment()
     this.showRatingModal = false
     // This function will be called when the form is submitted
     console.log('Selected rating value:', this.value);
@@ -145,7 +146,9 @@ export class AppoinmentsComponent implements OnInit {
 
 
   closeRatingModal() {
+    this.getAppoiment()
     this.showRatingModal = false
+
   }
 
 

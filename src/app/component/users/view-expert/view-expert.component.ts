@@ -32,7 +32,7 @@ export class ViewExpertComponent implements OnInit {
 
     this.userDetails.userDetails().subscribe((response: any) => {
       this.userInfo = response.userDetails
-      console.log(this.userInfo);
+      console.log("user", this.userInfo);
 
       this.currentUser = response.userDetails._id
       console.log(this.currentUser);
@@ -48,6 +48,8 @@ export class ViewExpertComponent implements OnInit {
   viewExpert() {
     this.expertService.viewExpert(this.currentExpertId).subscribe((response: any) => {
       this.expertView = response
+      console.log("expert", response);
+
       this.sessionCharge = response.hourlySessionCharge
     }, (error) => {
       console.log(error);

@@ -6,13 +6,13 @@ import { ImageuploadService } from 'src/app/service/imageupload.service';
 import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { CommunityService } from 'src/app/service/community.service';
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   thoughts: any = []
   showpost: boolean = false
   currentPost!: string
@@ -20,8 +20,10 @@ export class ProfileComponent implements OnInit {
   thougthSectionvisible = true
   anonymouseSectionVisible = false
   modalOpen1 = false;
+  imageUrl!: string
+  //loading spinner
+  isLoading: boolean = false
   //profile variables
-
   userDetails: any = []//want to create interface
   image!: string
 
@@ -32,12 +34,12 @@ export class ProfileComponent implements OnInit {
     gender: '',
     bio: '',
     location: '',
-    profileImage: null // Initialize profileImage as null
+    profileImage: ''
   };
 
-  constructor(private profileService: ProfileService, private upload: ImageuploadService, private community: CommunityService) { }
+  constructor(private profileService: ProfileService, private upload: ImageuploadService, private community: CommunityService, public toastr: ToastrService) { }
   ngOnInit() {
-    // initFlowbite()
+    this.isLoading = true
     this.getUserDetails()
     this.getPostDetails()
   }
@@ -50,9 +52,10 @@ export class ProfileComponent implements OnInit {
 
       console.log(response);
       console.log("this.userDetailsssssssssssssss", this.userDetails);
-
+      this.isLoading = false
     }, (error) => {
       console.log(error);
+      this.isLoading = false
 
     })
   }
@@ -60,14 +63,23 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(userForm: NgForm) {
     if (userForm.valid) {
+
+
       // Form is valid, you can access the form values through this.user
       console.log('Form submitted:', this.user);
-      this.profileService.updateProfile(this.user).subscribe((response) => {
+      this.profileService.updateProfile(this.user).subscribe((response: any) => {
+
         console.log(response);
         this.ngOnInit()
+        this.closeModal1()
+        this.toastr.success(response.message, 'Horrayyy 🎉', {
+          timeOut: 2000,
+        });
       }, (error) => {
         console.log(error);
-
+        this.toastr.error('Something Went Wrong', 'oops😕', {
+          timeOut: 2000,
+        });
       })
 
 
@@ -76,29 +88,26 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  // cloudinary image upload
-
 
   onFileSelected(event: any) {
 
     const file = event.target.files[0]; // Get the first (and only) file from the input
+    console.log(file);
+
     if (file) {
-      const formData = new FormData();
+      this.user.profileImage = file
+      const reader = new FileReader()
+      reader.onload = (event: any) => {
+
+        this.imageUrl = event.target.result
+      }
+      reader.readAsDataURL(file);
 
 
-      console.log(formData, "form dataaa");
-
-      // this.upload.uploadImage(formData).subscribe(
-      //   (res) => {
-      //     console.log("cloudinary", res);
-      //   },
-      //   (error) => {
-      //     console.log('upload error', error);
-      //   }
-      // );
     }
-  }
 
+
+  }
 
 
 

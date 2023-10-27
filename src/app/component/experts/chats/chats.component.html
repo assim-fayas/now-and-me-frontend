@@ -51,54 +51,65 @@
                         </div>
 
                         <ng-container *ngIf="activeChats">
-                            <div (click)="showChats(item._id)" *ngFor="let item of allUsers"
-                                class=" ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5 hover:bg-slate-100"
-                                [ngClass]="{'selected': selectedUser === item._id}">
 
-                                <div class="flex items-center gap-4 pl-4 ">
-                                    <img alt="Women"
-                                        src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                        class="h-12 w-12 rounded-lg object-cover" />
+                            <div *ngIf="loadingspinner==true">
+                                <app-loading-spinner-expert></app-loading-spinner-expert>
+                            </div>
+                            <ng-container *ngIf="loadingspinner==false">
+                                <div (click)="showChats(item._id)" *ngFor="let item of allUsers"
+                                    class=" ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5 hover:bg-slate-100"
+                                    [ngClass]="{'selected': selectedUser === item._id}">
 
-                                    <div>
-                                        <p class="font-medium text-black">{{item.name}}</p>
+                                    <div class="flex items-center gap-4 pl-4 ">
+                                        <img alt="Women"
+                                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                            class="h-12 w-12 rounded-lg object-cover" />
+
+                                        <div>
+                                            <p class="font-medium text-black">{{item.name}}</p>
 
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+
+                            </ng-container>
                         </ng-container>
                         <ng-container *ngIf=previousChats>
+                            <div *ngIf="loadingspinner==true">
+                                <app-loading-spinner-expert></app-loading-spinner-expert>
+                            </div>
+                            <ng-container *ngIf="loadingspinner==false">
+                                <div class="   ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
 
-                            <div class="   ml-8 mr-8 mb-0 border border-gray-200  pt-5 pb-5">
 
+                                    <div class="flex items-center gap-4 pl-4 ">
+                                        <img alt="Women"
+                                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                            class="h-12 w-12 rounded-lg object-cover" />
 
-                                <div class="flex items-center gap-4 pl-4 ">
-                                    <img alt="Women"
-                                        src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                        class="h-12 w-12 rounded-lg object-cover" />
+                                        <div>
+                                            <p class="font-medium text-black">Carol Daines</p>
 
-                                    <div>
-                                        <p class="font-medium text-black">Carol Daines</p>
-
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class=" ml-8 mr-8 mb-0 border border-gray-200   pt-5 pb-5">
+                                <div class=" ml-8 mr-8 mb-0 border border-gray-200   pt-5 pb-5">
 
 
-                                <div class="flex items-center gap-4 pl-4 ">
-                                    <img alt="Women"
-                                        src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                        class="h-12 w-12 rounded-lg object-cover" />
+                                    <div class="flex items-center gap-4 pl-4 ">
+                                        <img alt="Women"
+                                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                            class="h-12 w-12 rounded-lg object-cover" />
 
-                                    <div>
-                                        <p class="font-medium text-black">Carol Daines</p>
+                                        <div>
+                                            <p class="font-medium text-black">Carol Daines</p>
 
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </ng-container>
                         </ng-container>
 
 
@@ -174,12 +185,8 @@
                                 <form (ngSubmit)="onSubmit()">
                                     <label for="chat" class="sr-only">Your message</label>
                                     <div class="flex items-center px-3  py-2  bg-gray-50 dark:bg-gray-700">
-                                        <button type="button"
-                                            class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
 
-                                            <span class="sr-only">Upload image</span>
-                                        </button>
-                                        <button type="button"
+                                        <button (click)="isEmojiPickerVisible = !isEmojiPickerVisible"
                                             class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                                             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                 fill="none" viewBox="0 0 20 20">
@@ -205,7 +212,10 @@
                                     </div>
                                 </form>
                             </div>
+                            <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)"
+                                title="Choose your emoji"></emoji-mart>
                         </ng-container>
+
                         <ng-template #svgContent>
                             <div class="flex justify-center ">
                                 <img class="h-96" src="../../../../assets/image/undraw_Happy_news_re_tsbd.png" alt="">

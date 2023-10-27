@@ -4,6 +4,7 @@ import { ExpertService } from 'src/app/service/expert.service';
 import { ProfileService } from 'src/app/service/profile.service';
 import { SlotBookingService } from 'src/app/service/slot-booking.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr'
 declare var Razorpay: any;
 @Component({
   selector: 'app-view-expert',
@@ -20,16 +21,22 @@ export class ViewExpertComponent implements OnInit {
   sessionCharge!: string
   userInfo!: any
   currentUser!: string
+  chatOfferModal = false
+  //loading spinner
+  isLoading: boolean = false
+  constructor(private activateRouter: ActivatedRoute, private expertService: ExpertService, private bookChat: SlotBookingService, private userDetails: ProfileService, public toastr: ToastrService) {
 
-  constructor(private activateRouter: ActivatedRoute, private expertService: ExpertService, private bookChat: SlotBookingService, private userDetails: ProfileService) { }
+  }
 
   ngOnInit() {
+
+
     this.activateRouter.params.subscribe(params => {
       this.currentExpertId = params['id']
       this.viewExpert()
 
     })
-
+    this.isLoading = true
     this.userDetails.userDetails().subscribe((response: any) => {
       this.userInfo = response.userDetails
       console.log("user", this.userInfo);
@@ -37,23 +44,29 @@ export class ViewExpertComponent implements OnInit {
       this.currentUser = response.userDetails._id
       console.log(this.currentUser);
 
-
+      this.isLoading = false
     }, (error) => {
       console.log(error);
-
+      this.isLoading = false
     })
+
+    setTimeout(() => {
+      this.chatOfferModall();
+    }, 3000);
   }
 
 
   viewExpert() {
+    this.isLoading = true
     this.expertService.viewExpert(this.currentExpertId).subscribe((response: any) => {
       this.expertView = response
       console.log("expert", response);
 
       this.sessionCharge = response.hourlySessionCharge
+      this.isLoading = false
     }, (error) => {
       console.log(error);
-
+      this.isLoading = false
     })
   }
 
@@ -93,20 +106,30 @@ export class ViewExpertComponent implements OnInit {
 
 
       if (response) {
-        console.log(response);
+
         this.payNow()
 
 
       }
 
 
-    }, (error) => {
+    }, (error: any) => {
       console.log(error);
-
+      this.toastr.error('You can  Only book a expert at once', 'oops😕', {
+        timeOut: 1500,
+      });
 
 
     })
 
+  }
+
+
+  chatOfferModall() {
+    this.chatOfferModal = true
+  }
+  closechatOfferModal() {
+    this.chatOfferModal = false
   }
 
 
@@ -172,7 +195,9 @@ export class ViewExpertComponent implements OnInit {
     console.log("payment status", this.paymentStatus);
     this.message = "Payment Done Successfully";
     console.log(this.message);
-
+    this.toastr.info('You can go to Appoinment Section', 'Horrayyy 🎉', {
+      timeOut: 4000,
+    });
 
   }
 

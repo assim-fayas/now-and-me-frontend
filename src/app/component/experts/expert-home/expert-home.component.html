@@ -2,54 +2,57 @@
     style=" background-image: url('../../../../assets/image/admindashboard.png')">
     <app-sidebar></app-sidebar>
     <main class=" min-w-0 flex-1 overflow-auto pt-16 ml-80  ">
-
-        <div class="  fixed rounded-2xl top-0 z-20 shadow-lg bg-white border w-fit  p-10 pl-5 pr-6 ">
-            <div class="flex -mt-6  ">
-                <div class>
-                    <div class="text-base font-bold text-black">Over View</div>
-                    <div></div>
-                </div>
-
-
-            </div>
-            <div class="flex space-x-14  ">
-
-
-                <div
-                    class="mt-5 p-5 px-12 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium opacity-95">
-
-                    <div class="text-white font-medium text-lg whitespace-nowrap">Total Appoiments</div>
-                    <div class="flex justify-center">
-                        <p class="text-white pt-3 font-bold text-lg">
-                            10</p>
+        <div class="-ml-56" *ngIf="loadingspinner==true">
+            <app-loading-spinner-expert></app-loading-spinner-expert>
+        </div>
+        <ng-container *ngIf="loadingspinner==false">
+            <div class="  fixed rounded-2xl top-0 z-20 shadow-lg bg-white border w-fit  p-10 pl-5 pr-6 ">
+                <div class="flex -mt-6  ">
+                    <div class>
+                        <div class="text-base font-bold text-black">Over View</div>
+                        <div></div>
                     </div>
+
+
                 </div>
+                <div class="flex space-x-14  ">
 
-                <div
-                    class="mt-5 p-5 px-12 rounded-lg  bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium   opacity-95">
 
-                    <p class="text-white font-medium text-lg whitespace-nowrap">Chat Revenue</p>
-                    <div class="flex justify-center pt-2">
-                        <p class="text-white font-bold text-lg">20₹</p>
+                    <div
+                        class="mt-5 p-5 px-12 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium opacity-95">
+
+                        <div class="text-white font-medium text-lg whitespace-nowrap">Total Appoiments</div>
+                        <div class="flex justify-center">
+                            <p class="text-white pt-3 font-bold text-lg">
+                                {{dasboardDetails?.totalAppoinment}}</p>
+                        </div>
                     </div>
-                </div>
-                <div
-                    class="mt-5 p-5 px-12 rounded-lg bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium  opacity-95">
 
-                    <p class="text-white font-medium text-lg whitespace-nowrap">Video Revenue</p>
-                    <div class="flex justify-center pt-2">
-                        <p class="text-white font-bold text-lg">40₹</p>
-                    </div>
-                </div>
-                <div
-                    class="mt-5 p-5 px-12 rounded-lg bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium  opacity-95">
+                    <div
+                        class="mt-5 p-5 px-12 rounded-lg  bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium   opacity-95">
 
-                    <p class="text-white font-medium text-lg whitespace-nowrap">Active Appoinment</p>
-                    <div class="flex justify-center pt-2">
-                        <p class="text-white font-bold text-lg">50₹</p>
+                        <p class="text-white font-medium text-lg whitespace-nowrap">Chat Revenue</p>
+                        <div class="flex justify-center pt-2">
+                            <p class="text-white font-bold text-lg"> ₹ {{dasboardDetails?.chatRevenue}}</p>
+                        </div>
                     </div>
-                </div>
-                <!-- <div
+                    <div
+                        class="mt-5 p-5 px-12 rounded-lg bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium  opacity-95">
+
+                        <p class="text-white font-medium text-lg whitespace-nowrap">Video Revenue</p>
+                        <div class="flex justify-center pt-2">
+                            <p class="text-white font-bold text-lg"> ₹ {{dasboardDetails?.videorevenue}}</p>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-5 p-5 px-12 rounded-lg bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium  opacity-95">
+
+                        <p class="text-white font-medium text-lg whitespace-nowrap">Active Appoinment</p>
+                        <div class="flex justify-center pt-2">
+                            <p class="text-white font-bold text-lg"> {{dasboardDetails?.activeAppoinment}}</p>
+                        </div>
+                    </div>
+                    <!-- <div
                     class="mt-5 p-5 rounded-lg bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium  opacity-95">
 
                     <p class="text-white font-medium text-lg whitespace-nowrap">Chats Sessions</p>
@@ -67,22 +70,24 @@
                 </div> -->
 
 
+                </div>
+
+
+            </div>
+        </ng-container>
+        <ng-container *ngIf="loadingspinner==false">
+            <div class="flex space-x-10 mt-40">
+
+                <div class="rounded-2xl  shadow-lg   border w-fit  p-5  mt-5    ">
+                    <app-barchart></app-barchart>
+                </div>
+                <div class=" mt-5  rounded-2xl  shadow-lg   border w-fit    ">
+                    <app-barchart></app-barchart>
+                </div>
+
             </div>
 
-
-        </div>
-        <div class="flex space-x-10 mt-40">
-
-            <div class="rounded-2xl  shadow-lg   border w-fit  p-5  mt-5    ">
-                <app-barchart></app-barchart>
-            </div>
-            <div class=" mt-5  rounded-2xl  shadow-lg   border w-fit    ">
-                <app-barchart></app-barchart>
-            </div>
-
-        </div>
-
-        <!-- <div class="flex space-x-10 mt-5 mb-10">
+            <!-- <div class="flex space-x-10 mt-5 mb-10">
             <div class=" mt-5  rounded-2xl  shadow-lg   border w-fit  p-5  ">
                 <app-barchart></app-barchart>
             </div>
@@ -113,10 +118,10 @@
                             <th scope="col" class="px-6 py-3">
                             <span class="sr-only">Edit</span>
                         </th> -->
-        <!-- </tr>
+            <!-- </tr>
                     </thead>
                     <tbody> -->
-        <!-- <tr
+            <!-- <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4 text-gray-900 font-medium">
 
@@ -137,16 +142,16 @@
                             <td class="px-6 py-4">
 
                             </td>  -->
-        <!-- <td class="px-6 py-4 text-right">
+            <!-- <td class="px-6 py-4 text-right">
                             <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         </td> -->
-        <!-- </tr>
+            <!-- </tr>
 
 
                     </tbody>
                 </table>
             </div>
         </div> -->
-
+        </ng-container>
     </main>
 </div>

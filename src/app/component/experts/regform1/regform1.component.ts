@@ -76,10 +76,10 @@ export class Regform1Component {
     console.log("clikeee");
     this.form1Submitted = true
     if (this.regform1.valid) {
-      this.expertService.registerForm1(this.regform1.value).subscribe((response:any) => {
+      this.expertService.registerForm1(this.regform1.value).subscribe((response: any) => {
 
         console.log(response);
-        this.router.navigate(['/experts/regform2',response.expertid])
+        this.router.navigate(['/experts/regform2', response.expertid])
       }, (error) => {
         console.log(error);
 

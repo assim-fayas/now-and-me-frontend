@@ -10,7 +10,7 @@ import { SlotBookingService } from 'src/app/service/slot-booking.service';
 })
 export class ViewAppoinmentsComponent implements OnInit {
 
-
+  loadingspinner = false
   activeAppoinments!: any
   previouseAppoinments!: any
   activateJoinButton = ''
@@ -39,13 +39,16 @@ export class ViewAppoinmentsComponent implements OnInit {
 
 
   getAppoinments() {
+    this.loadingspinner = true
     this.appoiment.getExpertsVideoAppoinment().subscribe((response) => {
       this.getPreviouseAppoinment()
       this.activeAppoinments = response
       console.log(this.activeAppoinments);
+      this.loadingspinner = false
 
     }, (error) => {
       console.log(error);
+      this.loadingspinner = false
 
     })
 
@@ -53,14 +56,15 @@ export class ViewAppoinmentsComponent implements OnInit {
   }
 
   getPreviouseAppoinment() {
+    this.loadingspinner = true
     this.appoiment.getPreviousExpertVideoAppoinment().subscribe((response) => {
 
       this.previouseAppoinments = response
       console.log("previouse appoinmentsss", this.previouseAppoinments);
-
+      this.loadingspinner = false
     }, (error) => {
       console.log(error);
-
+      this.loadingspinner = false
     })
 
   }

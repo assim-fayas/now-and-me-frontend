@@ -44,56 +44,59 @@
                         </div>
                     </div>
                 </div>
-
-                <ng-container *ngIf="activeChats">
-                    <div (click)="showChats(item.expert._id)" *ngFor="let item of ActiveChats"
-                        class=" ml-8 mr-8 mb-0   pt-5 pb-5 hover:bg-slate-100"
-                        [ngClass]="{'selected': selectedExpert === item.expert._id}">
-
-
-                        <div class="flex items-center gap-4 pl-4 ">
-                            <img alt="Women"
-                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                class="h-12 w-12 rounded-lg object-cover" />
-
-                            <div>
-                                <p class="font-medium text-black">{{item.expert.name}}</p>
+                <div *ngIf="isLoading">
+                    <app-loading-spinner-user></app-loading-spinner-user>
+                </div>
+                <ng-container *ngIf="!isLoading">
+                    <ng-container *ngIf="activeChats">
+                        <div (click)="showChats(item.expert._id)" *ngFor="let item of ActiveChats"
+                            class=" ml-8 mr-8 mb-0   pt-5 pb-5 hover:bg-slate-100"
+                            [ngClass]="{'selected': selectedExpert === item.expert._id}">
 
 
+                            <div class="flex items-center gap-4 pl-4 ">
+                                <img alt="Women"
+                                    src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                    class="h-12 w-12 rounded-lg object-cover" />
+
+                                <div>
+                                    <p class="font-medium text-black">{{item.expert.name}}</p>
+
+
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </ng-container>
-                <ng-container *ngIf="previousChats ">
+                    </ng-container>
+                    <ng-container *ngIf="previousChats ">
 
-                    <ng-container *ngFor="let item2 of ActiveChats">
-                        <ng-container *ngFor="let item of  previousChatdocs">
-                            <ng-container *ngIf="item.expert._id !== item2.expert._id">
+                        <ng-container *ngFor="let item2 of ActiveChats">
+                            <ng-container *ngFor="let item of  previousChatdocs">
+                                <ng-container *ngIf="item.expert._id !== item2.expert._id">
 
-                                <div (click)="showChats(item.expert._id)"
-                                    class="  ml-8 mr-8 mb-0 border border-dashed border-gray-200  pt-5 pb-5 hover:bg-slate-100"
-                                    [ngClass]="{'selected': selectedExpert === item.expert._id} ">
-
-
-                                    <div class="flex items-center gap-4 pl-4 ">
-                                        <img alt="Women"
-                                            src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                            class="h-12 w-12 rounded-lg object-cover" />
-
-                                        <div>
-
-                                            <p class="font-medium text-black">{{item.expert.name}}</p>
+                                    <div (click)="showChats(item.expert._id)"
+                                        class="  ml-8 mr-8 mb-0 border border-dashed border-gray-200  pt-5 pb-5 hover:bg-slate-100"
+                                        [ngClass]="{'selected': selectedExpert === item.expert._id} ">
 
 
+                                        <div class="flex items-center gap-4 pl-4 ">
+                                            <img alt="Women"
+                                                src="https://images.unsplash.com/photo-1611432579699-484f7990b127?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                                class="h-12 w-12 rounded-lg object-cover" />
+
+                                            <div>
+
+                                                <p class="font-medium text-black">{{item.expert.name}}</p>
+
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </ng-container>
                             </ng-container>
                         </ng-container>
                     </ng-container>
                 </ng-container>
-
 
 
 
@@ -191,11 +194,8 @@
                         <form (ngSubmit)="onSubmit()">
                             <label for="chat" class="sr-only">Your message</label>
                             <div class="flex items-center px-3 py-2 bg-gray-50 dark:bg-gray-700">
-                                <button type="button"
-                                    class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                                    <span class="sr-only">Upload image</span>
-                                </button>
-                                <button type="button"
+
+                                <button (click)="isEmojiPickerVisible = !isEmojiPickerVisible"
                                     class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 20 20">
@@ -208,6 +208,7 @@
                                 <input type="text" id="chat" name="message" [(ngModel)]="message"
                                     class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Your message...">
+
                                 <button type="submit" [disabled]="!message" *ngIf="activeChats"
                                     class="inline-flex justify-center p-2 text-orange-500 rounded-full cursor-pointer hover:bg-orange-100 dark:text-blue-500 dark:hover:bg-gray-600">
                                     <svg class="w-5 h-5 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -227,9 +228,12 @@
                                     <span class="sr-only">Send message</span>
                                 </button>
                             </div>
+
                         </form>
 
                     </div>
+                    <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)"
+                        title="Choose your emoji"></emoji-mart>
                 </ng-container>
                 <ng-template #svgContent>
                     <div class="flex justify-center ">

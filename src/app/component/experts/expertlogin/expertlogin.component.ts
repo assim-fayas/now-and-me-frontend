@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http"
 import { LoginResponse } from 'src/app/models';
 import { ExpertService } from 'src/app/service/expert.service';
 import { first } from 'rxjs/operators'
-
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-expertlogin',
   templateUrl: './expertlogin.component.html',
@@ -22,6 +22,7 @@ export class ExpertloginComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private user: ExpertService,
+    public toastr: ToastrService
   ) {
 
     // redirect to home if user alredy loged in 
@@ -61,8 +62,11 @@ export class ExpertloginComponent implements OnInit {
           this.router.navigate(['/experts/home'])
         },
         (errorMessage) => {
-          this.loginErrorMessage = errorMessage
           this.isLoading = false
+          this.toastr.error(errorMessage, 'oops😕', {
+            timeOut: 2000,
+            positionClass: 'toast-top-center'
+          });
 
         }
       )

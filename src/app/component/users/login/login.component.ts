@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http"
 import { LoginResponse } from 'src/app/models';
 import { UserServiceService } from '../../../service/user-service.service'
 import { first } from 'rxjs/operators'
-// import { initFlowbite } from 'flowbite';
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-login',
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private user: UserServiceService,
+    public toastr: ToastrService
   ) {
 
     //redirect to home if user alredy loged in 
@@ -59,9 +60,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/'])
         },
         (errorMessage) => {
-          this.loginErrorMessage = errorMessage
           this.isLoading = false
-
+          this.toastr.error(errorMessage, 'oops😕', {
+            positionClass: 'toast-top-center',
+            timeOut: 2000,
+          });
         }
       )
 

@@ -12,6 +12,9 @@ import { environment } from 'src/environments/environment';
 })
 export class ExpertListingComponent implements OnInit {
 
+  //loading spinner
+  isLoading: boolean = false
+
   constructor(private expertService: ExpertService, private router: Router) { }
 
   ngOnInit(): void {
@@ -25,13 +28,15 @@ export class ExpertListingComponent implements OnInit {
 
   //expertlisting
   expertListing() {
+    this.isLoading = true
     this.expertService.expertListing().subscribe((response: any) => {
       this.listExperts = response.allExperts
       console.log(this.listExperts);
 
-
+      this.isLoading = false
     }, (error) => {
       console.log(error);
+      this.isLoading = false
 
     })
   }

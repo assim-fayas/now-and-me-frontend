@@ -1,4 +1,9 @@
-input[type="radio"]:checked+div>div {
-  opacity: 100;
-  transform: scale(100%);
+.emoji-mart-picker {
+  width: 30px;
+  /* Adjust to your preferred width */
+  height: 10px;
+  /* Adjust to your preferred height */
+
+
+  transform: translatey(-40px);
 }

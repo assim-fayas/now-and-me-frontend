@@ -8,13 +8,12 @@ import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.inter
 import { UserServiceService } from './service/user-service.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CloudinaryConfig } from '@cloudinary/url-gen';
-import { Cloudinary } from 'cloudinary-core';
-import { CloudinaryModule } from '@cloudinary/ng';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { ModalComponent } from './component/common/modal/modal.component';
 import { SharedModule } from './shared/shared.module';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 
 
 
@@ -44,8 +43,10 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
 
 
 
+
   ],
   imports: [
+    PickerModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -57,7 +58,7 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
 
 
 
-  ],
+  ], exports: [PickerModule],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptorInterceptor,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { HttpClient } from "@angular/common/http"
 import { first } from 'rxjs';
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
@@ -18,7 +19,8 @@ export class AdminLoginComponent {
   constructor(
     private admin: AdminServiceService,
     private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    public toastr: ToastrService) {
 
     // redirect to asdmin dashboard if admin already7 logged in
     if (localStorage.getItem('jwt_admin')) {
@@ -52,8 +54,13 @@ export class AdminLoginComponent {
 
       },
         (errorMessage) => {
-          this.loginErrorMessage = errorMessage
+          // this.loginErrorMessage = errorMessage
           this.isLoading = false
+          this.toastr.error(errorMessage, 'oops😕', {
+            timeOut: 2000,
+            positionClass: 'toast-top-center'
+
+          });
         }
       )
   }

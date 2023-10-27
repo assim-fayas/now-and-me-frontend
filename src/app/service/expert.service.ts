@@ -101,6 +101,15 @@ export class ExpertService {
           return throwError(error)
         }))
   }
+  expertVerification(id: string) {
+    return this.http.post(`${this.url}/experts/verifyExpert/${id}`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
 
 
@@ -149,8 +158,15 @@ export class ExpertService {
 
   }
 
-
-
+  getDashboardDetails() {
+    return this.http.get(`${this.url}/experts/dashboard`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
 
 
   // expert logout

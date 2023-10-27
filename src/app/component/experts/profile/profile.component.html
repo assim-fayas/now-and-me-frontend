@@ -1,40 +1,185 @@
 <div class="flex bg-cover bg-center h-full"
     style=" background-image: url('../../../../assets/image/admindashboard.png')">
     <app-sidebar class="fixed "></app-sidebar>
-    <main class="min-w-0 flex-1 overflow-auto  pt-1  ml-[540px] ">
-        <div class="rounded-3xl mt-16 shadow-lg border w-1/2   h-1/2 ">
+    <main class="min-w-0 flex-1 overflow-auto  pt-1  ml-[400px] ">
+        <div class="rounded-3xl mt-16 shadow-lg border w-[80%] overflow-hidden  min-h-[550px] ">
             <div class="ml-[94%] pt-3">
                 <div class="flex ">
-                    <svg class="  w-6 h-6 text-gray-400 hover:text-blue-700 dark:text-white" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z" />
-                    </svg>
+                    <button (click)="editProfiledata(expertprofile?._id)">
+                        <svg class=" w-6 h-6 text-gray-400 hover:text-orange-500 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-
-            <div class="flex justify-center p-5 -ml-40">
-
-
-
-                <div class="">
-
-
-                    <img alt="..." src="https://i.pinimg.com/474x/85/25/83/852583511c3109d7a4efa0c3a233be1e.jpg"
-                        class="rounded-full absolute  w-40 h-40  shadow-md border-4 border-white transition duration-200 transform hover:scale-110" />
+            <div *ngIf="loadingspinner==true">
+                <app-loading-spinner-expert></app-loading-spinner-expert>
+            </div>
+            <ng-container *ngIf="loadingspinner==false">
+                <div class=" flex-col">
+                    <div class="flex justify-center p-5 -ml-56 ">
 
 
+
+                        <div class="">
+
+
+                            <img alt="..." src="https://i.pinimg.com/474x/85/25/83/852583511c3109d7a4efa0c3a233be1e.jpg"
+                                class="rounded-full absolute  w-40 h-40  shadow-md border-4 border-white transition duration-200 transform hover:scale-110" />
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="mt-44 ml-[390px] mb-8 ">
+                        <h3 class="font-semibold text-lg">{{expertprofile?.name}}</h3>
+                    </div>
+                    <div class=" ml-16 mb-5 mr-10">
+                        <h3 class="font-normal text-base">{{expertprofile?.bio}}</h3>
+                    </div>
+                    <div class="flex space-x-14 justify-center mb-16 mt-10  -ml-10">
+                        <div class="flex space-x-3">
+                            <div>
+                                <svg class=" w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 21">
+                                    <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2">
+                                        <path d="M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                        <path
+                                            d="M13.8 12.938h-.01a7 7 0 1 0-11.465.144h-.016l.141.17c.1.128.2.252.3.372L8 20l5.13-6.248c.193-.209.373-.429.54-.66l.13-.154Z" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">{{expertprofile?.city}}</h3>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3">
+                            <div>
+                                <svg class="w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </div>
+
+
+                            <div>
+                                <h3 class="font-medium">{{expertprofile?.joined | date}}</h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
-
-            </div>
-
-            <div class="inline-block mt-40 ml-48">
-                <!-- <p class="text-xl font-bold text-slate-600 ml-12 pt-2">{{admin.name}}</p>
-                <p class="text-xl font-bold text-slate-600 pt-2">{{admin.email}}</p> -->
-            </div>
-
+            </ng-container>
         </div>
     </main>
+</div>
+
+
+<!------------------------------------------------modal------------------------------------------------------ -->
+
+<!-- main modal -->
+<div [ngClass]="{'hidden': !modalOpen1}"
+    class="fixed ml-64 -mt-36 top-0  z-50 hidden w-full p-48 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-[100vh]"
+    style="top: 80px;">
+    <div class="relative w-full max-w-2xl max-h-[80vh]">
+        <!-- Modal content -->
+        <!-- Background overlay -->
+        <div class="fixed inset-0 transition-opacity">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" (click)="closeModal1()"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-md shadow-md">
+
+
+                    <div class="container">
+                        <h1>Edit Profile</h1>
+                        <form #expertForm="ngForm" (ngSubmit)="onSubmit(expertForm)">
+
+                            <div class="mb-4 flex justify-center">
+                                <div>
+                                    <label for="profileImage" class="block text-gray-700 text-sm font-medium mb-2">
+                                        <div
+                                            class="relative rounded-full w-32 h-32 bg-gray-200 border-2 border-gray-300 hover:border-orange-500">
+                                            <input type="file" id="profileImage" name="profileImage"
+                                                (change)="onFileSelected($event)"
+                                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                            <img alt="..."
+                                                src="https://i.pinimg.com/474x/85/25/83/852583511c3109d7a4efa0c3a233be1e.jpg"
+                                                class="rounded-full absolute object-cover w-full h-full  shadow-md border-4 border-white " />
+                                            <ng-template #uploadedImg>
+                                                <img src="../../../../assets/image/asim.jpg" alt="Current Profile Image"
+                                                    class="object-cover w-full h-full rounded-full">
+                                            </ng-template>
+                                            <div
+                                                class="absolute inset-0 flex items-center justify-center text-gray-300 hover:text-orange-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" name="name" [(ngModel)]="expert.name"
+                                    class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500"
+                                    required>
+                                <div *ngIf="expertForm.submitted && !expert.name" class="text-red-500 text-xs mt-1">
+                                    Name is required
+                                </div>
+                            </div>
+
+
+
+                            <div class="mb-4">
+                                <label for="bio" class="block text-gray-700 text-sm font-medium mb-2">Bio</label>
+                                <textarea id="bio" name="bio" [(ngModel)]="expert.bio"
+                                    class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500"
+                                    required></textarea>
+                                <div *ngIf="expertForm.submitted && !expert.bio" class="text-red-500 text-xs mt-1">
+                                    Bio is required
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="city" class="block text-gray-700 text-sm font-medium mb-2">Location</label>
+                                <input type="text" id="city" name="city" [(ngModel)]="expert.city"
+                                    class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-orange-500">
+                                <div *ngIf="expertForm.submitted && !expert.city" class="text-red-500 text-xs mt-1">
+                                    Location is required
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-full transform transition-transform hover:scale-105 focus:outline-none focus:ring focus:border-orange-500 w-full mt-4">
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

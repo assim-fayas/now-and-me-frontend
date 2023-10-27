@@ -11,7 +11,7 @@
         <div class="md:w-1/2 px-16">
             <h2 class="font-bold text-3xl text-white">Login</h2>
             <div *ngIf="isLoading">
-                <!-- <app-loading-spinner></app-loading-spinner> -->
+                <app-loading-spinner-expert></app-loading-spinner-expert>
             </div>
             <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="flex flex-col gap-4" *ngIf="!isLoading">
                 <input type="email" name="email" placeholder="E-mail" #email="ngModel" ngModel required email

@@ -9,6 +9,7 @@ import { FlagFormvalue } from 'src/app/models';
 import { CommentFormValue } from 'src/app/models';
 import { NgForm } from '@angular/forms';
 import { error } from 'jquery';
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-community',
   templateUrl: './community.component.html',
@@ -49,9 +50,22 @@ export class CommunityComponent implements OnInit {
   modalOpen1 = false
   EditModalOpen = false
   FlagModalOpen = false
+  isLoading: boolean = false
 
 
-  constructor(private editFb: FormBuilder, private router: Router, private fb: FormBuilder, private communityService: CommunityService, private userservice: UserServiceService) {
+  //emoji picker
+
+  public isEmojiPickerVisible!: boolean;
+  public addEmoji(event: any) {
+    this.commentText = `${this.commentText}${event.emoji.native}`;
+    this.isEmojiPickerVisible = false;
+  }
+
+
+
+
+
+  constructor(private editFb: FormBuilder, private router: Router, private fb: FormBuilder, private communityService: CommunityService, private userservice: UserServiceService, public toastr: ToastrService) {
     this.showpost = false
     console.log(this.selectedTags.length);
 
@@ -70,15 +84,14 @@ export class CommunityComponent implements OnInit {
 
   }
   ngOnInit() {
-    // initFlowbite()
     this.getLikesCommentCount()
 
 
   }
 
   validateTags(control: FormControl) {
-    const tags = (control.value as string).split(' ').map(tag => tag.trim());
-    if (tags.length >= 3) {
+    const tags = (control.value as string)?.split(' ').map(tag => tag.trim());
+    if (tags?.length >= 3) {
       return { tooManyTags: true };
     }
 
@@ -103,7 +116,6 @@ export class CommunityComponent implements OnInit {
   onSubmit() {
     this.submitted = true
     if (this.form.valid) {
-      this.form.reset()
       this.submittedFormValue = {
         thoughts: '',
         tags: [],
@@ -115,7 +127,15 @@ export class CommunityComponent implements OnInit {
       console.log(this.submittedFormValue, "form valueeeeeee");
 
       this.communityService.postThoughts(this.submittedFormValue).subscribe((response: any) => {
+        this.submitted = false
+        this.removeAlltags()
+        this.closeModal1()
         this.ngOnInit()
+        this.toastr.success(response.message, 'Horrayyy 🎉', {
+          timeOut: 1000,
+        });
+
+
 
 
 
@@ -141,10 +161,16 @@ export class CommunityComponent implements OnInit {
     }
 
     console.log(this.submittedFormValue, "last value");
-    this.communityService.updatePost(this.currentPost, this.submittedFormValue).subscribe((Response) => {
+    this.communityService.updatePost(this.currentPost, this.submittedFormValue).subscribe((Response: any) => {
+
       this.closeEditModal()
+      this.submitted = false
       console.log(Response);
       this.ngOnInit()
+      this.toastr.success(Response.message, 'Post changed', {
+        timeOut: 1000,
+
+      });
 
     }, (error) => {
       console.log(error);
@@ -187,6 +213,7 @@ export class CommunityComponent implements OnInit {
 
 
   getLikesCommentCount() {
+    this.isLoading = true
     this.communityService.countOfCommentsandLikes().subscribe((response: any) => {//type indakkanam
       console.log(response);
       this.allThoughts = response
@@ -205,11 +232,11 @@ export class CommunityComponent implements OnInit {
 
 
       console.log(this.currentLikePost, "curent like postttttt");
-
+      this.isLoading = false
 
     }, (error) => {
       console.log(error);
-
+      this.isLoading = false
     })
 
   }
@@ -251,13 +278,17 @@ export class CommunityComponent implements OnInit {
 
   //delete post
   deletePost(postid: string) {
-    this.communityService.deletePost(postid).subscribe((response) => {
+    this.communityService.deletePost(postid).subscribe((response: any) => {
       console.log("clicked delete post");
 
       if (response) {
 
         this.showeditpost(this.currentPost)
         this.ngOnInit()
+        this.toastr.warning(response.message, 'Post deleted', {
+          timeOut: 1000,
+
+        });
       }
 
 
@@ -280,8 +311,12 @@ export class CommunityComponent implements OnInit {
       reason: this.additionalComments
     }
     console.log("flag post valueeee", this.flagFormvalue);
-    this.communityService.flagPost(this.currentPost, this.flagFormvalue).subscribe((response) => {
+    this.communityService.flagPost(this.currentPost, this.flagFormvalue).subscribe((response: any) => {
       this.closeFlagModal()
+      this.toastr.info(response.message, 'We will review your concern 🤞', {
+        timeOut: 2000,
+
+      });
       console.log(response);
     }, (error) => {
       console.log(error);

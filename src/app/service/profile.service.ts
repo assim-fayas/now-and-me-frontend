@@ -28,7 +28,7 @@ export class ProfileService {
 
   }
 
-  updateProfile(profile: UserProfile) {
+  updateProfile(profile: any) {
     return this.http.put(`${this.url}/updateProfile`, profile, { withCredentials: true })
       .pipe(map(response => {
         return response

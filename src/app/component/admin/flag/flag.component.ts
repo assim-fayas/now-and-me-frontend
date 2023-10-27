@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { CommunityService } from 'src/app/service/community.service';
+import { ToastrService } from 'ngx-toastr'
 // import { initFlowbite } from 'flowbite';
 
 @Component({
@@ -15,7 +16,7 @@ export class FlagComponent implements OnInit {
   flagPost: any
   loadingspinner = true
 
-  constructor(private flagedPosts: CommunityService, private adminService: AdminServiceService) { }
+  constructor(private flagedPosts: CommunityService, private adminService: AdminServiceService, public toastr: ToastrService) { }
 
 
   openModal1(id: string) {
@@ -101,14 +102,21 @@ export class FlagComponent implements OnInit {
 
   //warning mail
   sendWarningMail(userId: string, postId: string) {
-    this.loadingspinner = true
+
     console.log("warning mail", userId, postId);
-    this.flagedPosts.sendMail(userId, postId).subscribe((response) => {
+    this.flagedPosts.sendMail(userId, postId).subscribe((response: any) => {
       console.log(response);
-      this.loadingspinner = false
+
+      this.toastr.warning(response.message, ' 🎉', {
+        timeOut: 2000,
+      });
     }, (error) => {
       console.log(error);
-      this.loadingspinner = false
+
+      console.log(error);
+      this.toastr.error('Something  Went Wrong', 'oops😕', {
+        timeOut: 2000,
+      });
     })
 
 
@@ -117,26 +125,48 @@ export class FlagComponent implements OnInit {
   // blockpost
   blockPost(userId: string, postid: string) {
     console.log("blockPost", userId, postid);
-    this.loadingspinner = true
-    this.flagedPosts.blockPost(userId, postid).subscribe((response) => {
+
+    this.flagedPosts.blockPost(userId, postid).subscribe((response: any) => {
       console.log(response);
-      this.loadingspinner = false
+
       this.ngOnInit()
+      if (response.message == "Post Blocked and Email send successfully") {
+        this.toastr.warning(response.message, ' 🎉', {
+          timeOut: 2000,
+        });
+      } else {
+        this.toastr.success(response.message, ' 🎉', {
+          timeOut: 2000,
+        });
+      }
     }, (error) => {
       console.log(error);
-      this.loadingspinner = false
+
+      this.toastr.error('Something  Went Wrong', 'oops😕', {
+        timeOut: 2000,
+      });
     })
 
   }
 
   //suspendUser
   suspendUser(userid: string) {
-    this.adminService.blockuser(userid).subscribe((response) => {
+    this.adminService.blockuser(userid).subscribe((response: any) => {
       console.log(response);
-
+      if (response.message == "user blockeddd") {
+        this.toastr.warning(response.message, ' 🎉', {
+          timeOut: 2000,
+        });
+      } else {
+        this.toastr.success(response.message, ' 🎉', {
+          timeOut: 2000,
+        });
+      }
     }, (error) => {
       console.log(error);
-
+      this.toastr.error('Something  Went Wrong', 'oops😕', {
+        timeOut: 2000,
+      });
     })
 
   }

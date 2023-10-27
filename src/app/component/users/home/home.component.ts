@@ -24,13 +24,5 @@ export class HomeComponent implements OnInit {
   }
 
 
-  check() {
-    this.http.get('http://localhost:3000/check').subscribe((res: any) => {
-      console.log(res);
 
-    }, (err) => {
-      console.log(err.error.message);
-
-    })
-  }
 }

@@ -165,20 +165,20 @@
                                     x-on:click.away="isActive = false" x-on:keydown.escape.window="isActive = false">
                                     <div class="p-2">
                                         <a (click)="sendWarningMail(item.user._id,item._id)"
-                                            class="block rounded-lg px-4 py-2 text-sm  text-black hover:bg-gray-50 hover:text-gray-700"
+                                            class="block rounded-lg px-4 py-2 text-sm cursor-pointer text-black hover:bg-gray-50 hover:text-gray-700"
                                             role="menuitem">
                                             Warning Mail
 
                                         </a>
 
                                         <a (click)="blockPost(item.user._id,item._id)"
-                                            class="block rounded-lg px-4 py-2 text-sm text-black hover:bg-gray-50 hover:text-gray-700"
+                                            class="block rounded-lg px-4 py-2 text-sm cursor-pointer text-black hover:bg-gray-50 hover:text-gray-700"
                                             role="menuitem">
                                             {{item.block ==true ? "Unblock Post" : "Block Post " }}
 
                                         </a>
                                         <a (click)="suspendUser(item.user._id)"
-                                            class="block rounded-lg px-4 py-2 text-sm text-black hover:bg-gray-50 hover:text-gray-700"
+                                            class="block rounded-lg px-4 py-2 text-sm cursor-pointer text-black hover:bg-gray-50 hover:text-gray-700"
                                             role="menuitem">
                                             Suspend User
                                         </a>

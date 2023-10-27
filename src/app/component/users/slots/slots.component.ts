@@ -4,6 +4,7 @@ import { ProfileService } from 'src/app/service/profile.service';
 import { SlotBookingService } from 'src/app/service/slot-booking.service';
 import { environment } from 'src/environments/environment';
 import { Appointment } from 'src/app/models';
+import { ToastrService } from 'ngx-toastr'
 declare var Razorpay: any;
 @Component({
   selector: 'app-slots',
@@ -12,7 +13,7 @@ declare var Razorpay: any;
 
 })
 export class SlotsComponent implements OnInit {
-  constructor(private slot: SlotBookingService, private expertservice: ExpertService, private userDetails: ProfileService) { }
+  constructor(private slot: SlotBookingService, private expertservice: ExpertService, private userDetails: ProfileService, public toastr: ToastrService) { }
 
   slots!: any
   slotTomorrow!: any
@@ -59,9 +60,6 @@ export class SlotsComponent implements OnInit {
       console.log(this.userInfo);
 
       this.currentUser = response.userDetails._id
-      console.log(this.currentUser);
-
-
     }, (error) => {
       console.log(error);
 
@@ -89,15 +87,21 @@ export class SlotsComponent implements OnInit {
       console.log('The `edited` object is null.');
       return;
     }
-    this.slot.addAppoinment(edited).subscribe((response) => {
+    this.slot.addAppoinment(edited).subscribe((response: any) => {
 
       if (response) {
         console.log(response);
         this.ngOnInit()
+        this.toastr.success('Appoinment Added Successfully', 'Horrayyy 🎉', {
+          timeOut: 2000,
+        });
       }
 
 
-    }, (error) => {
+    }, (error: any) => {
+      this.toastr.success(error.message, 'Oops😕', {
+        timeOut: 2000,
+      });
       console.log(error);
 
 

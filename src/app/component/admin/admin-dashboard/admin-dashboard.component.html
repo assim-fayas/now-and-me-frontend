@@ -188,40 +188,55 @@
                                 <th scope="col" class="px-6 py-3">
                                     Date
                                 </th>
+                                <th scope="col" class="px-6 py-3">
+                                    verify
+                                </th>
 
 
                             </tr>
                         </thead>
-                        <tbody *ngFor="let item of unverifiedExperts; let i=index">
-                            <tr (click)="viewExpert(item._id)"
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 text-gray-900 font-medium">
-                                    {{i+1}}
-                                </td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{item.name}}
-                                </td>
-                                <td class="px-6 py-4 text-gray-900 font-medium ">
-                                    {{item.specialization}}
-                                </td>
-                                <td class="px-6 py-4 text-gray-900 font-medium">
-                                    {{item.experience}}
-                                </td>
-                                <td class="px-6 py-4 text-gray-900 font-medium">
 
-                                    {{item.joined|date}}
-                                </td>
+                        <tbody>
+                            <ng-container *ngIf="unverifiedExperts.length!=0">
+                                <ng-container *ngFor="let item of unverifiedExperts; let i=index">
+                                    <tr
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-gray-600">
+                                        <td class="px-6 py-4 text-gray-900 font-medium">
+                                            {{i+1}}
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{item.name}}
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-900 font-medium ">
+                                            {{item.specialization}}
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-900 font-medium">
+                                            {{item.experience}}
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-900 font-medium">
+
+                                            {{item.joined|date}}
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-900 font-medium">
+
+                                            <button class="bg-orange-500 text-white px-2 py-1.5 rounded-md text-xs "
+                                                (click)="verifyExpert(item._id)">Verify</button>
+                                        </td>
 
 
-                            </tr>
+                                    </tr>
 
 
 
+                                </ng-container>
 
-
+                            </ng-container>
 
 
                         </tbody>
+
+
                     </table>
                 </div>
             </div>

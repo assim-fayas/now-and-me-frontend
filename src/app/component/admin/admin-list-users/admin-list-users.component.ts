@@ -4,11 +4,9 @@ import { Router } from '@angular/router';
 import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
-// import {MatPaginator} from '@angular/material/paginator'
-// import {MatSort} from '@angular/material/sort'
-// import {MatTableDataSource} from '@angular/material/table'
 import { ListUsers } from '../adminModel';
-
+import { ToastrService } from 'ngx-toastr'
+import { error } from 'jquery';
 @Component({
   selector: 'app-admin-list-users',
   templateUrl: './admin-list-users.component.html',
@@ -24,7 +22,8 @@ export class AdminListUsersComponent implements OnInit {
   constructor(private http: HttpClient,
     private router: Router,
     private adminService: AdminServiceService,
-    private userService: UserServiceService) { }
+    private userService: UserServiceService,
+    public toastr: ToastrService) { }
 
 
   ngOnInit() {
@@ -52,11 +51,25 @@ export class AdminListUsersComponent implements OnInit {
 
   // blocking users
   blockuser(expertId: string) {
-    this.loadingspinner = true
-    this.adminService.blockuser(expertId).subscribe((res) => {
+
+    this.adminService.blockuser(expertId).subscribe((res: any) => {
       console.log(res);
       this.ngOnInit()
-      this.loadingspinner = false
+
+      if (res.message == "user unblockeddd") {
+        this.toastr.success(res.message, 'user  🎉', {
+          timeOut: 2000,
+        });
+      } else {
+        this.toastr.warning(res.message, '', {
+          timeOut: 2000,
+        });
+      }
+    }, (error) => {
+      console.log(error);
+      this.toastr.error('Something went wrong', 'oops😕', {
+        timeOut: 2000,
+      });
     })
   }
 

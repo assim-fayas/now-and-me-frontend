@@ -7,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { ChartModule } from 'primeng/chart';
 import { Router } from '@angular/router';
 import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
+import { ExpertService } from 'src/app/service/expert.service';
 // import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-admin-dashboard',
@@ -32,7 +33,7 @@ export class AdminDashboardComponent implements OnInit {
   basicOptions: any;
 
   // single: any[] = [];
-  constructor(private dataService: DataService, private adminDashboard: AdminServiceService, private router: Router) { }
+  constructor(private dataService: DataService, private adminDashboard: AdminServiceService, private router: Router, private expert: ExpertService) { }
 
   ngOnInit() {
     console.log("undefined", this.dataService.getData());
@@ -262,8 +263,19 @@ export class AdminDashboardComponent implements OnInit {
     console.log("inside view expert");
 
     this.router.navigate(['/viewExpert'])
+  }
 
 
+  verifyExpert(id: string) {
+    console.log(id);
+    this.expert.expertVerification(id).subscribe((response) => {
+      console.log(response);
+      this.expertrequst()
+
+    }, (error) => {
+      console.log(error);
+
+    })
 
   }
 

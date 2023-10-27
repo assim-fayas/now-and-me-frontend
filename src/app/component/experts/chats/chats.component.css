@@ -2,3 +2,13 @@
     background-color: rgb(241 245 249);
 
 }
+
+.emoji-mart-picker {
+    width: 30px;
+    /* Adjust to your preferred width */
+    height: 10px;
+    /* Adjust to your preferred height */
+
+
+    transform: translatey(-40px);
+}

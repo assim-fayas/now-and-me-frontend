@@ -20,6 +20,7 @@
                 </div>
             </div>
             <!-- buttons -->
+
             <div class="bg-gray-100 h-[500px] p-4 flex flex-col justify-center items-center w-1/2 ml-[350px] ">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="mb-4 scroll scroll -mt-36">
@@ -31,9 +32,13 @@
                             Date is required.
                         </div>
                     </div>
+                    <div *ngIf="loadingspinner==true">
+                        <app-loading-spinner-expert></app-loading-spinner-expert>
+                    </div>
                     <div class="flex space-x-4">
                         <div class="w-2/3">
-                            <label for="startTime" class="block text-gray-700 text-sm font-bold mb-2">Start Time</label>
+                            <label for="startTime" class="block text-gray-700 text-sm font-bold mb-2">Start
+                                Time</label>
                             <div class="flex space-x-2">
                                 <ng-container>
                                     <select id="startTimeHour" name="startTimeHour"

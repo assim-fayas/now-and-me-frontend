@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Validators } from '@angular/forms';
 import { UserServiceService } from '../../../service/user-service.service';
-// import { initFlowbite } from 'flowbite';
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,18 +12,12 @@ import { UserServiceService } from '../../../service/user-service.service';
 })
 export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private userService: UserServiceService,
-    private router: Router) { }
-
+    private router: Router, public toastr: ToastrService) { }
+  isLoading: boolean = false
   form!: FormGroup;
   register = false
   message = ''
   ngOnInit(): void {
-
-    // initilising flowbite
-    // initFlowbite()
-
-
-
     // derclaring the form 
 
     this.form = this.formBuilder.group({
@@ -48,14 +42,22 @@ export class RegisterComponent implements OnInit {
     let user = this.form.getRawValue()
     console.log(user, "userrrrrrr");
 
+    this.isLoading = true
 
-
-    this.userService.registerUser(user).subscribe((response) => {
-
+    this.userService.registerUser(user).subscribe((response: any) => {
+      this.isLoading = false
+      this.toastr.success(response.message, 'Horrayyy 🎉', {
+        positionClass: 'toast-top-center',
+        timeOut: 2000,
+      });
     },
       (errorMessage) => {
+        this.isLoading = false
         this.errormsg = errorMessage
-        console.log(this.errormsg, ",,,,,,,message from regidtere");
+        this.toastr.error("Something Went Wrong", 'oops😕', {
+          positionClass: 'toast-top-center',
+          timeOut: 2000,
+        });
 
       }
     )

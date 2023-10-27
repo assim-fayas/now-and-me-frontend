@@ -9,7 +9,7 @@ import { Socket } from 'ngx-socket-io';
   styleUrls: ['./chat-user.component.css']
 })
 export class ChatUserComponent {
-
+  isLoading: boolean = false
   allExperts!: any
   selectedExpert!: string
   currentUser!: string
@@ -19,13 +19,29 @@ export class ChatUserComponent {
   ActiveChats!: any
   previousChatdocs!: any
 
+
+
+  //emoji mart
+
+  public isEmojiPickerVisible!: boolean;
+  public addEmoji(event: any) {
+    this.message = `${this.message}${event.emoji.native}`;
+    this.isEmojiPickerVisible = false;
+  }
+
+
+
+
   constructor(private expertServices: ExpertService, private chatService: ChatService, private socket: Socket) { this.socket.connect() }
   ngOnInit() {
+    this.isLoading = true
     this.chatService.previousChats().subscribe((response: any) => {
       console.log(response, "previouse chats");
       this.previousChatdocs = response
+      this.isLoading = false
     }, (error) => {
       console.log(error);
+      this.isLoading = false
 
     })
 
@@ -35,11 +51,14 @@ export class ChatUserComponent {
 
     }, (error) => {
       console.log(error);
-
+      this.isLoading = false
     })
+    this.isLoading = true
     this.expertServices.expertListing().subscribe((response: any) => {
+      this.isLoading = false
       this.allExperts = response.allExperts
       this.currentUser = response.userId
+      this.isLoading = false
 
       this.socket.on(response.userId, (message: any) => {
         console.log("message received successfully", message);
@@ -123,7 +142,6 @@ export class ChatUserComponent {
 
   onSubmit() {
 
-    console.log('Submitted message:', this.message);
     this.sendmessage = {
       sender: this.currentUser,
       receiver: this.selectedExpert,

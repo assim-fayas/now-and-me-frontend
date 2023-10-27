@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { error } from 'jquery';
 import { ExpertService } from 'src/app/service/expert.service';
 import { SlotBookingService } from 'src/app/service/slot-booking.service';
-
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-appoinments',
   templateUrl: './appoinments.component.html',
@@ -11,6 +11,7 @@ import { SlotBookingService } from 'src/app/service/slot-booking.service';
   providers: [DatePipe]
 })
 export class AppoinmentsComponent implements OnInit {
+  isLoading: boolean = false
   activeAppoinments!: any
   activeVideoCall!: any
   previouseAppoinments!: any
@@ -23,8 +24,9 @@ export class AppoinmentsComponent implements OnInit {
 
 
 
-  constructor(private appoiment: SlotBookingService, private addReview: ExpertService) { }
+  constructor(private appoiment: SlotBookingService, private addReview: ExpertService, public toastr: ToastrService) { }
   ngOnInit() {
+    this.isLoading = true
     this.getAppoiment()
 
 
@@ -57,6 +59,7 @@ export class AppoinmentsComponent implements OnInit {
     })
   }
   getActivateVideoCall() {
+    this.isLoading = true
     this.appoiment.getActivatedAppoinments().subscribe((response) => {
       this.getPreviouseAppoinment()
       console.log(response);
@@ -82,10 +85,10 @@ export class AppoinmentsComponent implements OnInit {
 
       console.log("matching data: ", matchingData);
       this.activeCalls = matchingData
-
+      this.isLoading = false
     }, (error) => {
       console.log(error);
-
+      this.isLoading = false
     })
   }
 
@@ -129,16 +132,23 @@ export class AppoinmentsComponent implements OnInit {
   value!: number;// Property to store the rating value
 
   ratingValue() {
+
     this.getAppoiment()
     this.showRatingModal = false
     // This function will be called when the form is submitted
     console.log('Selected rating value:', this.value);
     // You can perform further actions with the selected value here
-    this.addReview.addexpertReview(this.value, this.currentExpertId).subscribe((response) => {
+    this.addReview.addexpertReview(this.value, this.currentExpertId).subscribe((response: any) => {
       console.log(response);
+      this.toastr.success(response.message, 'Horrayyy 🎉', {
+        timeOut: 2000,
+      });
 
     }, (error) => {
       console.log(error);
+      this.toastr.error('Something Went Wrong', 'oops😕', {
+        timeOut: 2000,
+      });
 
     })
 

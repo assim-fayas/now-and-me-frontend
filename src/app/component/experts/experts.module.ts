@@ -13,7 +13,6 @@ import { RegistrationComponent } from './registration/registration.component';
 import { Regform1Component } from './regform1/regform1.component';
 import { Regform2Component } from './regform2/regform2.component';
 import { Regform3Component } from './regform3/regform3.component';
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { ExpertHomeComponent } from './expert-home/expert-home.component';
 import { FreeSlotsComponent } from './free-slots/free-slots.component';
@@ -25,7 +24,8 @@ import { VideocallComponent } from './videocall/videocall.component';
 import { PiechartComponent } from 'src/app/piechart/piechart.component';
 import { BarchartComponent } from 'src/app/barchart/barchart.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { LoadingSpinnerUserComponent } from './loading-spinner-expert';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 
@@ -53,6 +53,8 @@ import { ProfileComponent } from './profile/profile.component';
     SidebarComponent,
     VideocallComponent,
     ProfileComponent,
+    LoadingSpinnerUserComponent
+
 
 
 
@@ -63,10 +65,10 @@ import { ProfileComponent } from './profile/profile.component';
     ExpertsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    PickerModule,
     CloudinaryModule,
     PiechartComponent,
-    BarchartComponent
+    BarchartComponent,
+    PickerModule
 
 
 

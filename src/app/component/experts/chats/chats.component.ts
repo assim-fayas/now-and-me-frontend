@@ -4,6 +4,7 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 import { Message } from 'src/app/models';
 import { Socket } from 'ngx-socket-io';
 import { ExpertService } from 'src/app/service/expert.service';
+import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
 @Component({
   selector: 'app-chats',
   templateUrl: './chats.component.html',
@@ -19,16 +20,17 @@ export class ChatsComponent {
   message!: string
   chats: any[] = [];
   receivedMessage!: any
+  loadingspinner = false
 
   constructor(private userServices: UserServiceService, private chatService: ChatService, private socket: Socket, private expertService: ExpertService) { this.socket.connect() }
 
   ngOnInit() {
-
+    this.loadingspinner = true
     this.userServices.getusers().subscribe((response: any) => {
       this.currentExpert = response.expertid
 
       this.allUsers = response.allUser
-
+      this.loadingspinner = false
 
       this.socket.on(response.expertid, (message: any) => {
         console.log("message received successfully", message);
@@ -65,6 +67,16 @@ export class ChatsComponent {
   }
 
 
+  //emoji mart
+
+  public isEmojiPickerVisible!: boolean;
+  public addEmoji(event: any) {
+    this.message = `${this.message}${event.emoji.native}`;
+    this.isEmojiPickerVisible = false;
+  }
+
+
+
   showActiveChats() {
     this.activeChats = true
     this.previousChats = false
@@ -80,22 +92,25 @@ export class ChatsComponent {
   //get all users for chatting note: should be changed
 
   getUsers() {
+    this.loadingspinner = true
     this.userServices.getusers().subscribe((response: any) => {
       this.currentExpert = response.expertid
+
       console.log(response.allUser);
 
       this.allUsers = response.allUser
 
       console.log("log inside function", this.currentExpert);
-
+      this.loadingspinner = false
     }, (error) => {
       console.log(error);
-
+      this.loadingspinner = false
     })
   }
 
 
   showChats(userId: string) {
+
     console.log("inside show chat");
 
 
@@ -116,6 +131,7 @@ export class ChatsComponent {
 
     }, (error) => {
       console.log(error);
+
 
     })
 

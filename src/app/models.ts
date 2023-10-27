@@ -54,7 +54,7 @@ export interface UserProfile {
     gender?: string; // Optional property
     bio?: string; // Optional property
     location?: string; // Optional property
-    profileImage?: string | null; // You can set a default value of null for the profile image
+    profileImage?: File; // You can set a default value of null for the profile image
 }
 
 export interface Languages {

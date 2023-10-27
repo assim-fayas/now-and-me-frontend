@@ -2,7 +2,7 @@
     style=" background-image: url('../../../../assets/image/admindashboard.png')">
     <app-sidebar class="fixed "></app-sidebar>
     <main class="min-w-0 flex-1 overflow-auto  pt-1  ml-[400px] ">
-        <div class="rounded-3xl mt-16 shadow-lg border w-[80%] overflow-hidden  h-fit ">
+        <div class="rounded-3xl mt-16 shadow-lg border w-[80%] overflow-hidden  min-h-[550px] ">
             <div class="ml-[94%] pt-3">
                 <div class="flex ">
                     <button (click)="editProfiledata(expertprofile?._id)">
@@ -14,64 +14,68 @@
                     </button>
                 </div>
             </div>
-            <div class=" flex-col">
-                <div class="flex justify-center p-5 -ml-56 ">
-
-
-
-                    <div class="">
-
-
-                        <img alt="..." src="https://i.pinimg.com/474x/85/25/83/852583511c3109d7a4efa0c3a233be1e.jpg"
-                            class="rounded-full absolute  w-40 h-40  shadow-md border-4 border-white transition duration-200 transform hover:scale-110" />
-
-
-                    </div>
-
-
-
-                </div>
-
-                <div class="mt-44 ml-[390px] mb-8 ">
-                    <h3 class="font-semibold text-lg">{{expertprofile?.name}}</h3>
-                </div>
-                <div class=" ml-16 mb-5 mr-10">
-                    <h3 class="font-normal text-base">{{expertprofile?.bio}}</h3>
-                </div>
-                <div class="flex space-x-14 justify-center mb-16 mt-10  -ml-10">
-                    <div class="flex space-x-3">
-                        <div>
-                            <svg class=" w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 21">
-                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2">
-                                    <path d="M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                    <path
-                                        d="M13.8 12.938h-.01a7 7 0 1 0-11.465.144h-.016l.141.17c.1.128.2.252.3.372L8 20l5.13-6.248c.193-.209.373-.429.54-.66l.13-.154Z" />
-                                </g>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-medium">{{expertprofile?.city}}</h3>
-                        </div>
-                    </div>
-                    <div class="flex space-x-3">
-                        <div>
-                            <svg class="w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                        </div>
-
-
-                        <div>
-                            <h3 class="font-medium">{{expertprofile?.joined | date}}</h3>
-                        </div>
-                    </div>
-                </div>
+            <div *ngIf="loadingspinner==true">
+                <app-loading-spinner-expert></app-loading-spinner-expert>
             </div>
+            <ng-container *ngIf="loadingspinner==false">
+                <div class=" flex-col">
+                    <div class="flex justify-center p-5 -ml-56 ">
 
+
+
+                        <div class="">
+
+
+                            <img alt="..." src="https://i.pinimg.com/474x/85/25/83/852583511c3109d7a4efa0c3a233be1e.jpg"
+                                class="rounded-full absolute  w-40 h-40  shadow-md border-4 border-white transition duration-200 transform hover:scale-110" />
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="mt-44 ml-[390px] mb-8 ">
+                        <h3 class="font-semibold text-lg">{{expertprofile?.name}}</h3>
+                    </div>
+                    <div class=" ml-16 mb-5 mr-10">
+                        <h3 class="font-normal text-base">{{expertprofile?.bio}}</h3>
+                    </div>
+                    <div class="flex space-x-14 justify-center mb-16 mt-10  -ml-10">
+                        <div class="flex space-x-3">
+                            <div>
+                                <svg class=" w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 21">
+                                    <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2">
+                                        <path d="M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                        <path
+                                            d="M13.8 12.938h-.01a7 7 0 1 0-11.465.144h-.016l.141.17c.1.128.2.252.3.372L8 20l5.13-6.248c.193-.209.373-.429.54-.66l.13-.154Z" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">{{expertprofile?.city}}</h3>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3">
+                            <div>
+                                <svg class="w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </div>
+
+
+                            <div>
+                                <h3 class="font-medium">{{expertprofile?.joined | date}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </main>
 </div>

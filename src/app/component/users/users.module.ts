@@ -27,6 +27,7 @@ import { SlotsComponent } from './slots/slots.component';
 import { DatePipe } from '@angular/common';
 import { LoadingSpinnerUserComponent } from './loading-spinner-user';
 import { RatingModule } from 'primeng/rating';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 
@@ -51,7 +52,9 @@ import { RatingModule } from 'primeng/rating';
     ChatUserComponent,
     AppoinmentsComponent,
     SlotsComponent,
-    LoadingSpinnerUserComponent
+    LoadingSpinnerUserComponent,
+
+
 
   ],
   imports: [
@@ -63,9 +66,10 @@ import { RatingModule } from 'primeng/rating';
     TooltipModule,
     ChipModule,
     TagModule,
-    RatingModule
+    RatingModule,
+    PickerModule
 
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, RelativeTimePipe],
 })
 export class UsersModule { }

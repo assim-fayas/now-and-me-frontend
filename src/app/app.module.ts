@@ -10,9 +10,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
-import { ModalComponent } from './component/common/modal/modal.component';
 import { SharedModule } from './shared/shared.module';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -31,18 +31,6 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent,
-
-
-
-
-
-
-
-
-
-
-
 
   ],
   imports: [
@@ -55,6 +43,7 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
     SharedModule,
     ToastrModule.forRoot(),
     SocketIoModule.forRoot(config),
+    StoreModule.forRoot({}, {}),
 
 
 

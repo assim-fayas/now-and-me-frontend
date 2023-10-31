@@ -34,7 +34,8 @@ export class ProfileComponent implements OnInit {
     gender: '',
     bio: '',
     location: '',
-    profileImage: ''
+    profileImage: '',
+
   };
 
   constructor(private profileService: ProfileService, private upload: ImageuploadService, private community: CommunityService, public toastr: ToastrService) { }
@@ -67,6 +68,8 @@ export class ProfileComponent implements OnInit {
 
       // Form is valid, you can access the form values through this.user
       console.log('Form submitted:', this.user);
+      console.log(this.user, "form details before submitting");
+
       this.profileService.updateProfile(this.user).subscribe((response: any) => {
 
         console.log(response);

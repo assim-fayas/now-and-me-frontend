@@ -13,10 +13,10 @@ import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { StoreModule } from '@ngrx/store';
-
-
-
-
+import { EffectsModule } from '@ngrx/effects';
+import { profileReducer } from './component/users/userstate/userstate.reducer';
+import { appEffects } from './component/users/userstate/userstate.effects';
+import { appUserService } from './component/users/userstate/userstate.service';
 
 
 
@@ -43,7 +43,8 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
     SharedModule,
     ToastrModule.forRoot(),
     SocketIoModule.forRoot(config),
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ userdetails: profileReducer }),
+    EffectsModule.forRoot([appEffects]),
 
 
 
@@ -52,7 +53,7 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptorInterceptor,
     multi: true
-  }, UserServiceService],
+  }, appUserService, UserServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

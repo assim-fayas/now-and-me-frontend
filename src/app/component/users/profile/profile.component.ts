@@ -7,6 +7,11 @@ import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { CommunityService } from 'src/app/service/community.service';
 import { ToastrService } from 'ngx-toastr'
+import { Store } from '@ngrx/store';
+import { select } from '@ngrx/store';
+import { retriveprofile } from '../userstate/userstate.action';
+import { userprofile } from '../userstate/userstate.selector';
+import { Profile } from '../userstate/usermodel';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,60 +29,63 @@ export class ProfileComponent implements OnInit {
   //loading spinner
   isLoading: boolean = false
   //profile variables
-  userDetails: any = []//want to create interface
-  image!: string
+  userDetails!: any //want to create interface
+  // image!: string
+
+
+
 
 
   user = {
     name: '',
-    pronouns: '', // set default values if needed
+    pronouns: '',
     gender: '',
     bio: '',
     location: '',
-    profileImage: '',
+    image: '',
 
   };
 
-  constructor(private profileService: ProfileService, private upload: ImageuploadService, private community: CommunityService, public toastr: ToastrService) { }
+  constructor(private profileService: ProfileService,
+    private community: CommunityService,
+    public toastr: ToastrService,
+    private store: Store<{ userdetails: Profile }>) { }
   ngOnInit() {
     this.isLoading = true
+    this.userDetails = this.store.dispatch(retriveprofile())
     this.getUserDetails()
     this.getPostDetails()
+
   }
 
 
   getUserDetails() {
-    this.profileService.userDetails().subscribe((response: any) => { //want to create interface
-      this.userDetails = response.userDetails
-      console.log("location", response.userDetails.location);
-
-      console.log(response);
-      console.log("this.userDetailsssssssssssssss", this.userDetails);
+    this.store.pipe(select(userprofile)).subscribe((userProfileData => {
       this.isLoading = false
-    }, (error) => {
-      console.log(error);
-      this.isLoading = false
+      console.log("data from store......", userProfileData)
 
-    })
+      this.userDetails = userProfileData
+      console.log("this.user", this.user);
+      console.log("this.user ", this.user);
+    }))
+
   }
 
 
   onSubmit(userForm: NgForm) {
     if (userForm.valid) {
-
-
-      // Form is valid, you can access the form values through this.user
       console.log('Form submitted:', this.user);
       console.log(this.user, "form details before submitting");
 
-      this.profileService.updateProfile(this.user).subscribe((response: any) => {
+      this.profileService.updateProfile(this.user).subscribe((response) => {
 
-        console.log(response);
-        this.ngOnInit()
-        this.closeModal1()
-        this.toastr.success(response.message, 'Horrayyy 🎉', {
+        this.store.dispatch(retriveprofile())
+
+
+        this.toastr.success('Profile Updated', 'Horrayyy 🎉', {
           timeOut: 2000,
         });
+        this.modalOpen1 = false
       }, (error) => {
         console.log(error);
         this.toastr.error('Something Went Wrong', 'oops😕', {
@@ -86,7 +94,7 @@ export class ProfileComponent implements OnInit {
       })
 
 
-
+      this.modalOpen1 = false
     }
   }
 
@@ -98,7 +106,7 @@ export class ProfileComponent implements OnInit {
     console.log(file);
 
     if (file) {
-      this.user.profileImage = file
+      this.user.image = file
       const reader = new FileReader()
       reader.onload = (event: any) => {
 
@@ -115,19 +123,18 @@ export class ProfileComponent implements OnInit {
 
 
   editProfiledata(userId: string) {
+    this.modalOpen1 = true
+    this.store.pipe(select(userprofile)).subscribe((userProfileData => {
+      console.log("data from store......", userProfileData)
 
-    this.profileService.userDetails().subscribe((response: any) => { //want to create interface
-      this.userDetails = response.userDetails
+      this.user = { ...userProfileData }
+      console.log("this.user", this.user);
 
-      this.user = { ...response.userDetails }
-      console.log(response);
-      console.log("this.userDetailsssssssssssssss", this.userDetails);
-      this.modalOpen1 = true
+      console.log("this.user ", this.user);
 
-    }, (error) => {
-      console.log(error);
 
-    })
+
+    }))
 
   }
 

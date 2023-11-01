@@ -12,15 +12,15 @@
 
 
                 </div>
-                <div *ngIf="isLoading">
+                <div *ngIf="isLoading==true">
                     <app-loading-spinner-user></app-loading-spinner-user>
                 </div>
-                <ng-container *ngIf="!isLoading">
+                <ng-container *ngIf="isLoading==false">
                     <div class="text-center w-[400px] flex-col justify-center align-middle  ml-[560px]">
-                        <p class="mt-8 text-lg font-medium ">{{userDetails.name}}</p>
-                        <div class="text-center " *ngIf="userDetails.bio; else nobio">
+                        <p class="mt-8 text-lg font-medium ">{{userDetails?.name}}</p>
+                        <div class="text-center " *ngIf="userDetails?.bio; else nobio">
                             <p class="mt-4 text-base font-normal ">
-                                {{userDetails.bio}}</p>
+                                {{userDetails?.bio}}</p>
                         </div>
                         <ng-template #nobio>
                             <p class="mt-4 text-base font-normal">Don't updated your profile yet❓Update Your Bio By
@@ -29,7 +29,7 @@
                         </ng-template>
                         <div class=" pt-10 ">
                             <div class="flex gap-8 justify-center">
-                                <div class="flex gap-4" *ngIf="userDetails.location">
+                                <div class="flex gap-4" *ngIf="userDetails?.location">
                                     <div>
                                         <svg class=" w-6 h-6 text-orange-500 dark:text-white" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 21">
@@ -42,7 +42,7 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <p class="text-base">{{userDetails.location}}</p>
+                                        <p class="text-base">{{userDetails?.location}}</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-4">
@@ -54,7 +54,7 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <p class="text-base">{{userDetails.joined |dateToMonthYear}}</p>
+                                        <p class="text-base">{{userDetails?.joined |dateToMonthYear}}</p>
                                     </div>
                                 </div>
 
@@ -327,7 +327,7 @@
                                                 class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                                             <img alt="..."
                                                 src="https://i.pinimg.com/474x/85/25/83/852583511c3109d7a4efa0c3a233be1e.jpg"
-                                                *ngIf="!user.profileImage && !imageUrl" alt="Current Profile Image"
+                                                *ngIf="!user.image && !imageUrl" alt="Current Profile Image"
                                                 class="object-cover w-full h-full rounded-full">
                                             <ng-container *ngIf="imageUrl">
                                                 <img [src]="imageUrl" alt="Current Profile Image"

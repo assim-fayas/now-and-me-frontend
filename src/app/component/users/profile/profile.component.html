@@ -4,19 +4,20 @@
         <section class="hero">
             <div class="  bg-gradient-to-b from-[#FEEDE4] to-white  h-screen w-full   pt-32 ">
                 <div class="justify-center flex ">
-                    <img src="../.../../../../../assets/image/asim.jpg"
-                        class=" border-t-8  border-b-8 rounded-tr-2xl rounded-bl-3xl w-48 border-black h-44 -mt-0.5 ml-0 brightness-150  "
+                    <img [src]="'https://avatars2.githubusercontent.com/u/'+hexToDecimal(userDetails?._id)  + '?s=360'"
+                        class="rounded-full absolute  w-40 h-40  shadow-md border-4 border-white transition duration-200 transform hover:scale-110  brightness-150  "
                         alt="">
 
 
 
 
                 </div>
+                r
                 <div *ngIf="isLoading==true">
                     <app-loading-spinner-user></app-loading-spinner-user>
                 </div>
                 <ng-container *ngIf="isLoading==false">
-                    <div class="text-center w-[400px] flex-col justify-center align-middle  ml-[560px]">
+                    <div class="text-center mt-40 w-[400px] flex-col justify-center align-middle  ml-[560px]">
                         <p class="mt-8 text-lg font-medium ">{{userDetails?.name}}</p>
                         <div class="text-center " *ngIf="userDetails?.bio; else nobio">
                             <p class="mt-4 text-base font-normal ">

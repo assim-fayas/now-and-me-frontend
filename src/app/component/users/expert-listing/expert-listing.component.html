@@ -88,8 +88,10 @@
                     <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">
                         <div class="md:flex">
                             <!-- Left side with the image -->
+
                             <div class="md:w-1/2 ">
-                                <img src="https://placekitten.com/400/300" alt="Image" class="w-2/3 mx-auto mt-6" />
+                                <img [src]="'https://avatars2.githubusercontent.com/u/'+hexToDecimal(experts._id)  + '?s=360'"
+                                    alt="Image" class="w-2/3 mx-auto mt-6" />
                             </div>
                             <!-- Right side with content -->
                             <div class="md:w-1/2 px-4 py-6">

@@ -204,6 +204,9 @@ export class ViewExpertComponent implements OnInit {
 
 
 
+  hexToDecimal(hexValue: string): number {
+    return parseInt(hexValue.slice(-3), 16);
+  }
 
 
 

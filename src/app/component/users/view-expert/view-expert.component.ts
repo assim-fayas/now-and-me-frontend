@@ -38,10 +38,12 @@ export class ViewExpertComponent implements OnInit {
     })
     this.isLoading = true
     this.userDetails.userDetails().subscribe((response: any) => {
-      this.userInfo = response.userDetails
-      console.log("user", this.userInfo);
+      this.userInfo = response
+      console.log("response userrrr", response);
 
-      this.currentUser = response.userDetails._id
+      console.log("user", response._id);
+
+      this.currentUser = response._id
       console.log(this.currentUser);
 
       this.isLoading = false
@@ -60,7 +62,7 @@ export class ViewExpertComponent implements OnInit {
     this.isLoading = true
     this.expertService.viewExpert(this.currentExpertId).subscribe((response: any) => {
       this.expertView = response
-      console.log("expert", response);
+
 
       this.sessionCharge = response.hourlySessionCharge
       this.isLoading = false
@@ -102,20 +104,24 @@ export class ViewExpertComponent implements OnInit {
       paymentStatus: this.paymentStatus
     }
 
-    this.bookChat.addAppoinment(edited).subscribe((response) => {
+    this.bookChat.addAppoinment(edited).subscribe((response: any) => {
 
 
-      if (response) {
+      if (response.message == "please compleate payment") {
 
         this.payNow()
+      } else {
 
-
+        this.toastr.info('You can go to Appoinment Section', 'Horrayyy 🎉', {
+          timeOut: 4000,
+        });
       }
+
 
 
     }, (error: any) => {
       console.log(error);
-      this.toastr.error('You can  Only book a expert at once', 'oops😕', {
+      this.toastr.error(error.error.message, 'oops😕', {
         timeOut: 1500,
       });
 
@@ -195,10 +201,11 @@ export class ViewExpertComponent implements OnInit {
     console.log("payment status", this.paymentStatus);
     this.message = "Payment Done Successfully";
     console.log(this.message);
-    this.toastr.info('You can go to Appoinment Section', 'Horrayyy 🎉', {
-      timeOut: 4000,
+    this.toastr.success('Payment Done Successfully', 'Horrayyy 🎉', {
+      timeOut: 2000,
     });
 
+    this.addAppoinment()
   }
 
 

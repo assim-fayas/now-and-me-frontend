@@ -5,6 +5,8 @@ import { SlotBookingService } from 'src/app/service/slot-booking.service';
 import { environment } from 'src/environments/environment';
 import { Appointment } from 'src/app/models';
 import { ToastrService } from 'ngx-toastr'
+
+
 declare var Razorpay: any;
 @Component({
   selector: 'app-slots',
@@ -56,10 +58,11 @@ export class SlotsComponent implements OnInit {
 
 
     this.userDetails.userDetails().subscribe((response: any) => {
-      this.userInfo = response.userDetails
+
+      this.userInfo = response
       console.log(this.userInfo);
 
-      this.currentUser = response.userDetails._id
+      this.currentUser = response._id
     }, (error) => {
       console.log(error);
 
@@ -92,8 +95,8 @@ export class SlotsComponent implements OnInit {
       if (response) {
         console.log(response);
         this.ngOnInit()
-        this.toastr.success('Appoinment Added Successfully', 'Horrayyy 🎉', {
-          timeOut: 2000,
+        this.toastr.info('Appoinment Added Successfully', 'Horrayyy 🎉', {
+          timeOut: 3000,
         });
       }
 

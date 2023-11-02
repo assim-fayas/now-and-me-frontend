@@ -158,6 +158,9 @@ export class ChatUserComponent {
 
   }
 
+  hexToDecimal(hexValue: string): number {
+    return parseInt(hexValue.slice(-3), 16);
+  }
 
 
 }

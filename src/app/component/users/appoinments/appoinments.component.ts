@@ -161,5 +161,10 @@ export class AppoinmentsComponent implements OnInit {
 
   }
 
+  hexToDecimal(hexValue: string): number {
+    return parseInt(hexValue.slice(-3), 16);
+  }
+
+
 
 }

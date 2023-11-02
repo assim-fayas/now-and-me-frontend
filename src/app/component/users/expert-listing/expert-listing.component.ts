@@ -49,6 +49,9 @@ export class ExpertListingComponent implements OnInit {
     this.router.navigate(['expertView', id])
   }
 
+  hexToDecimal(hexValue: string): number {
+    return parseInt(hexValue.slice(-3), 16);
+  }
 
 
 }

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { communityPost } from 'src/app/models';
 import { CommunityService } from 'src/app/service/community.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
-// import { initFlowbite } from 'flowbite';
 import { FlagFormvalue } from 'src/app/models';
 import { CommentFormValue } from 'src/app/models';
 import { NgForm } from '@angular/forms';
@@ -51,7 +50,7 @@ export class CommunityComponent implements OnInit {
   EditModalOpen = false
   FlagModalOpen = false
   isLoading: boolean = false
-
+  // link = `https://avatars2.githubusercontent.com/u/933?s=360`
 
   //emoji picker
 
@@ -63,7 +62,9 @@ export class CommunityComponent implements OnInit {
 
 
 
-
+  hexToDecimal(hexValue: string): number {
+    return parseInt(hexValue.slice(-2), 16);
+  }
 
   constructor(private editFb: FormBuilder, private router: Router, private fb: FormBuilder, private communityService: CommunityService, private userservice: UserServiceService, public toastr: ToastrService) {
     this.showpost = false
@@ -222,6 +223,9 @@ export class CommunityComponent implements OnInit {
       this.currentUserName = response[0].currentUserName
       let user = this.allThoughts[0].currentUser
       console.log(user, "user");
+      this.currentUserId = user
+      console.log("   this.currentUserId", this.currentUserId);
+
       console.log(this.currentUserName, "user name");
 
 

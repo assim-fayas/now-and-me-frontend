@@ -63,7 +63,7 @@ export class CommunityComponent implements OnInit {
 
 
   hexToDecimal(hexValue: string): number {
-    return parseInt(hexValue.slice(-6), 16);
+    return parseInt(hexValue.slice(-2), 16);
   }
 
   constructor(private editFb: FormBuilder, private router: Router, private fb: FormBuilder, private communityService: CommunityService, private userservice: UserServiceService, public toastr: ToastrService) {

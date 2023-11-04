@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/service/chat.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { Message } from 'src/app/models';
@@ -10,7 +10,7 @@ import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
   templateUrl: './chats.component.html',
   styleUrls: ['./chats.component.css']
 })
-export class ChatsComponent {
+export class ChatsComponent implements OnInit, OnDestroy {
   isSidebarOpen = false;
   activeChats = true
   previousChats = false
@@ -23,6 +23,8 @@ export class ChatsComponent {
   loadingspinner = false
 
   constructor(private userServices: UserServiceService, private chatService: ChatService, private socket: Socket, private expertService: ExpertService) { this.socket.connect() }
+
+
 
   ngOnInit() {
     this.loadingspinner = true
@@ -172,6 +174,11 @@ export class ChatsComponent {
   //side bar opening
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+
+  ngOnDestroy(): void {
+
   }
 
 

@@ -2,13 +2,10 @@ import { Component, OnInit, importProvidersFrom } from '@angular/core';
 import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { Color } from '@swimlane/ngx-charts';
-import { LegendPosition } from '@swimlane/ngx-charts';
 import { DataService } from 'src/app/service/data.service';
-import { ChartModule } from 'primeng/chart';
 import { Router } from '@angular/router';
-import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner';
 import { ExpertService } from 'src/app/service/expert.service';
-// import { initFlowbite } from 'flowbite';
+
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',

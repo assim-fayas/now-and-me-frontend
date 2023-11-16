@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'user/:id/verify/:token', component: MailverificationComponent },
   { path: 'expertlisting', component: ExpertListingComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
   { path: 'community', component: CommunityComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
-  { path: 'schedules', component: SchedulesComponent },
+  { path: 'schedules', component: SchedulesComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard, ConsecutiveGuard] },
   { path: 'expertView/:id', component: ViewExpertComponent }
 

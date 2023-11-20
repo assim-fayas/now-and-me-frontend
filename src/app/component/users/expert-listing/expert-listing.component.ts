@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./expert-listing.component.css']
 })
 export class ExpertListingComponent implements OnInit {
+  [x: string]: any;
 
   //loading spinner
   isLoading: boolean = false
@@ -23,7 +24,7 @@ export class ExpertListingComponent implements OnInit {
 
   listExperts!: any
   RatingCount!: number
-
+  expertCategories: any[] = []
 
 
   //expertlisting
@@ -31,11 +32,21 @@ export class ExpertListingComponent implements OnInit {
     this.isLoading = true
     this.expertService.expertListing().subscribe((response: any) => {
       this.listExperts = response.allExperts
-      console.log(this.listExperts);
+
+      const set = new Set()
+
+      const expertsCategory = response.allExperts.forEach((value: any) => {
+        // const rslt = set.add(value.specialization)
+
+        // console.log("set", rslt);
+        set.add(value.specialization);
+
+      })
+      this.expertCategories.push(Array.from(set));
+      console.log("cat", this.expertCategories);
 
       this.isLoading = false
     }, (error) => {
-      console.log(error);
       this.isLoading = false
 
     })
@@ -54,7 +65,30 @@ export class ExpertListingComponent implements OnInit {
   }
 
 
+  // expert sorting
+  selectedOption = 'all'
+  onFilterChange() {
+    if (this.selectedOption == 'all') {
+      this.expertCategories = []
+      this.expertListing()
+    } else {
+      console.log(this.selectedOption);
+
+      this.expertService.expertFiltering(this.selectedOption).subscribe((response: any) => {
+        console.log(response);
+        this.listExperts = response.allExperts
+
+      }, (error) => {
+        console.log(error);
+
+      })
+    }
+
+  }
+
 }
+
+
 
 
 

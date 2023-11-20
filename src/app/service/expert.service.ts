@@ -168,6 +168,16 @@ export class ExpertService {
         }))
   }
 
+  expertFiltering(name: string) {
+    return this.http.post(`${this.url}/experts/filterExpert/${name}`, { withCredentials: true })
+      .pipe(map(response => {
+        return response
+      }),
+        catchError((error) => {
+          return throwError(error)
+        }))
+  }
+
 
   // expert logout
   logout() {

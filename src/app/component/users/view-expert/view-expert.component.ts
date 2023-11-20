@@ -62,6 +62,7 @@ export class ViewExpertComponent implements OnInit {
     this.isLoading = true
     this.expertService.viewExpert(this.currentExpertId).subscribe((response: any) => {
       this.expertView = response
+      console.log(response);
 
 
       this.sessionCharge = response.hourlySessionCharge

@@ -6,7 +6,7 @@
                 <div class="flex  justify-around grid-rows-2">
                     <div>
                         <h1 class="font-semibold text-lg md:text-2xl leading-normal"><span
-                                class="text-orange-500 leading-normal">{{ expertView?.specialization[0]}}</span> at<br>
+                                class="text-orange-500 leading-normal">{{ expertView?.specialization}}</span> at<br>
                             Now&Me </h1>
                     </div>
                     <div class="">
@@ -57,7 +57,7 @@
                                             class="mb-2 text-2xl font-bold tracking-tight pl-6 text-gray-900 dark:text-white">
                                             {{ expertView?.name}}</h5>
                                         <p class="mb-2 font-medium text-sm text-gray-500 pl-6 dark:text-gray-400">{{
-                                            expertView?.specialization[0]}}
+                                            expertView?.specialization}}
 
                                         <div class="flex items-center space-x-1 pl-6">
                                             <ng-container *ngFor="let i of [1, 2, 3, 4, 5]; let index = index">

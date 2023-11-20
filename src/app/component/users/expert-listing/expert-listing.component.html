@@ -39,20 +39,26 @@
 
     <section>
         <div class=" flex  ml-20 mt-12 ">
+
+
             <label class="font-medium pt-2">Who do you want to consult?</label>
 
             <div class="">
-                <div class=" select-container rounded-md">
-                    <select class="styled-select">
-                        <option selected>All</option>
-                        <option value="option1">Life Coach</option>
-                        <option value="option2">Therapist</option>
-                        <option value="option3">Career Coach</option>
-                    </select>
-                </div>
+                <form #myForm="ngForm">
+                    <div class="select-container rounded-md">
+                        <select class="styled-select" [(ngModel)]="selectedOption" name="selectedOption"
+                            (ngModelChange)="onFilterChange()">
+                            <option value="all" selected>All</option>
 
+                            <ng-container *ngFor="let categoryGroup of expertCategories">
+                                <ng-container *ngFor="let item of categoryGroup">
+                                    <option [value]="item">{{ item }}</option>
+                                </ng-container>
+                            </ng-container>
 
-
+                        </select>
+                    </div>
+                </form>
             </div>
 
             <div class="hidden ">
@@ -60,10 +66,9 @@
                 <select id="underline_select"
                     class="block py-2.5 px-0  text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                     <option selected>All</option>
-                    <option value="Life Coach">Life Coach</option>
-                    <option value="CA">Therapist</option>
-                    <option value="FR">Career Coach</option>
-                    <option value="DE">Relationship Coach</option>
+                    <ng-container *ngFor="let item of expertCategories">
+                        <option value=item>{{item}}</option>
+                    </ng-container>
                 </select>
 
             </div>
@@ -75,14 +80,14 @@
                 <app-loading-spinner-user></app-loading-spinner-user>
             </div>
         </ng-container>
-        <div class="grid grid-cols-1 md:px-50 lg:px-0 lg:grid-cols-3 gap-4 mt-4 align-middle">
+        <div class="grid grid-cols-1 md:px-50  md:m-10 lg:px-0 lg:grid-cols-3 gap-5 mt-4 align-middle">
 
 
 
             <!-- card start -->
             <ng-container *ngIf="isLoading==false">
                 <div *ngFor="let experts of listExperts"
-                    class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-4">
+                    class="max-w-lg mx-auto  bg-white shadow-lg rounded-lg overflow-hidden m-4">
 
 
                     <div class="max-w-lg mx-auto  shadow-lg rounded-lg overflow-hidden border">

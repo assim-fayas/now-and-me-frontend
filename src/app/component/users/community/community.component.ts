@@ -50,7 +50,6 @@ export class CommunityComponent implements OnInit {
   EditModalOpen = false
   FlagModalOpen = false
   isLoading: boolean = false
-  // link = `https://avatars2.githubusercontent.com/u/933?s=360`
 
   //emoji picker
 

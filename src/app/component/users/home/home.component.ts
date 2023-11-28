@@ -1,20 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-// import { initFlowbite } from 'flowbite';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor(private http: HttpClient, private Router: Router) { }
-
-
-  ngOnInit(): void {
-    // initFlowbite()
-  }
+  constructor(private Router: Router) { }
+  showaccordion!: number
 
   navigateToExpertListing() {
     this.Router.navigate(['/expertlisting'])
@@ -23,6 +17,17 @@ export class HomeComponent implements OnInit {
     this.Router.navigate(['/community'])
   }
 
+  navigateToappoinments() {
+    this.Router.navigate(['/schedules'])
+  }
 
+  showAccordion(value: number) {
+    if (this.showaccordion == value) {
+      this.showaccordion = 0
+    } else {
+      this.showaccordion = value
+    }
+
+  }
 
 }

@@ -58,8 +58,6 @@
                 <span>expert who can help you feel safe and comfortable in your mental health journey.</span>
 
             </p>
-            <!-- <button class="bg-stone-950 text-white rounded-lg text-xs py-2 px-3"> helloe </button><br>
-            <p class="text-5xl bg-black text-white font-extralight">helow testing</p> -->
         </div>
         <div class="roundcards flex flex-col justify-center md:flex-row align-middle  w-full space-x-32">
             <div class=" mt-16  mb-16">
@@ -128,7 +126,7 @@
                     class="font-normal text-center md:text-left text-base md:text-lg text-[#171717BF] max-w-[500px] mt-7">
                     Access India's top Mental Health Experts at affordable prices. Talk about depression, anxiety, and
                     much more openly and without any shame with our verified panel of therapists.</p>
-                <button
+                <button (click)="navigateToappoinments()"
                     class=" my-7  bg-orange-500  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring-orange-300 text-white py-2 px-8 rounded-lg ">Start
                     Chat</button>
             </div>
@@ -141,29 +139,6 @@
 
     </section>
 
-    <!-- Experts -->
-
-    <!-- <section class="view-all-experts h-fit  mb-24">
-        <div class="flex justify-center space-x-96 mb-5 mt-24">
-            <div>
-                <p class="text-black text-2xl md:text-3xl  font-medium">Our team of Experts<span>✨</span></p>
-                <svg width="250" height="11" viewBox="0 0 149 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    class="ml-8">
-                    <path
-                        d="M1.67188 9.3999C8.47091 1.6097 14.254 2.49642 19.8471 2.40267C27.6614 2.27169 29.4813 6.82827 34.7211 8.40847C40.8343 10.252 46.0658 6.57986 50.3153 5.33616C52.7986 4.60937 55.2927 4.14208 57.8344 4.20629C61.2436 4.29242 64.3176 7.7547 67.6538 8.64751C70.9373 9.52621 73.9298 8.81145 77.0033 7.05887C78.3838 6.27169 79.7089 5.34577 81.1075 4.61336C82.8666 3.69219 84.8003 3.23567 86.7383 3.04276M86.7383 3.04276C87.6873 2.9483 88.6373 2.91704 89.5684 2.92537M86.7383 3.04276C87.6284 2.96911 88.5845 2.92261 89.5684 2.92537M89.5684 2.92537C90.0742 2.9299 90.5744 2.94611 91.0658 2.97022M89.5684 2.92537C92.1615 2.93266 94.9479 3.28217 97.2279 4.37882C98.6523 5.06391 100.01 5.94486 101.418 6.68529C104.554 8.3338 107.57 8.94785 110.82 7.95964C114.122 6.95557 117.068 3.39238 120.472 3.19205C123.01 3.04269 125.519 3.42612 128.028 4.06923C132.32 5.16977 138.15 9.6473 146.672 3.55006"
-                        stroke="#FF6D42" stroke-width="3" stroke-linecap="round"></path>
-                </svg>
-            </div>
-            <div>
-                <button class="text-orange-500  md:text-xl  p-2 font-bold "> View All</button>
-            </div>
-        </div>
-        <div> -->
-    <!-- <app-carousel></app-carousel> -->
-    <!-- </div>
-    </section> -->
-
-
     <section class="thoughts">
         <div class="h-fit flex just-center ml-10 space-x-32   ">
 
@@ -172,9 +147,6 @@
                 <p
                     class="font-semibold text-2xl md:text-4xl text-center md:text-left max-w-[600px] leading-[2.5rem] md:leading-[3.5rem] ">
                     Unlock Your Inner Peace, Share Your Thoughts, Feel Free<span class="text-4xl ">🧡</span>
-                    <!-- <img
-                        class="h-14 w-14 "
-                        src="../../../../assets/image/wired-gradient-20-love-heart.png" alt=""> -->
                 </p>
                 <p
                     class="font-regular text-base text-gray-700 max-w-[450px] mt-6 text-center md:text-lg md:text-left leading-[1.5rem]">
@@ -246,9 +218,6 @@
                 </div>
             </div>
 
-            <!-- <div class="mr-96">
-                <img class="absolute left-1/2 " src="../../../../assets/image/quote-bg_zajwsr.png" alt="">
-            </div> -->
 
             <div class="p-24 ">
 
@@ -268,7 +237,7 @@
         </div>
         <div class="my-10 mx-64" id="accordion-collapse" data-accordion="collapse">
             <h2 id="accordion-collapse-heading-1">
-                <button type="button"
+                <button type="button" (click)="showAccordion(1)"
                     class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-[#FFEEDB] dark:hover:bg-gray-800"
                     data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
                     aria-controls="accordion-collapse-body-1">
@@ -280,7 +249,7 @@
                     </svg>
                 </button>
             </h2>
-            <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+            <div *ngIf="showaccordion==1" id="accordion-collapse-body-1" aria-labelledby="accordion-collapse-heading-1">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                     <p class="mb-2 text-gray-500 dark:text-gray-400">Now&amp;Me is a unique peer support platform that
                         offers you a safe space to express your feelings, connect with others, and access to expert
@@ -290,7 +259,7 @@
                 </div>
             </div>
             <h2 id="accordion-collapse-heading-2">
-                <button type="button"
+                <button type="button" (click)="showAccordion(2)"
                     class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200  dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-[#FFEEDB] dark:hover:bg-gray-800"
                     data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                     aria-controls="accordion-collapse-body-2">
@@ -302,7 +271,8 @@
                     </svg>
                 </button>
             </h2>
-            <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+
+            <div *ngIf="showaccordion==2" id="accordion-collapse-body-2" aria-labelledby="accordion-collapse-heading-2">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <p class="mb-2 text-gray-500 dark:text-gray-400">Now&Me can help you with your mental health by
                         providing instant chats with a panel of experts, dedicated 1:1 sessions, and a supportive peer
@@ -312,7 +282,7 @@
                 </div>
             </div>
             <h2 id="accordion-collapse-heading-3">
-                <button type="button"
+                <button type="button" (click)="showAccordion(3)"
                     class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200  dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-[#FFEEDB] dark:hover:bg-gray-800"
                     data-accordion-target="#accordion-collapse-body-3" aria-expanded="false"
                     aria-controls="accordion-collapse-body-3">
@@ -324,7 +294,7 @@
                     </svg>
                 </button>
             </h2>
-            <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
+            <div *ngIf="showaccordion==3" id="accordion-collapse-body-3" aria-labelledby="accordion-collapse-heading-3">
                 <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
                     <p class="mb-2 text-gray-500 dark:text-gray-400">Now&Me experts consist of a diverse panel of
                         experienced professionals, including therapists, counselling psychologists, life coaches, career

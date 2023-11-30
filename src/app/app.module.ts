@@ -17,6 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { profileReducer } from './component/users/userstate/userstate.reducer';
 import { appEffects } from './component/users/userstate/userstate.effects';
 import { appUserService } from './component/users/userstate/userstate.service';
+import { Error404Component } from './error404/error404.component';
 
 
 
@@ -31,6 +32,7 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
 @NgModule({
   declarations: [
     AppComponent,
+    Error404Component,
 
   ],
   imports: [

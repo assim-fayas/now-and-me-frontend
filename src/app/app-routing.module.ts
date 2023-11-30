@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Error404Component } from './error404/error404.component';
 const routes: Routes = [
   //user routes
   { path: '', loadChildren: () => import('./component/users/users.module').then(m => m.UsersModule) },
@@ -8,7 +9,7 @@ const routes: Routes = [
   //experts route
   { path: 'experts', loadChildren: () => import('./component/experts/experts.module').then(m => m.ExpertsModule) },
   //invalid routes
-  { path: '**', redirectTo: '' }
+  { path: '**', component: Error404Component }
 ];
 
 @NgModule({

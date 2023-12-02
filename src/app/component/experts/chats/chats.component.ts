@@ -55,17 +55,6 @@ export class ChatsComponent implements OnInit, OnDestroy {
 
     })
 
-
-
-
-
-    this.socket.emit("abc", "aaaaaaaaaaaaaaaaaaa")
-
-
-
-
-
-
   }
 
 
@@ -121,12 +110,9 @@ export class ChatsComponent implements OnInit, OnDestroy {
     this.chatService.showChats(userId, this.currentExpert).subscribe((response: any) => {
       console.log(response);
       if (Array.isArray(response) && response.length > 0) {
-        // Assuming messages are stored in the 'messages' property
         this.chats = response[0].messages;
         console.log(this.chats, "kalyaanee");
       }
-      // console.log(response, "responseeeeeeee");
-      // console.log(this.chats, "responseeeeeeeeeeeeeeeeeeee");
       console.log(this.chats, "kalyaanee");
 
 

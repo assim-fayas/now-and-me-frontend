@@ -36,31 +36,30 @@ export class RegisterComponent implements OnInit {
 
 
   submit(): void {
-    console.log('clicked');
-    console.log('f form controlls', this.f);
     this.register = true
-    let user = this.form.getRawValue()
-    console.log(user, "userrrrrrr");
-
-    this.isLoading = true
-
-    this.userService.registerUser(user).subscribe((response: any) => {
-      this.isLoading = false
-      this.toastr.success(response.message, 'Horrayyy 🎉', {
-        positionClass: 'toast-top-center',
-        timeOut: 2000,
-      });
-    },
-      (errorMessage) => {
+    if (this.form.valid) {
+      this.register = false
+      let user = this.form.getRawValue()
+      this.isLoading = true
+      this.userService.registerUser(user).subscribe((response: any) => {
+        this.form.reset()
         this.isLoading = false
-        this.errormsg = errorMessage
-        this.toastr.error("Something Went Wrong", 'oops😕', {
+        this.toastr.success(response.message, 'Horrayyy 🎉', {
           positionClass: 'toast-top-center',
-          timeOut: 2000,
+          timeOut: 5000,
         });
+      },
+        (errorMessage) => {
+          this.isLoading = false
+          this.errormsg = errorMessage
+          this.toastr.error("Something Went Wrong", 'oops😕', {
+            positionClass: 'toast-top-center',
+            timeOut: 5000,
+          });
 
-      }
-    )
+        }
+      )
+    }
 
   }
 }

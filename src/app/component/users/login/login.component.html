@@ -86,7 +86,7 @@
 
 
 
-            <p data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+            <p data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" (click)="showModal()"
                 class="mt-5 text-xs border-b py-4 text-gray-400 border-gray-400 cursor-pointer  hover:text-orange-500  duration-300 ">
                 Forgot your password?</p>
 
@@ -105,7 +105,7 @@
 </section>
 <!-- modal 1 -->
 
-<div id="authentication-modal" tabindex="-1" aria-hidden="true" data-modal-backdrop="static"
+<div [ariaDisabled]="showResetPasswordModal" tabindex="-1" aria-hidden="true" data-modal-backdrop="static"
     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-md max-h-full">
         <!-- Modal content -->

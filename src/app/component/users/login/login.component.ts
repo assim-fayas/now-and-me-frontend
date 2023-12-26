@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr'
 })
 export class LoginComponent implements OnInit {
 
-
+  showResetPasswordModal = false
   formSubmitted = false;
   //loading spinner
   isLoading: boolean = false
@@ -115,6 +115,17 @@ export class LoginComponent implements OnInit {
   loginWithGoogle() {
 
   }
+
+
+
+  showModal() {
+    if (this.showResetPasswordModal == false) {
+      this.showResetPasswordModal = true
+    } else {
+      this.showResetPasswordModal = true
+    }
+  }
+
 
 
 }

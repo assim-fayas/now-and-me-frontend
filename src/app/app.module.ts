@@ -18,6 +18,7 @@ import { profileReducer } from './component/users/userstate/userstate.reducer';
 import { appEffects } from './component/users/userstate/userstate.effects';
 import { appUserService } from './component/users/userstate/userstate.service';
 import { Error404Component } from './error404/error404.component';
+import { ErrorHandlingInterceptor } from './interceptor/error-handling.interceptor';
 
 
 
@@ -52,10 +53,8 @@ const config: SocketIoConfig = { url: `${environment.api}`, options: {} };
 
   ], exports: [PickerModule],
   providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpInterceptorInterceptor,
-    multi: true
-  }, appUserService, UserServiceService],
+    provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true
+  }, { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true }, appUserService, UserServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

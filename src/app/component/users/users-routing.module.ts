@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { OtpComponent } from './otp/otp.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MailverificationComponent } from './mailverification/mailverification.component';
-import { AuthGuard, ConsecutiveGuard } from 'src/app/authguard.guard';
+import { AuthGuard, ConsecutiveGuard } from 'src/app/guards/authguard.guard';
 import { ExpertListingComponent } from './expert-listing/expert-listing.component';
 import { CommunityComponent } from './community/community.component';
 import { SchedulesComponent } from './schedules/schedules.component';

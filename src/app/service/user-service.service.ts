@@ -40,9 +40,7 @@ export class UserServiceService implements OnInit {
     return this.http.post<LoginResponse>(`${this.url}/login`, { email, password }, { withCredentials: true })
       .pipe(map(LoginResponse => {
         //store all details and jwt token in local storage 
-
         localStorage.setItem('jwt_user', JSON.stringify(LoginResponse))
-        console.log(LoginResponse, "login response");
         return LoginResponse
       }),
         catchError((errorRes) => {

@@ -9,7 +9,6 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const jwt_user = localStorage.getItem('jwt_user')
-    console.log("checking of user jwt from  route guard", jwt_user);
     const loginRoute = '/login'
     const signupRoute = '/register'
 

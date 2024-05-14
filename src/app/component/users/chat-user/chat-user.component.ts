@@ -60,7 +60,7 @@ export class ChatUserComponent {
       this.currentUser = response.userId
       this.isLoading = false
 
-      this.socket.on(response.userId, (message: any) => {
+      this.socket.on(response.l, (message: any) => {
         console.log("message received successfully", message);
         this.receivedMessage = {
           reciverId: message.receiver,

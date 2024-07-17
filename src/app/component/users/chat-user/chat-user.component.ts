@@ -69,12 +69,11 @@ export class ChatUserComponent {
           senderType: message.senderType,
           text: message.text,
         };
-        console.log(this.chats, "chat aneee");
-        console.log(this.receivedMessage, "new chat aaaane");
+ 
 
 
         this.chats = [...this.chats, this.receivedMessage];
-        console.log(this.chats, "chatssssss");
+ 
       });
 
     }, (error) => {
@@ -109,18 +108,15 @@ export class ChatUserComponent {
 
     this.selectedExpert = expertId
 
-    console.log(this.selectedExpert, "current expert");
+
 
     this.chatService.showChats(expertId, this.currentUser).subscribe((response: any) => {
       console.log(response, "full response");
       if (Array.isArray(response) && response.length > 0) {
-        // Assuming messages are stored in the 'messages' property
         this.chats = response[0].messages;
-        console.log(this.chats, "kalyaanee");
+      
       }
-      // console.log(response, "responseeeeeeee");
-      // console.log(this.chats, "responseeeeeeeeeeeeeeeeeeee");
-      console.log(this.chats, "kalyaanee");
+
 
     }, (error) => {
       console.log(error);

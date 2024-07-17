@@ -22,7 +22,6 @@ import { ViewAppoinmentsComponent } from './view-appoinments/view-appoinments.co
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { VideocallComponent } from './videocall/videocall.component';
 import { PiechartComponent } from 'src/app/piechart/piechart.component';
-import { BarchartComponent } from 'src/app/barchart/barchart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoadingSpinnerUserComponent } from './loading-spinner-expert';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
@@ -67,7 +66,6 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     FormsModule,
     CloudinaryModule,
     PiechartComponent,
-    BarchartComponent,
     PickerModule
 
 

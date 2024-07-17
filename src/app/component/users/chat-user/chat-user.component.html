@@ -48,57 +48,52 @@
                     <app-loading-spinner-user></app-loading-spinner-user>
                 </div>
                 <ng-container *ngIf="!isLoading">
-                    <ng-container *ngIf="activeChats">
+                    <!-- Active Chats Section -->
+                    <ng-container *ngIf="activeChats && ActiveChats.length > 0 && !previousChats" >
                         <div (click)="showChats(item.expert._id)" *ngFor="let item of ActiveChats"
-                            class=" ml-8 mr-8 mb-0 border border-dashed  pt-5 pb-5 hover:bg-slate-100"
-                            [ngClass]="{'selected': selectedExpert === item.expert._id}">
-
-
-                            <div class="flex items-center gap-4 pl-4 ">
+                             class="ml-8 mr-8 mb-0 border border-dashed pt-5 pb-5 hover:bg-slate-100"
+                             [ngClass]="{'selected': selectedExpert === item.expert._id}">
+                            <div class="flex items-center gap-4 pl-4">
                                 <img alt="Women"
-                                    [src]="'https://avatars2.githubusercontent.com/u/'+hexToDecimalExperts(item.expert._id)+'?s=360'"
-                                    class="h-12 w-12 rounded-lg object-cover" />
-
+                                     [src]="'https://avatars2.githubusercontent.com/u/' + hexToDecimalExperts(item.expert._id) + '?s=360'"
+                                     class="h-12 w-12 rounded-lg object-cover" />
                                 <div>
                                     <p class="font-medium text-black">{{item.expert.name}}</p>
-
-
                                 </div>
                             </div>
                         </div>
-
                     </ng-container>
-                    <ng-container *ngIf="previousChats ">
-
-                        <ng-container *ngFor="let item2 of ActiveChats">
-                            <ng-container *ngFor="let item of  previousChatdocs">
-                                <ng-container *ngIf="item.expert._id !== item2.expert._id">
-
-                                    <div (click)="showChats(item.expert._id)"
-                                        class="  ml-8 mr-8 mb-0 border border-dashed border-gray-200  pt-5 pb-5 hover:bg-slate-100"
-                                        [ngClass]="{'selected': selectedExpert === item.expert._id} ">
-
-
-                                        <div class="flex items-center gap-4 pl-4 ">
-                                            <img alt="Women"
-                                                [src]="'https://avatars2.githubusercontent.com/u/'+ hexToDecimalExperts(item.expert._id)+'?s=360'"
-                                                class="h-12 w-12 rounded-lg object-cover" />
-
-                                            <div>
-
-                                                <p class="font-medium text-black">{{item.expert.name}}</p>
-
-
-                                            </div>
+                    <!-- <ng-template #noActiveChat>
+                        <h5 class="text-center ml-10 text-gray-500">There is no Active chats</h5>
+                    </ng-template> -->
+                
+                    <!-- Previous Chats Section -->
+                    <ng-container *ngIf="previousChats && previousChatdocs.length > 0 &&!activeChats">
+                        <ng-container *ngFor="let item of previousChatdocs">
+                            <ng-container *ngIf="item.expert?._id">
+                                <div (click)="showChats(item.expert?._id)"
+                                     class="ml-8 mr-8 mb-0 border border-dashed border-gray-200 pt-5 pb-5 hover:bg-slate-100"
+                                     [ngClass]="{'selected': selectedExpert === item.expert?._id}">
+                                    <div class="flex items-center gap-4 pl-4">
+                                        <img alt="Women"
+                                             [src]="'https://avatars2.githubusercontent.com/u/' + hexToDecimalExperts(item.expert?._id) + '?s=360'"
+                                             class="h-12 w-12 rounded-lg object-cover" />
+                                        <div>
+                                            <p class="font-medium text-black">{{item.expert?.name}}</p>
                                         </div>
                                     </div>
-                                </ng-container>
+                                </div>
                             </ng-container>
                         </ng-container>
                     </ng-container>
+                    <!-- <ng-template #noPreviousChat>
+                        <h5 class="text-center ml-10 text-gray-500">There is no previous chats</h5>
+                    </ng-template> -->
                 </ng-container>
+                
+                
 
-
+           
 
             </div>
 
@@ -113,13 +108,13 @@
 
                             <ng-container>
                                 <div class="flex items-center gap-4 pl-4 " *ngFor="let item of  ActiveChats">
-                                    <ng-container *ngIf="item.expert._id=== selectedExpert">
+                                    <ng-container *ngIf="item.expert?._id=== selectedExpert">
                                         <img alt="Women"
-                                            [src]="'https://avatars2.githubusercontent.com/u/'+ hexToDecimalExperts(item.expert._id)+'?s=360'"
+                                            [src]="'https://avatars2.githubusercontent.com/u/'+ hexToDecimalExperts(item.expert?._id)+'?s=360'"
                                             class="h-12 w-12 rounded-lg object-cover" />
 
                                         <div>
-                                            <p class="font-medium text-black">{{item.expert.name}}</p>
+                                            <p class="font-medium text-black">{{item.expert?.name}}</p>
 
 
                                         </div>
@@ -131,7 +126,7 @@
 
                             <ng-container>
                                 <div class="flex items-center gap-4 pl-4 " *ngFor="let item of   previousChatdocs">
-                                    <ng-container *ngIf="item.expert._id=== selectedExpert">
+                                    <ng-container *ngIf="item.expert?._id=== selectedExpert">
                                         <img alt="Women"
                                             [src]="'https://avatars2.githubusercontent.com/u/'+ hexToDecimalExperts(item?.expert?._id)+'?s=360'"
                                             class="h-12 w-12 rounded-lg object-cover" />

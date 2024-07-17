@@ -130,12 +130,8 @@ export class AdminServiceService {
 
 
 
-
-
-
-
   logout() {
-    // remove the user from local and set the current user null
+
     localStorage.removeItem('jwt_admin');
     this.router.navigate(['/admin/login'])
   }
